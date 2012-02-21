@@ -1,28 +1,29 @@
 17.02.2012 - Dabrowski, Notes
 
-Application Interface:
-1. Langue selectione: traver un drapeau est aussi le nom de la langue
-2. Selecter le method: Lire / Ecrire / Compter
-	Images attache aux toutes les button
-3. Selecter la niveaux de commencer
-4. 
+	Interface de l'application:
+1. La langue est sélectionnée a travers un drapeau.
+2. Sélectionner le méthode: Lire / Écrire / Compter a partir d'une Images associée a tous les bouton.
+3. Sélectionner le niveaux pour une activité pour commencer.
 
 
-*** LIRE ***
-Niveaux 1, 2, 3 - apprend de lire l'alphabet, image avec quelque lettres
-Niveaux 4, 5, 6 - apprend les syllable, image avec quelque syllables
-Niveaux ... - apprend de lire mots
-Niveaux ... - apprend de lire tout le phrase
+	-- LIRE --
+Niveaux 1 : apprendre a lire l'alphabet avec des images représentant les  lettres.
+•	Sou-niveau a (a.. h)
+•	Sou-niveau b  (i..m)
+•	Sou-niveau c  (n..z)
 
-Echelle avec le progress de l'enfant pour le niveaux courant. A chaque fois que l'enfant reponse juste, l'echelle monte.
+Niveaux 2 : apprendre a lire les syllabe en utilisant des image représentant les syllabes .
+•	Sou-niveau (pa)
+•	Sou-niveau (po)
+•	Sou-niveau (pi)
 
+Niveaux 3 : apprendre a lire des  mots.
 
-* Niveaux 1 - plusieurs activites premier 9 lettre de l'alphabet
-  - Partir de 'a' jusqu'a 'z';
-  - l'application prend une lettre dans le base de donne et prononce, generer 3 autres lettres, afficher le lettre initialle et les 3 autre en order aleatoire
-  - la machine prononce une lettre ('b'), utiliser API Android Text-To-Speech
-  - une liste de lettre va s'affiche (b, c, a, d)
-  - enfant clique sur la bonne reponse
+Niveaux 4 : apprendre a lire des le phrase.
 
-* Niveaux 2, 3, 4, 5, 6 - la meme chose
-
+Fonctionnement de l’application
+  - l'application récupere une lettre de la base de données et  la prononce ensuite elle génere 3 autres lettres aléatoirement .
+  - la machine prononce une lettre ('b'),en  utilisant l' API Android Text-To-Speech.
+  - Une liste de lettre va s'affiche (b, c, a, d).
+  - L'enfant clique sur  la bonne réponse.
+  -On associe une échelle représentant  le progres de l'enfant pour le niveaux courant, a chaque fois que l'enfant répond juste, l’échelle monte.

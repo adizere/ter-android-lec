@@ -1,34 +1,26 @@
 14.02.2012 - TER Notes
 
 
-Method = {Niveaux}
-Niveau = {Activite}
+Méthodes = {Niveaux}.
+Niveau = {Activité}.
+
+* Acquittement des niveaux.
+
+* Progres (échelle): augmenter.
+
+* Mot (lettre) reconnaître: différence avec un image modele.
 
 
-
-* Aquittement des niveaux
-* Progress bar: augmenter
-
-
-* Mot (lettre) reconnaitre: difference avec un image model
-
-
-* Activites:
+* Activités:
 1. Compter:
-	Ex. 2+2 = ? chiffre / horloge / domino / buton / image;
-	reponse -> manuscrit / oral / buton
-
-2. Ecrire:
-	- avec un model
-	- avec un sans calque
-
-3. Memo sonnor
-
+        Ex. 2+2 = ? chiffre / horloge / domino / bouton / image;
+        réponse -> manuscrit / oral / bouton.
+2. Écrire:
+        - avec un modele.
+        - avec ou sans calque.
+3. Mémo sonnor.
 4. Trouver la lettre ou la syllabe (avec ou sans image)
-	Ex: Trouver le "a" en: "Papa".
-	
+        Ex: Trouver le "a" en: "Papa".        
 5. Lire - de syllabe
-
-6. Image ou son -> ecrire le mot (a partir d'un jou de syllabe)
-
-7. Labyrinthe: Trouve le chemin jusqu'a un mot
+6. Image ou son -> écrire le mot (a partir d'un jeu de syllabe)
+7. Labyrinthe: Trouve le chemin jusqu’a un mot
