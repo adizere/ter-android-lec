@@ -1,0 +1,62 @@
+package fr.univ.orleans.ter.lec.persistence.sql;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+/**
+ * Table - Persistence Layer, SQLite
+ * 
+ * Represents a table from the database structure. Used in creating and loading
+ * the database. Has 1..* Column.
+ * 
+ * @author AdrianSeredinschi
+ * 
+ */
+public class Table {
+
+	private String name = null;
+	private ArrayList<Column> columns = null;
+	
+	private static final String DROP_STUB = "DROP TABLE IF EXISTS ";
+	private static final String CREATE_STUB = "CREATE TABLE IF NOT EXISTS ";
+
+	public Table(String name) {
+		super();
+		this.name = name;
+		this.columns = new ArrayList<Column>();
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void addColumn(Column c) {
+		this.columns.add(c);
+	}
+
+	public ArrayList<Column> getColumns() {
+		return this.columns;
+	}
+	
+	
+	public String getDropStatement() {
+		return DROP_STUB + this.name + "; ";
+	}
+
+	public String getCreateStatement() {
+		String createStmt = "";
+		createStmt += CREATE_STUB + this.name + " (";
+		
+		for (Column c : this.columns) {
+			createStmt += c.getName() + " " + c.getType() + " " + c.getOptions();
+		}
+		
+		createStmt += "); ";
+		return createStmt;
+	}
+
+}
