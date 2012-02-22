@@ -1,7 +1,4 @@
 Répartition des tâches de la partie Apprendre a lire (24.02.2012)
-	- BD - Adi
+	- BD implementation - Adi
 	- Interface graphique - Asmaa
 	- Niveaux 1 interaction - Lamia
-   
-   
-   
