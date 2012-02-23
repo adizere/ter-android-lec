@@ -2,6 +2,7 @@ package fr.univ.orleans.ter.lec.persistence.sql;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Table - Persistence Layer, SQLite
@@ -51,8 +52,13 @@ public class Table {
 		String createStmt = "";
 		createStmt += CREATE_STUB + this.name + " (";
 		
-		for (Column c : this.columns) {
+		Iterator<Column> itCol = this.columns.iterator();
+		Column c = null;
+		while(itCol.hasNext()) {
+			c = itCol.next();
 			createStmt += c.getName() + " " + c.getType() + " " + c.getOptions();
+			if (itCol.hasNext())
+				createStmt += ", ";
 		}
 		
 		createStmt += "); ";

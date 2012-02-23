@@ -1,5 +1,6 @@
 package fr.univ.orleans.ter.lec;
 
+import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -10,6 +11,9 @@ public class LECActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        SQLiteHelper helper = new SQLiteHelper(getApplicationContext());
         
+        helper.getDbCreateStatement();
+        helper.getDbDropStatement();
     }
 }
