@@ -13,14 +13,14 @@ import android.util.Log;
 /**
  * DbStructure - Persistence Layer, SQLite
  * 
- * Intermediary class between the SQLiteHelper and the statements that this class
- * needs in order to ensure proper db initialisation.
+ * Intermediary class between the SQLiteHelper and the statements that this
+ * class needs in order to ensure proper db initialisation.
  * 
- * Loads the structure of the database (comprising mainly of an array of Table) from
- * an external configuration file (XML) and returns it.
+ * Loads the structure of the database (comprising mainly of an array of Table)
+ * from an external configuration file (XML) and returns it.
  * 
  * @author AdrianSeredinschi
- *
+ * 
  */
 public class DbStructure {
 
@@ -45,11 +45,13 @@ public class DbStructure {
 
 		try {
 			myxml.next();
+
 			eventType = myxml.getEventType();
 
+			Table t = null;
+			Column c = null;
+
 			while (eventType != XmlPullParser.END_DOCUMENT) {
-				Table t = null;
-				Column c = null;
 
 				NodeValue = myxml.getName();
 
@@ -63,7 +65,6 @@ public class DbStructure {
 					}
 
 					if (NodeValue.equalsIgnoreCase("column")) {
-						Integer count = myxml.getAttributeCount();
 						String colName = myxml.getAttributeValue(null, "name");
 						String colType = myxml.getAttributeValue(null, "type");
 						String colOptions = myxml.getAttributeValue(null,
@@ -91,9 +92,9 @@ public class DbStructure {
 	}
 
 	public ArrayList<Table> getTables() {
-		if (this.tables == null)
+		if (this.tables.size() == 0)
 			this.load();
-		
+
 		return this.tables;
 	}
 

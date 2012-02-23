@@ -38,7 +38,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		database.execSQL(getDbCreateStatement());
 	}
 
-	private String getDbCreateStatement() {
+	public String getDbCreateStatement() {
 		String createStmt = "";
 
 		ArrayList<Table> tables = dbStructure.getTables();
@@ -46,7 +46,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			createStmt += t.getCreateStatement();
 		}
 
-		Log.d(DATABASE_NAME, "Create Statement: \n " + createStmt + "\n");
+		Log.d(DATABASE_NAME, "Create Statement: \n " + createStmt);
 
 		return createStmt;
 	}
@@ -56,13 +56,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		database.execSQL(getDbDropStatement());
 	}
 
-	private String getDbDropStatement() {
+	public String getDbDropStatement() {
 		String dropStmt = "";
 		ArrayList<Table> tables = dbStructure.getTables();
 		for (Table t : tables) {
 			dropStmt += t.getDropStatement();
 		}
-		Log.d(DATABASE_NAME, "Drop Statement: \n " + dropStmt + "\n");
+		Log.d(DATABASE_NAME, "Drop Statement: \n " + dropStmt);
 
 		return dropStmt;
 	}
