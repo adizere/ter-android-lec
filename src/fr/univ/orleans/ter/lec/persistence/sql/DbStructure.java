@@ -98,4 +98,16 @@ public class DbStructure {
 		return this.tables;
 	}
 
+	public Table getTableByName(String tableName) {
+		if (this.tables.size() == 0)
+			this.load();
+		for (Table tab : this.tables) {
+			if (tab.getName().equals(tableName)) {
+				return tab;
+			}
+		}
+		Log.e(SQLiteHelper.class.getName(), "Could not find any table having the name: " + tableName);
+		return null;
+	}
+
 }
