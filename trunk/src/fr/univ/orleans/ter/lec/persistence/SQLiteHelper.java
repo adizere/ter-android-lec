@@ -37,6 +37,15 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase database) {
 		database.execSQL(getDbCreateStatement());
 	}
+	
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		Log.w(SQLiteHelper.class.getName(), "Upgrading database from version "
+				+ oldVersion + " to " + newVersion
+				+ ", which will destroy all old data.");
+
+		onDrop(db);
+		onCreate(db);
+	}
 
 	public String getDbCreateStatement() {
 		String createStmt = "";
@@ -67,12 +76,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return dropStmt;
 	}
 
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		Log.w(SQLiteHelper.class.getName(), "Upgrading database from version "
-				+ oldVersion + " to " + newVersion
-				+ ", which will destroy all old data");
-
-		onDrop(db);
-		onCreate(db);
+	public DbStructure getDbStructure() {
+		return this.dbStructure;
 	}
 }
