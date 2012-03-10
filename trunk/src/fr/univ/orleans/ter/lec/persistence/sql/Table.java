@@ -65,4 +65,9 @@ public class Table {
 		return createStmt;
 	}
 
+	@Override
+	public String toString() {
+		return "Table [name=" + name + ", columns=" + columns.toString() + "]";
+	}
+
 }
