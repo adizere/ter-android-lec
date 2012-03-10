@@ -44,4 +44,9 @@ public class Column {
 		this.options = options;
 	}
 
+	@Override
+	public String toString() {
+		return "Column [name=" + name + ", type=" + type + ", options="
+				+ options + "]";
+	}
 }
