@@ -2,7 +2,6 @@ package fr.univ.orleans.ter.lec.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.util.Log;
 import fr.univ.orleans.ter.lec.model.Language;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 
@@ -14,7 +13,7 @@ import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
  * retrieved from the DB.
  * 
  * @author AdrianSeredinschi
- *
+ * 
  */
 public class LanguageRepository extends BasicSqlRepository {
 
@@ -24,15 +23,17 @@ public class LanguageRepository extends BasicSqlRepository {
 		this.init();
 	}
 
-	public Language createLanguage(String name, Long alphabetSetId) {
+	/*
+	 * Creation of a new Language. Returns the new object that was created.
+	 */
+	public Language createLanguage(String name) {
 		ContentValues values = new ContentValues();
 
 		values.put(this.columnNames[1], name);
-		values.put(this.columnNames[2], alphabetSetId);
 
-		long id = this.insertValues(values);
-		
-		return (Language) this.getMemberById( id );
+		long id = this.insertValue(values);
+
+		return (Language) this.getMemberById(id);
 	}
 
 	@Override
@@ -40,21 +41,6 @@ public class LanguageRepository extends BasicSqlRepository {
 		Language l = new Language();
 		l.setId(cursor.getLong(0));
 		l.setName(cursor.getString(1));
-		l.setAlphabet_set_id(cursor.getLong(2));
 		return l;
 	}
-
-	@Override
-	public Object getMemberById(long id) {
-		for (Object lang : this.members) {
-			if (((Language)lang).getId() == id) {
-				return lang;
-			}
-		}
-		
-		Log.w("LanguageRepository", "Could not find any Language with id " + id );
-		
-		return null;
-	}
-
 }

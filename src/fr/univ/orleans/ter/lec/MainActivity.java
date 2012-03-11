@@ -5,10 +5,9 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import fr.univ.orleans.ter.lec.model.Language;
+import fr.univ.orleans.ter.lec.example.DbInteractionExample;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
-import fr.univ.orleans.ter.lec.repository.LanguageRepository;
-import fr.univ.orleans.ter.lec.utility.Exercises;
+import fr.univ.orleans.ter.lec.repository.GlobalRepository;
 
 public class MainActivity extends Activity {
 	/** Called when the activity is first created. */
@@ -18,31 +17,20 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		SQLiteHelper helper = new SQLiteHelper(getApplicationContext());
-		LanguageRepository langRepo = new LanguageRepository(helper);
-		
-		List<Object> languages;
-		
-//		languages = langRepo.getMembers();
-//		langRepo.createLanguage("French", 1L);
-//		langRepo.createLanguage("English", 2L);
-//		langRepo.createLanguage("Arabic", 3L);
-//		langRepo.createLanguage("Chinese", 4L);
-		languages = langRepo.getMembers();
-		
-		
-		Log.d("Activity", "Members found:" + languages.size());
-		Language french = (Language) langRepo.getMemberById(1L);
-		Log.d("Activity", "Retrieved language by id:" + french.toString() );
-		
-		for (Object object : languages) {
-			Log.d("Activity", "Language found:" + object.toString() );
-		}
-		
-		for (int j = 0; j < 3; j++) {
-			String rand = Exercises.getRandomString(1);
-			Log.d("Activity", "Generated a random character: " + rand);
-		}
-		
+
+		GlobalRepository globalRepo = new GlobalRepository(helper);
+
+		DbInteractionExample example = new DbInteractionExample(globalRepo);
+
+//		example.insertions();
+		List<Object> languages = example.retrieveLanguages();
+		List<Object> tags = example.retrieveTags();
+		List<Object> languages_tags = example.retrieveLanguagesTags();
+
+		Log.d("MainAct", "Number of languages: " + languages.size());
+		Log.d("MainAct", "Number of tags: " + tags.size());
+		Log.d("MainAct", "Number of languages_tags: " + languages_tags.size());
+
 		helper.getDbCreateStatement();
 		helper.getDbDropStatement();
 	}

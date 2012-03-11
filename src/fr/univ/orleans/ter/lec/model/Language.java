@@ -20,12 +20,13 @@ import java.util.List;
 public class Language extends BasicLECModel {
 
 	private String name;
-	private long alphabet_set_id;
 	private List<LComponent> lComponents;
+	private List<Tag> tags;
 
 	public Language() {
 		super();
 		this.lComponents = new ArrayList<LComponent>();
+		this.tags = new ArrayList<Tag>();
 	}
 
 	public String getName() {
@@ -36,14 +37,6 @@ public class Language extends BasicLECModel {
 		this.name = name;
 	}
 
-	public long getAlphabet_set_id() {
-		return alphabet_set_id;
-	}
-
-	public void setAlphabet_set_id(long alphabet_set_id) {
-		this.alphabet_set_id = alphabet_set_id;
-	}
-
 	public List<LComponent> getlComponents() {
 		return lComponents;
 	}
@@ -51,9 +44,17 @@ public class Language extends BasicLECModel {
 	public void setlComponents(List<LComponent> lComponents) {
 		this.lComponents = lComponents;
 	}
+	
+	public void addTag(Tag t) {
+		this.tags.add(t);
+	}
+	
+	public List<Tag> getTags(){
+		return this.tags;
+	}
 
 	@Override
 	public String toString() {
-		return "Language [" + _id + ", " + name + ", " + alphabet_set_id + "]";
+		return "Language [" + _id + ", " + name + "]";
 	}
 }

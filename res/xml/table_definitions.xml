@@ -3,7 +3,6 @@
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
 			<column name="name" type="text"/>
-			<column name="alphabet_set_id" type="integer"/>
 		</columns>
 	</table>
 	<table name="tags">
@@ -15,45 +14,44 @@
 	</table>
 	<table name="languages_tags">
 		<columns>
+			<column name="_id" type="integer" options="primary key autoincrement"/>
 			<column name="language_id" type="integer"/>
 			<column name="tag_id" type="integer"/>
 		</columns>
 	</table>
-	<table name="alphabet_sets">
-		<columns>
-			<column name="_id" type="integer" options="primary key autoincrement"/>
-			<column name="name" type="text"/>
-		</columns>
-	</table>
-	<table name="alphabet_symbols">
+	<table name="lcomponents">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
 			<column name="content" type="text"/>
-		</columns>
-	</table>
-	<table name="alphabet_sets_symbols">
-		<columns>
-			<column name="alphabet_set_id" type="integer"/>
-			<column name="alphabet_symbol_id" type="integer"/>
-		</columns>
-	</table>
-	<table name="generic_symbols">
-		<columns>
-			<column name="_id" type="integer" options="primary key autoincrement"/>
 			<column name="type" type="text"/>
-			<column name="content" type="text"/>
+		</columns>
+	</table>
+	<table name="languages_lcomponents">
+		<columns>
+			<column name="_id" type="integer" options="primary key autoincrement"/>
+			<column name="lcomponent_id" type="integer"/>
+			<column name="language_id" type="integer"/>
+		</columns>
+	</table>
+	<table name="methods">
+		<columns>
+			<column name="_id" type="integer" options="primary key autoincrement"/>
+			<column name="completed" type="boolean"/>
+		</columns>
+	</table>
+	<table name="languages_methods">
+		<columns>
+			<column name="_id" type="integer" options="primary key autoincrement"/>
+			<column name="language_id" type="integer"/>
+			<column name="method_id" type="integer"/>
 		</columns>
 	</table>
 	<table name="levels">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
 			<column name="completed" type="boolean"/>
-		</columns>
-	</table>
-	<table name="languages_levels">
-		<columns>
+			<column name="method_id" type="integer"/>
 			<column name="language_id" type="integer"/>
-			<column name="level_id" type="integer"/>
 		</columns>
 	</table>
 	<table name="activities">
@@ -65,11 +63,11 @@
 	</table>
 	<table name="exercises">
 		<columns>
-			<column name="activity_id" type="integer"/>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
+			<column name="activity_id" type="integer"/>
+			<column name="completed" type="boolean"/>
 			<column name="type" type="text"/>
 			<column name="statement" type="text"/>
-			<column name="completed" type="boolean"/>
 		</columns>
 	</table>
 </lecTables>
