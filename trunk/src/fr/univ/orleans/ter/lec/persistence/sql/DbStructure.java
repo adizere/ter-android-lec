@@ -26,10 +26,12 @@ public class DbStructure {
 
 	private Context context = null;
 	private ArrayList<Table> tables = null;
+	private String dbVersion = null;
 
 	public DbStructure(Context context) {
 		this.context = context;
 		this.tables = new ArrayList<Table>();
+		this.dbVersion = "1";
 	}
 
 	/*

@@ -6,7 +6,8 @@ import java.util.List;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
+import android.util.Log;
+import fr.univ.orleans.ter.lec.model.BasicLECModel;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 import fr.univ.orleans.ter.lec.persistence.sql.Column;
 import fr.univ.orleans.ter.lec.persistence.sql.DbStructure;
@@ -33,12 +34,12 @@ public abstract class BasicSqlRepository {
 	 */
 	private SQLiteDatabase database;
 	private SQLiteHelper databaseHelper;
-
+	
 	/*
 	 * Attributes that need to be considered in each subclass
 	 */
-	protected List<Object> members;
 	protected String tableName;
+	protected List<Object> members;
 	protected String[] columnNames;
 
 	public BasicSqlRepository() {
@@ -52,9 +53,6 @@ public abstract class BasicSqlRepository {
 	}
 
 	protected abstract Object cursorToMember(Cursor cursor);
-//	protected abstract void 
-
-	public abstract Object getMemberById(long id);
 
 	/*
 	 * Initializes the columnNames attribute. Called after the tableName is set,
@@ -71,17 +69,31 @@ public abstract class BasicSqlRepository {
 			columnNames[count++] = col.getName();
 		}
 	}
+	
+	public Object getMemberById(long id){
+		if (this.members.size() == 0)
+			this.refresh();
+		
+		for (Object member : this.members) {
+			if (((BasicLECModel) member).getId() == id) {
+				return member;
+			}
+		}
+
+		Log.w(this.getClass().toString(), "Could not find any member with id " + id);
+		return null;
+	}
 
 	public List<Object> getMembers() {
 		if (this.members.size() == 0)
-			this.retrieveAllMembers();
+			this.refresh();
 		return members;
 	}
 
-	private void retrieveAllMembers() {
+	private void refresh() {
 		this.members.clear();
 
-		Cursor cursor = this.database.query(tableName, columnNames, null, null,
+		Cursor cursor = this.database.query(this.tableName, this.columnNames, null, null,
 				null, null, null);
 
 		// Nothing to do here...
@@ -91,7 +103,7 @@ public abstract class BasicSqlRepository {
 		}
 
 		cursor.moveToFirst();
-		while (!cursor.isLast() && cursor.getCount() != 0) {
+		while (!cursor.isAfterLast()) {
 			Object member = this.cursorToMember(cursor);
 			this.members.add(member);
 			cursor.moveToNext();
@@ -104,12 +116,17 @@ public abstract class BasicSqlRepository {
 		databaseHelper.close();
 	}
 
-	protected long insertValues(ContentValues values) {
+	protected long insertValue(ContentValues values) {
 		long insertId = this.database.insert(this.tableName, null, values);
 
 		// forcing refresh of our repository, to be in sync..
-		this.retrieveAllMembers();
+		this.refresh();
 
 		return insertId;
+	}
+	
+	public void deleteMemberById(Long memberId){
+		Log.i(this.getClass().toString(), "Deleting Member id: " + memberId);
+		this.database.delete(this.tableName, "_id = " + memberId, null );
 	}
 }

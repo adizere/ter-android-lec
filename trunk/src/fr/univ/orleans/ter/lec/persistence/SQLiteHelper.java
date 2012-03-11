@@ -25,7 +25,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 	// Some *constants*
 	private static final String DATABASE_NAME = "lec.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 3;
 
 	private DbStructure dbStructure;
 
@@ -37,7 +37,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase database) {
 		database.execSQL(getDbCreateStatement());
 	}
-	
+
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		Log.w(SQLiteHelper.class.getName(), "Upgrading database from version "
 				+ oldVersion + " to " + newVersion
@@ -55,12 +55,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			createStmt += t.getCreateStatement();
 		}
 
-		Log.d(DATABASE_NAME, "Create Statement: \n " + createStmt);
-
 		return createStmt;
 	}
 
-	// no need to make this one public
 	private void onDrop(SQLiteDatabase database) {
 		database.execSQL(getDbDropStatement());
 	}
@@ -71,7 +68,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		for (Table t : tables) {
 			dropStmt += t.getDropStatement();
 		}
-		Log.d(DATABASE_NAME, "Drop Statement: \n " + dropStmt);
 
 		return dropStmt;
 	}
