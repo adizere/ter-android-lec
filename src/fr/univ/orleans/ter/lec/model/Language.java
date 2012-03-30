@@ -20,13 +20,19 @@ import java.util.List;
 public class Language extends BasicLECModel {
 
 	private String name;
+	
+	/* Link with other models */
 	private List<LComponent> lComponents;
 	private List<Tag> tags;
+	private List<Method> methods;
+	private List<Level> levels;
 
 	public Language() {
 		super();
 		this.lComponents = new ArrayList<LComponent>();
 		this.tags = new ArrayList<Tag>();
+		this.methods = new ArrayList<Method>();
+		this.levels = new ArrayList<Level>();
 	}
 
 	public String getName() {
