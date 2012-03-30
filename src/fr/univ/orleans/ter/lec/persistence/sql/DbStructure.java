@@ -7,6 +7,9 @@ import org.xmlpull.v1.XmlPullParser;
 
 import fr.univ.orleans.ter.lec.R;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
+import fr.univ.orleans.ter.lec.persistence.sql.relation.ManyToMany;
+import fr.univ.orleans.ter.lec.persistence.sql.relation.OneToMany;
+import fr.univ.orleans.ter.lec.persistence.sql.relation.SQLRelation;
 import android.content.Context;
 import android.content.res.XmlResourceParser;
 import android.util.Log;
@@ -53,6 +56,7 @@ public class DbStructure {
 
 			Table t = null;
 			Column c = null;
+			SQLRelation r = null;
 
 			while (eventType != XmlPullParser.END_DOCUMENT) {
 
@@ -77,6 +81,31 @@ public class DbStructure {
 						t.addColumn(c);
 					}
 
+					if (NodeValue.equalsIgnoreCase("relation")) {
+						String name = myxml.getAttributeValue(null, "name");
+						Integer type = Integer.parseInt(myxml
+								.getAttributeValue(null, "type"));
+
+						if (type == SQLRelation.RELATION_ONE_TO_MANY) {
+							String parent = myxml.getAttributeValue(null,
+									"parentTable");
+							String child = myxml.getAttributeValue(null,
+									"childTable");
+
+							r = new OneToMany(parent, child, name);
+						} else if (type == SQLRelation.RELATION_MANY_TO_MANY) {
+							String interm = myxml.getAttributeValue(null,
+									"intermediateTable");
+							String right = myxml.getAttributeValue(null,
+									"rightPartnerTable");
+							String left = myxml.getAttributeValue(null,
+									"leftPartnerTable");
+
+							r = new ManyToMany(interm, right, left, name);
+						}
+						t.addRelation(r);
+					}
+
 				} else if (eventType == XmlPullParser.END_TAG) {
 					if (NodeValue.equalsIgnoreCase("table")) {
 						if (t != null)
@@ -97,18 +126,19 @@ public class DbStructure {
 	public ArrayList<Table> getTables() {
 		if (this.tables.size() == 0)
 			this.load();
-		
+
 		return new ArrayList<Table>(this.tables.values());
 	}
 
 	public Table getTableByName(String tableName) {
 		if (this.tables.size() == 0)
 			this.load();
-		
+
 		Table t = this.tables.get(tableName);
-		
-		if ( t == null ) {
-			Log.e(SQLiteHelper.class.getName(), "Could not find any table having the name: " + tableName);
+
+		if (t == null) {
+			Log.e(SQLiteHelper.class.getName(),
+					"Could not find any table having the name: " + tableName);
 		}
 		return t;
 	}

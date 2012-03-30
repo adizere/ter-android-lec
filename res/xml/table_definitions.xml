@@ -18,6 +18,9 @@
 			<column name="language_id" type="integer"/>
 			<column name="tag_id" type="integer"/>
 		</columns>
+		<relations>
+			<relation type="2" name="languages_tags" intermediateTable="languages_tags" rightPartnerTable="languages" leftPartnerTable="tags"/>
+		</relations>
 	</table>
 	<table name="lcomponents">
 		<columns>
@@ -32,6 +35,9 @@
 			<column name="lcomponent_id" type="integer"/>
 			<column name="language_id" type="integer"/>
 		</columns>
+		<relations>
+			<relation type="2" name="languages_lcomponents" intermediateTable="languages_lcomponents" rightPartnerTable="languages" leftPartnerTable="lcomponents"/>
+		</relations>
 	</table>
 	<table name="methods">
 		<columns>
@@ -46,6 +52,9 @@
 			<column name="language_id" type="integer"/>
 			<column name="method_id" type="integer"/>
 		</columns>
+		<relations>
+			<relation type="2" name="languages_methods" intermediateTable="languages_methods" rightPartnerTable="languages" leftPartnerTable="methods"/>
+		</relations>
 	</table>
 	<table name="levels">
 		<columns>
@@ -55,6 +64,10 @@
 			<column name="completed" type="boolean"/>
 			<column name="name" type="integer"/>
 		</columns>
+		<relations>
+			<relation type="1" name="levels_languages" parentTable="languages" childTable="levels"/>
+			<relation type="1" name="levels_methods" parentTable="methods" childTable="levels"/>
+		</relations>
 	</table>
 	<table name="exercises">
 		<columns>
@@ -63,5 +76,8 @@
 			<column name="completed" type="boolean"/>
 			<column name="statement" type="text"/>
 		</columns>
+		<relations>
+			<relation type="1" name="exercises_levels" parentTable="levels" childTable="exercises"/>
+		</relations>
 	</table>
 </lecTables>
