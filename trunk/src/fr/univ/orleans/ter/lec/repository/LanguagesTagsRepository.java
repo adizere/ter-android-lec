@@ -5,10 +5,10 @@ import android.database.Cursor;
 import fr.univ.orleans.ter.lec.model.LanguageTag;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 
-public class LanguageTagRepository extends BasicSqlRepository {
+public class LanguagesTagsRepository extends BasicLECRepository {
 
 	
-	public LanguageTagRepository(SQLiteHelper helper) {
+	public LanguagesTagsRepository(SQLiteHelper helper) {
 		super(helper);
 		this.tableName = "languages_tags";
 		this.init();

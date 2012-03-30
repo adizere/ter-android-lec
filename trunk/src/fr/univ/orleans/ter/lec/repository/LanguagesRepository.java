@@ -7,7 +7,7 @@ import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 
 /**
  * 
- * LanguageRepository - Persistence Layer
+ * LanguagesRepository - Persistence Layer
  * 
  * Class that server as intermediary for manipulating Language (model) objects
  * retrieved from the DB.
@@ -15,9 +15,9 @@ import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
  * @author AdrianSeredinschi
  * 
  */
-public class LanguageRepository extends BasicSqlRepository {
+public class LanguagesRepository extends BasicLECRepository {
 
-	public LanguageRepository(SQLiteHelper helper) {
+	public LanguagesRepository(SQLiteHelper helper) {
 		super(helper);
 		this.tableName = "languages";
 		this.init();

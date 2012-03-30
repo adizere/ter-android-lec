@@ -3,75 +3,123 @@ package fr.univ.orleans.ter.lec.example;
 import java.util.List;
 
 import fr.univ.orleans.ter.lec.model.Language;
+import fr.univ.orleans.ter.lec.model.Method;
 import fr.univ.orleans.ter.lec.model.Tag;
-import fr.univ.orleans.ter.lec.repository.BasicSqlRepository;
-import fr.univ.orleans.ter.lec.repository.GlobalRepository;
-import fr.univ.orleans.ter.lec.repository.LanguageRepository;
-import fr.univ.orleans.ter.lec.repository.LanguageTagRepository;
-import fr.univ.orleans.ter.lec.repository.TagRepository;
+import fr.univ.orleans.ter.lec.repository.BasicLECRepository;
+import fr.univ.orleans.ter.lec.repository.LevelsRepository;
+import fr.univ.orleans.ter.lec.repository.MethodsRepository;
+import fr.univ.orleans.ter.lec.repository.LanguagesRepository;
+import fr.univ.orleans.ter.lec.repository.LanguagesTagsRepository;
+import fr.univ.orleans.ter.lec.repository.TagsRepository;
+import fr.univ.orleans.ter.lec.repository.mediation.RepositoryMediator;
 
 public class DbInteractionExample {
 
-	private GlobalRepository globalRepo;
+	private RepositoryMediator repoMediator;
 
-	public DbInteractionExample(GlobalRepository gr) {
-		this.globalRepo = gr;
+	public DbInteractionExample(RepositoryMediator gr) {
+		this.repoMediator = gr;
 	}
 
 	public void insertions() {
 
-		/*
-		 * Inserting some languages
-		 */
-		BasicSqlRepository langRepo = globalRepo
+		BasicLECRepository langRepo = repoMediator
 				.getRepositoryByTableName("languages");
 
-		Language l1 = ((LanguageRepository) langRepo).createLanguage("French");
-		Language l2 = ((LanguageRepository) langRepo).createLanguage("English");
-
+		Language l1 = ((LanguagesRepository) langRepo).createLanguage("French");
+		Language l2 = ((LanguagesRepository) langRepo).createLanguage("English");
+		
 		/*
 		 * Insert some tags..
 		 */
-		BasicSqlRepository tagRepo = globalRepo
+		BasicLECRepository tagRepo = repoMediator
 				.getRepositoryByTableName("tags");
 
-		Tag t1 = ((TagRepository) tagRepo).createTag("WELCOME_MESSAGE",
+		Tag t1 = ((TagsRepository) tagRepo).createTag("WELCOME_MESSAGE",
 				"Hello!");
-		Tag t2 = ((TagRepository) tagRepo).createTag("WELCOME_MESSAGE2",
-				"Hello there!");
+		Tag t2 = ((TagsRepository) tagRepo).createTag("WELCOME_MESSAGE",
+				"Bonjour!");
 
 		/*
 		 * Now map the two languages with these two tags..
 		 */
 
-		BasicSqlRepository langTagRepo = globalRepo
+		BasicLECRepository langTagRepo = repoMediator
 				.getRepositoryByTableName("languages_tags");
 		
-		((LanguageTagRepository)langTagRepo).createLanguageTag(l1.getId(), t1.getId());
-		((LanguageTagRepository)langTagRepo).createLanguageTag(l1.getId(), t2.getId());
+		((LanguagesTagsRepository)langTagRepo).createLanguageTag(l1.getId(), t1.getId());
+		((LanguagesTagsRepository)langTagRepo).createLanguageTag(l1.getId(), t2.getId());
 
-		((LanguageTagRepository)langTagRepo).createLanguageTag(l2.getId(), t1.getId());
-		((LanguageTagRepository)langTagRepo).createLanguageTag(l2.getId(), t2.getId());
+		((LanguagesTagsRepository)langTagRepo).createLanguageTag(l2.getId(), t1.getId());
+		((LanguagesTagsRepository)langTagRepo).createLanguageTag(l2.getId(), t2.getId());
 	}
-
+	
 	public List<Object> retrieveLanguages() {
-		BasicSqlRepository langRepo = globalRepo
+		BasicLECRepository langRepo = repoMediator
 				.getRepositoryByTableName("languages");
 
 		return langRepo.getMembers();
 	}
 
 	public List<Object> retrieveTags() {
-		BasicSqlRepository tagRepo = globalRepo
+		BasicLECRepository tagRepo = repoMediator
 				.getRepositoryByTableName("tags");
 
 		return tagRepo.getMembers();
 	}
 
 	public List<Object> retrieveLanguagesTags() {
-		BasicSqlRepository langTagRepo = globalRepo
+		BasicLECRepository langTagRepo = repoMediator
 				.getRepositoryByTableName("languages_tags");
 
 		return langTagRepo.getMembers();
 	}
+
+	public void basicDBInit() {
+		Long langIds[] = this.insertLanguages();
+		Long methodIds[] = this.insertMethods();
+		
+		
+		for (int i = 0; i < langIds.length; i++) {
+			for (int j = 0; j < methodIds.length; j++) {
+				Long levels[] = this.insertLevels(langIds[i], methodIds[j]);
+			}
+		}
+	}
+
+	private Long[] insertLanguages() {
+		/*
+		 * Inserting some languages
+		 */
+		BasicLECRepository langRepo = repoMediator
+				.getRepositoryByTableName("languages");
+
+		Language l1 = ((LanguagesRepository) langRepo).createLanguage("French");
+		Language l2 = ((LanguagesRepository) langRepo).createLanguage("English");
+		
+		Long ret[] = {l1.getId(), l2.getId()};
+		return ret;
+	}
+	
+	public Long[] insertMethods(){
+		MethodsRepository meRepo = (MethodsRepository)repoMediator.getRepositoryByTableName("methods");
+		
+		Method m1 = meRepo.createMethod("Read");
+		Method m2 = meRepo.createMethod("Write");
+		
+		Long ret[] = {m1.getId(), m2.getId()};
+		return ret;
+	}
+	
+	public Long[] insertLevels(Long languageId, Long methodId) {
+		LevelsRepository levelRepo = (LevelsRepository)repoMediator.getRepositoryByTableName("levels");
+		
+		Long ret[] = new Long[10];
+		for (int i = 0; i < 10; i++) {
+			levelRepo.createLevel(languageId, methodId);
+		}
+		
+		return null;
+	}
+
 }

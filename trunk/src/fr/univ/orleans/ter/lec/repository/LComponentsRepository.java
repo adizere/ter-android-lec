@@ -3,9 +3,9 @@ package fr.univ.orleans.ter.lec.repository;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 import android.database.Cursor;
 
-public class LComponentRepository extends BasicSqlRepository {
+public class LComponentsRepository extends BasicLECRepository {
 
-	public LComponentRepository(SQLiteHelper helper){
+	public LComponentsRepository(SQLiteHelper helper){
 		super(helper);
 		this.tableName = "lcomponents";
 		this.init();

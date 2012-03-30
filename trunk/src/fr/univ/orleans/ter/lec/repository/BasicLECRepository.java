@@ -27,7 +27,7 @@ import fr.univ.orleans.ter.lec.persistence.sql.Table;
  * @author AdrianSeredinschi
  * 
  */
-public abstract class BasicSqlRepository {
+public abstract class BasicLECRepository {
 
 	/*
 	 * Attributes accessible only from this (base) class.
@@ -42,11 +42,11 @@ public abstract class BasicSqlRepository {
 	protected List<Object> members;
 	protected String[] columnNames;
 
-	public BasicSqlRepository() {
+	public BasicLECRepository() {
 		this.members = new ArrayList<Object>();
 	}
 
-	public BasicSqlRepository(SQLiteHelper helper) {
+	public BasicLECRepository(SQLiteHelper helper) {
 		this.databaseHelper = helper;
 		this.database = helper.getWritableDatabase();
 		this.members = new ArrayList<Object>();
