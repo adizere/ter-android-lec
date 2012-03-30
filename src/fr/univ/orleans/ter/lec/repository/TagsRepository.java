@@ -5,9 +5,9 @@ import android.database.Cursor;
 import fr.univ.orleans.ter.lec.model.Tag;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 
-public class TagRepository extends BasicSqlRepository {
+public class TagsRepository extends BasicLECRepository {
 
-	public TagRepository(SQLiteHelper helper) {
+	public TagsRepository(SQLiteHelper helper) {
 		super(helper);
 		this.tableName = "tags";
 		this.init();

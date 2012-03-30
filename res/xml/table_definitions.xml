@@ -36,6 +36,7 @@
 	<table name="methods">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
+			<column name="name" type="text"/>
 			<column name="completed" type="boolean"/>
 		</columns>
 	</table>
@@ -49,24 +50,17 @@
 	<table name="levels">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
-			<column name="completed" type="boolean"/>
 			<column name="method_id" type="integer"/>
 			<column name="language_id" type="integer"/>
-		</columns>
-	</table>
-	<table name="activities">
-		<columns>
-			<column name="_id" type="integer" options="primary key autoincrement"/>
-			<column name="level_id" type="integer"/>
 			<column name="completed" type="boolean"/>
+			<column name="name" type="integer"/>
 		</columns>
 	</table>
 	<table name="exercises">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
-			<column name="activity_id" type="integer"/>
+			<column name="level_id" type="integer"/>
 			<column name="completed" type="boolean"/>
-			<column name="type" type="text"/>
 			<column name="statement" type="text"/>
 		</columns>
 	</table>

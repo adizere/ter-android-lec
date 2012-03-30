@@ -5,9 +5,12 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageButton;
 import fr.univ.orleans.ter.lec.example.DbInteractionExample;
+import fr.univ.orleans.ter.lec.model.LanguageTag;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
-import fr.univ.orleans.ter.lec.repository.GlobalRepository;
+import fr.univ.orleans.ter.lec.repository.mediation.RepositoryMediator;
 
 public class MainActivity extends Activity {
 	/** Called when the activity is first created. */
@@ -18,20 +21,18 @@ public class MainActivity extends Activity {
 
 		SQLiteHelper helper = new SQLiteHelper(getApplicationContext());
 
-		GlobalRepository globalRepo = new GlobalRepository(helper);
+		RepositoryMediator repoMediator = new RepositoryMediator(helper);
 
-		DbInteractionExample example = new DbInteractionExample(globalRepo);
+		DbInteractionExample example = new DbInteractionExample(repoMediator);
 
-//		example.insertions();
+		example.basicDBInit();
 		List<Object> languages = example.retrieveLanguages();
-		List<Object> tags = example.retrieveTags();
-		List<Object> languages_tags = example.retrieveLanguagesTags();
+
 
 		Log.d("MainAct", "Number of languages: " + languages.size());
-		Log.d("MainAct", "Number of tags: " + tags.size());
-		Log.d("MainAct", "Number of languages_tags: " + languages_tags.size());
-
-		helper.getDbCreateStatement();
-		helper.getDbDropStatement();
+		
+		Button Button1 = (Button) findViewById(R.id.Button1);
+		
+		Button1.setText(languages.get(0).toString());
 	}
 }
