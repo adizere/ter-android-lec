@@ -10,7 +10,6 @@ import fr.univ.orleans.ter.lec.model.Language;
 import fr.univ.orleans.ter.lec.model.LanguageTag;
 import fr.univ.orleans.ter.lec.model.Tag;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
-import fr.univ.orleans.ter.lec.repository.ActivitiesRepository;
 import fr.univ.orleans.ter.lec.repository.BasicLECRepository;
 import fr.univ.orleans.ter.lec.repository.LanguagesMethodsRepository;
 import fr.univ.orleans.ter.lec.repository.LanguagesRepository;
@@ -19,6 +18,16 @@ import fr.univ.orleans.ter.lec.repository.LevelsRepository;
 import fr.univ.orleans.ter.lec.repository.MethodsRepository;
 import fr.univ.orleans.ter.lec.repository.TagsRepository;
 
+/**
+ * 
+ * RepositoryMediator - Persistence / data manipulation layer
+ * 
+ * Heavy-weight class that intermediates the relations between different
+ * repository (and correspondent Model) classes.
+ * 
+ * @author AdrianSeredinschi
+ *
+ */
 public class RepositoryMediator {
 
 	private HashMap<String, BasicLECRepository> repositories;
@@ -45,7 +54,6 @@ public class RepositoryMediator {
 		repositories.put("languages_methods", new LanguagesMethodsRepository(this.databaseHelper));
 		repositories.put("methods", new MethodsRepository(this.databaseHelper));
 		repositories.put("levels", new LevelsRepository(this.databaseHelper));
-		repositories.put("activities", new ActivitiesRepository(this.databaseHelper));
 		
 
 		Collection<BasicLECRepository> repositoriesList = repositories.values();

@@ -33,6 +33,6 @@ public class MainActivity extends Activity {
 		
 		Button Button1 = (Button) findViewById(R.id.Button1);
 		
-		Button1.setText(languages.get(0).toString());
+//		Button1.setText(languages.get(0).toString());
 	}
 }

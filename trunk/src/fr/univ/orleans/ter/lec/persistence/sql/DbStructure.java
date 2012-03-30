@@ -1,6 +1,7 @@
 package fr.univ.orleans.ter.lec.persistence.sql;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -25,13 +26,13 @@ import android.util.Log;
 public class DbStructure {
 
 	private Context context = null;
-	private ArrayList<Table> tables = null;
+	private HashMap<String, Table> tables = null;
 	private String dbVersion = null;
 
 	public DbStructure(Context context) {
 		this.context = context;
-		this.tables = new ArrayList<Table>();
 		this.dbVersion = "1";
+		this.tables = new HashMap<String, Table>();
 	}
 
 	/*
@@ -79,7 +80,7 @@ public class DbStructure {
 				} else if (eventType == XmlPullParser.END_TAG) {
 					if (NodeValue.equalsIgnoreCase("table")) {
 						if (t != null)
-							this.tables.add(t);
+							this.tables.put(t.getName(), t);
 					}
 				}
 
@@ -96,20 +97,20 @@ public class DbStructure {
 	public ArrayList<Table> getTables() {
 		if (this.tables.size() == 0)
 			this.load();
-
-		return this.tables;
+		
+		return new ArrayList<Table>(this.tables.values());
 	}
 
 	public Table getTableByName(String tableName) {
 		if (this.tables.size() == 0)
 			this.load();
-		for (Table tab : this.tables) {
-			if (tab.getName().equals(tableName)) {
-				return tab;
-			}
+		
+		Table t = this.tables.get(tableName);
+		
+		if ( t == null ) {
+			Log.e(SQLiteHelper.class.getName(), "Could not find any table having the name: " + tableName);
 		}
-		Log.e(SQLiteHelper.class.getName(), "Could not find any table having the name: " + tableName);
-		return null;
+		return t;
 	}
 
 }
