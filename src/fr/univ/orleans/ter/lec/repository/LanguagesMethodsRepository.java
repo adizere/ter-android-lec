@@ -1,6 +1,8 @@
 package fr.univ.orleans.ter.lec.repository;
 
+import fr.univ.orleans.ter.lec.model.LanguageMethod;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
+import android.content.ContentValues;
 import android.database.Cursor;
 
 public class LanguagesMethodsRepository extends BasicLECRepository {
@@ -13,8 +15,24 @@ public class LanguagesMethodsRepository extends BasicLECRepository {
 
 	@Override
 	protected Object cursorToMember(Cursor cursor) {
-		// TODO Auto-generated method stub
-		return null;
+		LanguageMethod lm = new LanguageMethod();
+		
+		lm.setId(cursor.getLong(0));
+		lm.setLanguageId(cursor.getLong(1));
+		lm.setMethodId(cursor.getLong(2));
+		
+		return lm;
+	}
+	
+	public LanguageMethod createLanguageMethod(Long lanId, Long methodId){
+		ContentValues values = new ContentValues();
+		
+		values.put(this.columnNames[1], lanId);
+		values.put(this.columnNames[2], methodId);
+		
+		long id = this.insertValue(values);
+		
+		return (LanguageMethod)this.getMemberById(id);
 	}
 
 }

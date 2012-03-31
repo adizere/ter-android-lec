@@ -17,23 +17,27 @@ public class LevelsRepository extends BasicLECRepository {
 	@Override
 	protected Object cursorToMember(Cursor cursor) {
 		Level l = new Level();
+		
 		l.setId(cursor.getLong(0));
-		l.setCompleted(cursor.getString(1));
-		l.setLanguageId(cursor.getLong(2));
-		l.setMethodId(cursor.getLong(3));
+		l.setLanguageId(cursor.getLong(1));
+		l.setMethodId(cursor.getLong(2));
+		l.setCompleted(cursor.getString(3));
+		l.setName(cursor.getString(4));
+		
 		return l;
 	}
 	
-	public Level createLevel(Long langId, Long methodId){
-		return this.createLevel(langId, methodId, false);
+	public Level createLevel(Long langId, Long methodId, String name){
+		return this.createLevel(langId, methodId, false, name);
 	}
 
-	public Level createLevel(Long langId, Long methodId, Boolean completed) {
+	public Level createLevel(Long langId, Long methodId, Boolean completed, String name) {
 		ContentValues values = new ContentValues();
-
-		values.put(this.columnNames[1], completed);
+		
 		values.put(this.columnNames[1], langId);
-		values.put(this.columnNames[1], methodId);
+		values.put(this.columnNames[2], methodId);
+		values.put(this.columnNames[3], completed);
+		values.put(this.columnNames[4], name);
 
 		long id = this.insertValue(values);
 

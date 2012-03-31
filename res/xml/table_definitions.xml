@@ -32,8 +32,8 @@
 	<table name="languages_lcomponents">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
-			<column name="lcomponent_id" type="integer"/>
 			<column name="language_id" type="integer"/>
+			<column name="lcomponent_id" type="integer"/>
 		</columns>
 		<relations>
 			<relation type="2" name="languages_lcomponents" intermediateTable="languages_lcomponents" rightPartnerTable="languages" leftPartnerTable="lcomponents"/>
@@ -42,8 +42,8 @@
 	<table name="methods">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
-			<column name="name" type="text"/>
 			<column name="completed" type="boolean"/>
+			<column name="name" type="text"/>
 		</columns>
 	</table>
 	<table name="languages_methods">
@@ -59,8 +59,8 @@
 	<table name="levels">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
-			<column name="method_id" type="integer"/>
 			<column name="language_id" type="integer"/>
+			<column name="method_id" type="integer"/>
 			<column name="completed" type="boolean"/>
 			<column name="name" type="integer"/>
 		</columns>

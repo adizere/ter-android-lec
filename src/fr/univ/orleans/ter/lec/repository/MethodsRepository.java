@@ -17,10 +17,12 @@ public class MethodsRepository extends BasicLECRepository {
 	@Override
 	protected Object cursorToMember(Cursor cursor) {
 		Method m = new Method();
+		
 		m.setId(cursor.getLong(0));
-		m.setName(cursor.getString(1));
-		String a = cursor.getString(2);
-		m.setCompleted(cursor.getString(2));
+		m.setCompleted(cursor.getString(1));
+		m.setName(cursor.getString(2));
+		
+		
 		return m;
 	}
 	
@@ -31,8 +33,9 @@ public class MethodsRepository extends BasicLECRepository {
 	public Method createMethod(String name, Boolean completed) {
 		ContentValues values = new ContentValues();
 
-		values.put(this.columnNames[1], name);
-		values.put(this.columnNames[2], completed);
+		values.put(this.columnNames[1], completed);
+		values.put(this.columnNames[2], name);
+		
 
 		long id = this.insertValue(values);
 
