@@ -65,8 +65,8 @@
 			<column name="name" type="integer"/>
 		</columns>
 		<relations>
-			<relation type="1" name="levels_languages" parentTable="languages" childTable="levels"/>
-			<relation type="1" name="levels_methods" parentTable="methods" childTable="levels"/>
+			<relation type="1" name="levels_language" parentTable="languages" childTable="levels"/>
+			<relation type="1" name="levels_method" parentTable="methods" childTable="levels"/>
 		</relations>
 	</table>
 	<table name="exercises">
@@ -77,7 +77,7 @@
 			<column name="statement" type="text"/>
 		</columns>
 		<relations>
-			<relation type="1" name="exercises_levels" parentTable="levels" childTable="exercises"/>
+			<relation type="1" name="exercises_level" parentTable="levels" childTable="exercises"/>
 		</relations>
 	</table>
 </lecTables>

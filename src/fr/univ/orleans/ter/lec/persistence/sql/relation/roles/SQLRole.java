@@ -33,6 +33,4 @@ public interface SQLRole {
 	 */
 	public static final Integer ROLE_PARTNER = 3;
 	public static final Integer ROLE_INTERMEDIATE = 4;
-	
-	public Integer getRole();
 }

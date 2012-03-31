@@ -86,14 +86,14 @@ public class DbStructure {
 						Integer type = Integer.parseInt(myxml
 								.getAttributeValue(null, "type"));
 
-						if (type == SQLRelation.RELATION_ONE_TO_MANY) {
+						if (type == SQLRelation.RELTYPE_ONE_TO_MANY) {
 							String parent = myxml.getAttributeValue(null,
 									"parentTable");
 							String child = myxml.getAttributeValue(null,
 									"childTable");
 
 							r = new OneToMany(parent, child, name);
-						} else if (type == SQLRelation.RELATION_MANY_TO_MANY) {
+						} else if (type == SQLRelation.RELTYPE_MANY_TO_MANY) {
 							String interm = myxml.getAttributeValue(null,
 									"intermediateTable");
 							String right = myxml.getAttributeValue(null,

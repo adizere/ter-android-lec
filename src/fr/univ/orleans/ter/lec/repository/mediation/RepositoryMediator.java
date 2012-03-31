@@ -26,7 +26,7 @@ import fr.univ.orleans.ter.lec.repository.TagsRepository;
  * repository (and correspondent Model) classes.
  * 
  * @author AdrianSeredinschi
- *
+ * 
  */
 public class RepositoryMediator {
 
@@ -51,14 +51,16 @@ public class RepositoryMediator {
 		repositories.put("tags", new TagsRepository(this.databaseHelper));
 		repositories.put("languages_tags", new LanguagesTagsRepository(
 				this.databaseHelper));
-		repositories.put("languages_methods", new LanguagesMethodsRepository(this.databaseHelper));
+		repositories.put("languages_methods", new LanguagesMethodsRepository(
+				this.databaseHelper));
 		repositories.put("methods", new MethodsRepository(this.databaseHelper));
 		repositories.put("levels", new LevelsRepository(this.databaseHelper));
-		
 
 		Collection<BasicLECRepository> repositoriesList = repositories.values();
-		for (Iterator iterator = repositoriesList.iterator(); iterator.hasNext();) {
-			BasicLECRepository basicSqlRepository = (BasicLECRepository) iterator.next();
+		for (Iterator iterator = repositoriesList.iterator(); iterator
+				.hasNext();) {
+			BasicLECRepository basicSqlRepository = (BasicLECRepository) iterator
+					.next();
 			if (basicSqlRepository instanceof BasicLECRepository) {
 
 			}
@@ -72,20 +74,7 @@ public class RepositoryMediator {
 	 * consistent.
 	 */
 	private void linkModels() {
-		// Multiple Languages with multiple Tags..
-		List<Object> languages_tags = this.repositories.get("languages_tags")
-				.getMembers();
 
-		for (Object lang_tag : languages_tags) {
-			Long language_id = ((LanguageTag) lang_tag).getLanguage_id();
-			Long tag_id = ((LanguageTag) lang_tag).getTag_id();
-
-			Language l = (Language) this.repositories.get("languages")
-					.getMemberById(language_id);
-			Tag t = (Tag) this.repositories.get("tags").getMemberById(tag_id);
-
-			l.addTag(t);
-		}
 	}
 
 	public BasicLECRepository getRepositoryByTableName(String tableName) {

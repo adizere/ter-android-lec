@@ -46,7 +46,7 @@ public class ManyToMany implements SQLRelation {
 	}
 
 	public Integer getRelationType() {
-		return SQLRelation.RELATION_MANY_TO_MANY;
+		return SQLRelation.RELTYPE_MANY_TO_MANY;
 	}
 
 	public String getRelationName() {

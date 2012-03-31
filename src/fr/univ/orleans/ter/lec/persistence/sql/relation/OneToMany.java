@@ -18,7 +18,7 @@ public class OneToMany implements SQLRelation {
 	}
 
 	public Integer getRelationType() {
-		return SQLRelation.RELATION_ONE_TO_MANY;
+		return SQLRelation.RELTYPE_ONE_TO_MANY;
 	}
 
 	public String getRelationName() {
