@@ -9,16 +9,13 @@ import java.util.List;
  * relation with another table (throgh an intermediary one).
  * 
  * @author AdrianSeredinschi
- *
+ * 
  */
-public abstract class PartnerRole implements SQLRole {
+public interface PartnerRole extends SQLRole {
+
+	public final Integer role = SQLRole.ROLE_PARTNER;
 
 	public abstract void addPartner(String relName, PartnerRole pr);
 
 	public abstract List<PartnerRole> getPartners(String relname);
-
-	public Integer getRole() {
-		return SQLRole.ROLE_PARTNER;
-	}
-
 }
