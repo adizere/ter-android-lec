@@ -17,6 +17,8 @@ public class Level extends BasicLECModel implements ChildRole, ParentRole {
 	private Boolean completed;
 	private String name;
 	
+	
+	// A Level is parent for multiple Exercises
 	private ParentRole levelParent;
 	private ParentRole methodParent;
 	private List<ChildRole> exerciseChilds;

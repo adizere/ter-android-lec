@@ -39,8 +39,10 @@ public class LanguagesRepository extends BasicLECRepository {
 	@Override
 	protected Object cursorToMember(Cursor cursor) {
 		Language l = new Language();
+		
 		l.setId(cursor.getLong(0));
 		l.setName(cursor.getString(1));
+		
 		return l;
 	}
 }

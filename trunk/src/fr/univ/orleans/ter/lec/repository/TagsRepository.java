@@ -16,9 +16,11 @@ public class TagsRepository extends BasicLECRepository {
 	@Override
 	protected Object cursorToMember(Cursor cursor) {
 		Tag t = new Tag();
+		
 		t.setId(cursor.getLong(0));
-		t.setContent(cursor.getString(1));
-		t.setTarget(cursor.getString(2));
+		t.setTarget(cursor.getString(1));
+		t.setContent(cursor.getString(2));
+		
 		return t;
 	}
 

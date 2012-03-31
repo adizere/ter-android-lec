@@ -44,6 +44,8 @@ public class Language extends BasicLECModel implements ParentRole, PartnerRole {
 
 	public Language() {
 		super();
+		
+		this.manyRelationMaps = new HashMap<String, List<PartnerRole>>();
 
 		this.manyRelationMaps.put(SQLRelation.RELNAME_LANGUAGES_LCOMPONENTS,
 				new ArrayList<PartnerRole>());

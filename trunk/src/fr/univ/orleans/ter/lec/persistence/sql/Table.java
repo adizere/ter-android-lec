@@ -3,6 +3,7 @@ package fr.univ.orleans.ter.lec.persistence.sql;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import fr.univ.orleans.ter.lec.persistence.sql.relation.SQLRelation;
 
@@ -76,6 +77,10 @@ public class Table {
 
 	public void addRelation(SQLRelation r) {
 		this.relations.add(r);
+	}
+	
+	public List<SQLRelation> getRelations(){
+		return this.relations;
 	}
 
 }

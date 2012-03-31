@@ -79,4 +79,12 @@ public class Exercise extends BasicLECModel implements ChildRole {
 		}
 	}
 
+	public void setCompleted(String string) {
+		if (string.equals("1")) {
+			this.completed = true;
+		} else {
+			this.completed = false;
+		}
+	}
+
 }

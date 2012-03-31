@@ -2,10 +2,14 @@ package fr.univ.orleans.ter.lec.example;
 
 import java.util.List;
 
+import fr.univ.orleans.ter.lec.model.Exercise;
 import fr.univ.orleans.ter.lec.model.Language;
+import fr.univ.orleans.ter.lec.model.Level;
 import fr.univ.orleans.ter.lec.model.Method;
 import fr.univ.orleans.ter.lec.model.Tag;
 import fr.univ.orleans.ter.lec.repository.BasicLECRepository;
+import fr.univ.orleans.ter.lec.repository.ExercisesRepository;
+import fr.univ.orleans.ter.lec.repository.LanguagesMethodsRepository;
 import fr.univ.orleans.ter.lec.repository.LevelsRepository;
 import fr.univ.orleans.ter.lec.repository.MethodsRepository;
 import fr.univ.orleans.ter.lec.repository.LanguagesRepository;
@@ -87,7 +91,7 @@ public class DbInteractionExample {
 		}
 	}
 
-	private Long[] insertLanguages() {
+	public Long[] insertLanguages() {
 		/*
 		 * Inserting some languages
 		 */
@@ -106,20 +110,41 @@ public class DbInteractionExample {
 		
 		Method m1 = meRepo.createMethod("Read");
 		Method m2 = meRepo.createMethod("Write");
+		Method m3 = meRepo.createMethod("Count");
 		
-		Long ret[] = {m1.getId(), m2.getId()};
+		Long ret[] = {m1.getId(), m2.getId(), m3.getId()};
 		return ret;
 	}
 	
 	public Long[] insertLevels(Long languageId, Long methodId) {
 		LevelsRepository levelRepo = (LevelsRepository)repoMediator.getRepositoryByTableName("levels");
 		
-		Long ret[] = new Long[10];
-		for (int i = 0; i < 10; i++) {
-			levelRepo.createLevel(languageId, methodId);
+		Long ret[] = new Long[2];
+		for (int i = 0; i < 2; i++) {
+			Level u = levelRepo.createLevel(languageId, methodId, "Level " + i);
+			ret[i] = u.getId();
 		}
 		
-		return null;
+		return ret;
+	}
+	
+	public void linkLanguagesMethods(Long langId, Long methId){
+		LanguagesMethodsRepository langMethRepo = (LanguagesMethodsRepository) repoMediator.getRepositoryByTableName("languages_methods");
+		
+		langMethRepo.createLanguageMethod(langId, methId);
+		
+		langMethRepo.getMembers();
+	}
+	
+	public Long[] insertExercises(Long levelId) {
+		ExercisesRepository exRepo = (ExercisesRepository)repoMediator.getRepositoryByTableName("exercises");
+		
+		Long ret[] = new Long[2];
+		for (int i = 0; i < 2; i++) {
+			Exercise u = exRepo.createExercise(levelId, false, "Empty statement.");
+			ret[i] = u.getId();
+		}
+		return ret;
 	}
 
 }

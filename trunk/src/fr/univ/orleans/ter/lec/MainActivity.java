@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import fr.univ.orleans.ter.lec.example.DbInteractionExample;
+import fr.univ.orleans.ter.lec.model.Language;
 import fr.univ.orleans.ter.lec.model.LanguageTag;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 import fr.univ.orleans.ter.lec.repository.mediation.RepositoryMediator;
@@ -24,14 +25,15 @@ public class MainActivity extends Activity {
 		RepositoryMediator repoMediator = new RepositoryMediator(helper);
 
 		DbInteractionExample example = new DbInteractionExample(repoMediator);
-
-		example.basicDBInit();
-		List<Object> languages = example.retrieveLanguages();
-
-
-		Log.d("MainAct", "Number of languages: " + languages.size());
+		
+//		example.linkLanguagesMethods(1L, 1L);
+//		example.linkLanguagesMethods(1L, 2L);
+//		example.linkLanguagesMethods(1L, 3L);
 		
 		Button Button1 = (Button) findViewById(R.id.Button1);
+		
+		@SuppressWarnings("unused")
+		List<Object> languages = example.retrieveLanguages();
 		
 //		Button1.setText(languages.get(0).toString());
 		

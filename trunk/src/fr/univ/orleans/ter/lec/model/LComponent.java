@@ -31,7 +31,7 @@ public class LComponent extends BasicLECModel implements PartnerRole {
 	private String content;
 	private String type;
 
-	// Role-specific members
+	// Role-specific members - the partners are effectively Languages
 	private List<PartnerRole> partners;
 
 	public LComponent() {
