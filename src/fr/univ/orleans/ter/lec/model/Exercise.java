@@ -10,6 +10,8 @@ public class Exercise extends BasicLECModel implements ChildRole {
 	private Long levelId;
 	private Boolean completed;
 	private String statement;
+	private String equation;
+	private String result;
 	
 	private ParentRole levelParent;
 	
@@ -85,6 +87,22 @@ public class Exercise extends BasicLECModel implements ChildRole {
 		} else {
 			this.completed = false;
 		}
+	}
+
+	public String getEquation() {
+		return equation;
+	}
+
+	public void setEquation(String equation) {
+		this.equation = equation;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 }
