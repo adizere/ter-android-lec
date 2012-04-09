@@ -75,6 +75,8 @@
 			<column name="level_id" type="integer"/>
 			<column name="completed" type="boolean"/>
 			<column name="statement" type="text"/>
+			<column name="equation" type="text"/>
+			<column name="result" type="text"/>
 		</columns>
 		<relations>
 			<relation type="1" name="exercises_level" parentTable="levels" childTable="exercises"/>

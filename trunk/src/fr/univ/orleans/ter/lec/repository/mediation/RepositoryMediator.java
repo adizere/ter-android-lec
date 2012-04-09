@@ -1,15 +1,9 @@
 package fr.univ.orleans.ter.lec.repository.mediation;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import android.util.Log;
-import fr.univ.orleans.ter.lec.model.BasicLECModel;
-import fr.univ.orleans.ter.lec.model.Language;
-import fr.univ.orleans.ter.lec.model.LanguageTag;
-import fr.univ.orleans.ter.lec.model.Tag;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 import fr.univ.orleans.ter.lec.persistence.sql.Table;
 import fr.univ.orleans.ter.lec.persistence.sql.relation.ManyToMany;
@@ -106,6 +100,19 @@ public class RepositoryMediator {
 		}
 	}
 
+	/*
+	 * applyRelation(): applies an relation between two repositories,
+	 * individually linking all the model objects that have a relation between
+	 * them.
+	 * 
+	 *  Called from linkModels() exclusively.
+	 *  Makes use of:
+	 *  - applyOneToManyRelation()
+	 *  and 
+	 *  - applyManyToManyRelation
+	 *  
+	 *  depending on what type of SQLRelation it received as input.
+	 */
 	private void applyRelation(SQLRelation sqlRelation) {
 		if (sqlRelation.getRelationType().equals(
 				SQLRelation.RELTYPE_ONE_TO_MANY)) {

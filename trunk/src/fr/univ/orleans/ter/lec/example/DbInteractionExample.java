@@ -86,7 +86,7 @@ public class DbInteractionExample {
 		
 		for (int i = 0; i < langIds.length; i++) {
 			for (int j = 0; j < methodIds.length; j++) {
-				Long levels[] = this.insertLevels(langIds[i], methodIds[j]);
+				this.insertLevels(langIds[i], methodIds[j]);
 			}
 		}
 	}
@@ -138,10 +138,17 @@ public class DbInteractionExample {
 	
 	public Long[] insertExercises(Long levelId) {
 		ExercisesRepository exRepo = (ExercisesRepository)repoMediator.getRepositoryByTableName("exercises");
+
+		int lower = 0;
+		int higher = 9;
 		
-		Long ret[] = new Long[2];
-		for (int i = 0; i < 2; i++) {
-			Exercise u = exRepo.createExercise(levelId, false, "Empty statement.");
+		Long ret[] = new Long[3];
+		for (int i = 0; i < 3; i++) {
+			Integer first = (int) (Math.random() * (higher - lower)) + lower;
+			Integer second = (int) (Math.random() * (higher - lower)) + lower;
+			Integer result = first+second;
+			
+			Exercise u = exRepo.createExercise(levelId, false, "Counting exercise:", first + "+" + second, result.toString());
 			ret[i] = u.getId();
 		}
 		return ret;

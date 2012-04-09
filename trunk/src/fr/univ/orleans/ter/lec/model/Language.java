@@ -1,6 +1,7 @@
 package fr.univ.orleans.ter.lec.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import android.util.Log;
@@ -115,5 +116,23 @@ public class Language extends BasicLECModel implements ParentRole, PartnerRole {
 			return false;
 		}
 		return true;
+	}
+	
+	/*
+	 * Convenience methods: pretty-accessors for different relations
+	 */
+	
+	public List<Level> getLevels() {
+		List<ChildRole> childs = this.getChilds(SQLRelation.RELNAME_LEVELS_LANGUAGE);
+		
+		/*
+		 * TODO: Remove costly casting.
+		 */
+		List<Level> ret = new ArrayList<Level>();
+		for (Object child : childs) {
+			ret.add((Level)child);
+		}
+		
+		return ret;
 	}
 }
