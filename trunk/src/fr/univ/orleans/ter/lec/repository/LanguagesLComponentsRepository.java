@@ -1,6 +1,5 @@
 package fr.univ.orleans.ter.lec.repository;
 
-import fr.univ.orleans.ter.lec.model.Language;
 import fr.univ.orleans.ter.lec.model.LanguageLComponent;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 import android.content.ContentValues;

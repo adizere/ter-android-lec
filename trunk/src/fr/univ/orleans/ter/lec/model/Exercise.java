@@ -48,6 +48,13 @@ public class Exercise extends BasicLECModel implements ChildRole {
 		return "Exercise [levelId=" + levelId + ", completed=" + completed
 				+ ", statement=" + statement + "]";
 	}
+	
+	/*
+	 * Strinfigied to be shown in a list of multiple Exercise objects.
+	 */
+	public String toStringForListEntry() {
+		return "[" + this.getId() + "]" + this.getStatement() + ": " + this.getEquation();
+	}
 
 	public void setParent(String relName, ParentRole pr) {
 		if (this.validRelationName(relName, "setParent")) {

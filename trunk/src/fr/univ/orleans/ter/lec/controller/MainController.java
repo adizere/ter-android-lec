@@ -8,11 +8,8 @@ import fr.univ.orleans.ter.lec.repository.mediation.RepositoryMediator;
 
 public class MainController extends BasicLECController {
 	
-	public static RepositoryMediator repoMediator;
-
-	public MainController(RepositoryMediator mediator) {
-		super(mediator);
-		this.repoMediator = mediator;
+	public MainController(RepositoryMediator repoMediator) {
+		super(repoMediator);
 	}
 
 	/*
