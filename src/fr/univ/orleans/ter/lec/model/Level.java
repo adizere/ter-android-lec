@@ -140,4 +140,17 @@ public class Level extends BasicLECModel implements ChildRole, ParentRole {
 			return null;
 		}
 	}
+
+	/*
+	 * TODO: Avoid casting.
+	 */
+	public List<Exercise> getExercises() {
+		List<ChildRole> childs = this.getChilds(SQLRelation.RELNAME_EXERCISES_LEVEL);
+		
+		List<Exercise> ret = new ArrayList<Exercise>();
+		for (ChildRole childRole : childs) {
+			ret.add((Exercise)childRole);
+		}
+		return ret;
+	}
 }
