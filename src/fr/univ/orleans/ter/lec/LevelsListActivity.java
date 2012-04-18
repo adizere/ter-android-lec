@@ -15,30 +15,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class LevelsActivity extends Activity {
+public class LevelsListActivity extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		// Set the layout for this activity
-		setContentView(R.layout.levels);
+		setContentView(R.layout.levels_list);
 
 		LevelsController controller = new LevelsController();
 
 		Long langId = getIntent().getLongExtra("language_id", 0L);
+		Long methodId = getIntent().getLongExtra("method_id", 0L);
 
 		controller.setLanguageId(langId);
+		controller.setMethodId(methodId);
 
-		this.setUpView(controller.getLanguage());
+		this.setUpView(controller.getLanguage(), methodId);
 	}
 
-	private void setUpView(Language l) {
+	private void setUpView(Language l, Long methodId) {
 		// Set the name of the language on top of the view
 		TextView t = (TextView) findViewById(R.id.textViewLanguageName);
 		t.setText(l.getName());
 
 		// Now add the levels
-		List<Level> levels = l.getLevels();
+		List<Level> levels = l.getLevelsForMethod(methodId);
 		List<Button> buttons = this.getLevelButtons();
 
 		Integer butCount = 0;

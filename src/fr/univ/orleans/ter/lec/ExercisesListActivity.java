@@ -32,7 +32,7 @@ public class ExercisesListActivity extends Activity {
 
 	private void setUpView(Level level) {
 		
-		ListView listView = (ListView) findViewById(R.id.mylist);
+		ListView listView = (ListView) findViewById(R.id.exercisesList);
 		
 		List<Exercise> exercises = level.getExercises();
 
@@ -45,7 +45,6 @@ public class ExercisesListActivity extends Activity {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, android.R.id.text1, values);
 		
-
 			// Assign adapter to ListView
 			listView.setAdapter(adapter);
 	}

@@ -111,5 +111,4 @@ public class Exercise extends BasicLECModel implements ChildRole {
 	public void setResult(String result) {
 		this.result = result;
 	}
-
 }

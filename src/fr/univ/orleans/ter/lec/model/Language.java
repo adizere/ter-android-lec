@@ -3,6 +3,7 @@ package fr.univ.orleans.ter.lec.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import android.util.Log;
 
@@ -134,5 +135,33 @@ public class Language extends BasicLECModel implements ParentRole, PartnerRole {
 		}
 		
 		return ret;
+	}
+
+	public List<Method> getMethods() {
+		List<PartnerRole> methods = this.getPartners(SQLRelation.RELNAME_LANGUAGES_METHODS);
+		
+		/*
+		 * TODO: Remove casting - there has to be an easier way of doing this..
+		 */
+		List<Method> ret = new ArrayList<Method>();
+		for (PartnerRole partnerRole : methods) {
+			ret.add((Method)partnerRole);
+		}
+		return ret;
+	}
+
+	/*
+	 * Return all levels for a specific method Id
+	 */
+	public List<Level> getLevelsForMethod(Long methodId) {
+		List<Level> levels = this.getLevels();
+		
+		Iterator<Level> it = levels.iterator();
+		while(it.hasNext()){
+			if (it.next().getMethodId() != methodId)
+				it.remove();
+		}
+		
+		return levels;
 	}
 }

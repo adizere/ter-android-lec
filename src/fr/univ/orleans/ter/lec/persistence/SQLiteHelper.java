@@ -29,9 +29,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 	private DbStructure dbStructure;
 
-	public SQLiteHelper(Context context) {
+	public SQLiteHelper(Context context, DbStructure dbStruct) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		dbStructure = new DbStructure(context);
+		this.dbStructure = dbStruct;
 	}
 
 	public void onCreate(SQLiteDatabase database) {
