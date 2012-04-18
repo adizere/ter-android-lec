@@ -4,22 +4,13 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
 import fr.univ.orleans.ter.lec.controller.MainController;
-import fr.univ.orleans.ter.lec.example.DbInteractionExample;
 import fr.univ.orleans.ter.lec.model.Language;
-import fr.univ.orleans.ter.lec.model.LanguageTag;
 import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
+import fr.univ.orleans.ter.lec.persistence.sql.DbStructure;
 import fr.univ.orleans.ter.lec.repository.mediation.RepositoryMediator;
 
 public class MainActivity extends Activity {
@@ -29,7 +20,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		SQLiteHelper helper = new SQLiteHelper(getApplicationContext());
+		DbStructure dbStructure = new DbStructure(getApplicationContext());
+		
+		SQLiteHelper helper = new SQLiteHelper(getApplicationContext(), dbStructure);
 		RepositoryMediator repoMediator = new RepositoryMediator(helper);
 		MainController mController = new MainController(repoMediator);
 		
@@ -47,7 +40,7 @@ public class MainActivity extends Activity {
 	
 	public void handleClick(View v) {
 		Intent intent = new Intent();
-		intent.setClass(this,LevelsActivity.class);
+		intent.setClass(this,MethodsListActivity.class);
 		intent.putExtra("language_id", (Long)v.getTag());
 		startActivity(intent);
 	}

@@ -30,12 +30,12 @@ public class DbStructure {
 
 	private Context context = null;
 	private HashMap<String, Table> tables = null;
-	private String dbVersion = null;
+	private int version = 0;
 
 	public DbStructure(Context context) {
 		this.context = context;
-		this.dbVersion = "1";
 		this.tables = new HashMap<String, Table>();
+		this.load();
 	}
 
 	/*
@@ -63,6 +63,10 @@ public class DbStructure {
 				NodeValue = myxml.getName();
 
 				if (eventType == XmlPullParser.START_TAG) {
+					
+					if( NodeValue.equalsIgnoreCase("version") ){
+						this.version = Integer.parseInt(myxml.getAttributeValue(null, "value"));
+					}
 
 					if (NodeValue.equalsIgnoreCase("table")) {
 
@@ -141,6 +145,10 @@ public class DbStructure {
 					"Could not find any table having the name: " + tableName);
 		}
 		return t;
+	}
+
+	public int getVersion() {
+		return this.version;
 	}
 
 }

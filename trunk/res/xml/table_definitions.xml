@@ -1,9 +1,15 @@
-<lecTables>
+<dbStructure>
+	<version value="7"/>
+	<!-- Please keep updated everytime a modification is done -->
 	<table name="languages">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
 			<column name="name" type="text"/>
 		</columns>
+		<rows>
+			<row name="french"/>
+			<row name="english"/>
+		</rows>
 	</table>
 	<table name="tags">
 		<columns>
@@ -45,6 +51,11 @@
 			<column name="completed" type="boolean"/>
 			<column name="name" type="text"/>
 		</columns>
+		<rows>
+			<row name="Count" completed="false"/>
+			<row name="Read" completed="false"/>
+			<row name="Write" completed="false"/>
+		</rows>
 	</table>
 	<table name="languages_methods">
 		<columns>
@@ -55,6 +66,14 @@
 		<relations>
 			<relation type="2" name="languages_methods" intermediateTable="languages_methods" rightPartnerTable="languages" leftPartnerTable="methods"/>
 		</relations>
+		<rows>
+			<row language_id="1" method_id="1"/>
+			<row language_id="1" method_id="2"/>
+			<row language_id="1" method_id="3"/>
+			<row language_id="2" method_id="1"/>
+			<row language_id="2" method_id="2"/>
+			<row language_id="2" method_id="3"/>
+		</rows>
 	</table>
 	<table name="levels">
 		<columns>
@@ -68,6 +87,9 @@
 			<relation type="1" name="levels_language" parentTable="languages" childTable="levels"/>
 			<relation type="1" name="levels_method" parentTable="methods" childTable="levels"/>
 		</relations>
+		<rows>
+			<row language_id="1" method_id="1" completed="false"/>
+		</rows>
 	</table>
 	<table name="exercises">
 		<columns>
@@ -82,4 +104,4 @@
 			<relation type="1" name="exercises_level" parentTable="levels" childTable="exercises"/>
 		</relations>
 	</table>
-</lecTables>
+</dbStructure>
