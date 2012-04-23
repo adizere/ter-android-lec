@@ -1,6 +1,7 @@
 package fr.univ.orleans.ter.lec.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import android.util.Log;
@@ -151,6 +152,39 @@ public class Level extends BasicLECModel implements ChildRole, ParentRole {
 		for (ChildRole childRole : childs) {
 			ret.add((Exercise)childRole);
 		}
+		return ret;
+	}
+
+	/*
+	 * Returns an Exercise for the current Level.
+	 * The Exercise will be either one of the two:
+	 *  - the first exercise having completed = false
+	 *  - the first exercise if all have completed = true
+	 */
+	public Exercise getSessionExercises() {
+		List<ChildRole> childs = this.getChilds(SQLRelation.RELNAME_EXERCISES_LEVEL);
+		
+		if( childs.size() == 0){
+			Log.w("model.Level", "Level is emoty, returning null Exercise.");
+			return null;
+		}
+		
+		Exercise ret = null;
+		
+		Iterator<ChildRole> it = childs.iterator();
+		while(it.hasNext()){
+			Exercise e = (Exercise)it.next();
+			if (e.getCompleted() == false){
+				ret = e;
+				break;
+			}
+		}
+		
+		// No un-completed exercise was found, returning the first one
+		if ( ret == null ){
+			ret = (Exercise)childs.get(0);
+		}
+		
 		return ret;
 	}
 }

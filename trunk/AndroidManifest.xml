@@ -23,7 +23,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".ExercisesListActivity"
+            android:name=".ExercisesActivity"
             android:label="@string/app_name" >
         </activity>
         <activity

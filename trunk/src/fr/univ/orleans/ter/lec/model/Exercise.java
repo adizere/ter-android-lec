@@ -118,14 +118,14 @@ public class Exercise extends BasicLECModel implements ChildRole, ParentRole {
 	/*
 	 * Convenience methods
 	 */
-	public List<Choice> getChoices() {
+	public Choice getChoice() {
 		List<ChildRole> childs = this
 				.getChilds(SQLRelation.RELNAME_CHOICES_EXERCISE);
 
-		List<Choice> choices = new ArrayList<Choice>();
-		for (ChildRole c : childs) {
-			choices.add((Choice) c);
+		if (childs.size() == 0 ){
+			Log.w("model.Exercise", "No choice associated with exercise: " + this._id );
+			return null;
 		}
-		return choices;
+		return (Choice)childs.get(0);
 	}
 }

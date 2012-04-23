@@ -1,5 +1,9 @@
 package fr.univ.orleans.ter.lec.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import android.util.Log;
 import fr.univ.orleans.ter.lec.persistence.sql.relation.SQLRelation;
 import fr.univ.orleans.ter.lec.persistence.sql.relation.roles.ChildRole;
@@ -85,6 +89,11 @@ public class Choice extends BasicLECModel implements ChildRole {
 		} else {
 			return null;
 		}
+	}
+
+	public List<String> getChoicesList() {
+		return new ArrayList<String>(
+			    Arrays.asList(this.getChoice1(), this.getChoice2(), this.getChoice3()));
 	}
 
 }
