@@ -21,8 +21,10 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 		
 		DbStructure dbStructure = new DbStructure(getApplicationContext());
-		
 		SQLiteHelper helper = new SQLiteHelper(getApplicationContext(), dbStructure);
+		
+		String dcreate = helper.getDbCreateStatement();
+		
 		RepositoryMediator repoMediator = new RepositoryMediator(helper);
 		MainController mController = new MainController(repoMediator);
 		

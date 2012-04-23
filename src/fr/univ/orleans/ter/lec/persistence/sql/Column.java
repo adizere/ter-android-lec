@@ -17,6 +17,9 @@ public class Column {
 		super();
 		this.name = name;
 		this.type = type;
+		
+		if (options == null)
+			options = "";
 		this.options = options;
 	}
 

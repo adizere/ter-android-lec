@@ -14,6 +14,7 @@ import fr.univ.orleans.ter.lec.persistence.sql.relation.roles.IntermediateRole;
 import fr.univ.orleans.ter.lec.persistence.sql.relation.roles.ParentRole;
 import fr.univ.orleans.ter.lec.persistence.sql.relation.roles.PartnerRole;
 import fr.univ.orleans.ter.lec.repository.BasicLECRepository;
+import fr.univ.orleans.ter.lec.repository.ChoicesRepository;
 import fr.univ.orleans.ter.lec.repository.ExercisesRepository;
 import fr.univ.orleans.ter.lec.repository.LComponentsRepository;
 import fr.univ.orleans.ter.lec.repository.LanguagesLComponentsRepository;
@@ -83,6 +84,7 @@ public class RepositoryMediator {
 				this.databaseHelper));
 		repositories.put("languages_lcomponents",
 				new LanguagesLComponentsRepository(this.databaseHelper));
+		repositories.put("choices", new ChoicesRepository(this.databaseHelper));
 	}
 
 	/*
@@ -143,6 +145,12 @@ public class RepositoryMediator {
 			Long parentId = cr.getParentIdentity(relName);
 			ParentRole pr = (ParentRole) parentRepo.getMemberById(parentId);
 
+			if ( pr == null || cr == null){
+				Log.w("1:N relation mapping", "Role not found, relation not applied.");
+				continue;
+			}
+				
+			
 			// Effective linking..
 			pr.addChild(relName, cr);
 			cr.setParent(relName, pr);

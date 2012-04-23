@@ -30,7 +30,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	private DbStructure dbStructure;
 
 	public SQLiteHelper(Context context, DbStructure dbStruct) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		super(context, DATABASE_NAME, null, dbStruct.getVersion());
 		this.dbStructure = dbStruct;
 	}
 
@@ -39,12 +39,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		Log.w(SQLiteHelper.class.getName(), "Upgrading database from version "
+		Log.w(SQLiteHelper.class.getName(), "Upgrading/Downgrading database from version "
 				+ oldVersion + " to " + newVersion
 				+ ", which will destroy all old data.");
 
 		onDrop(db);
 		onCreate(db);
+	}
+	
+	public void onDowngrade (SQLiteDatabase db, int oldVersion, int newVersion) {
+		this.onUpgrade(db, oldVersion, newVersion);
 	}
 
 	public String getDbCreateStatement() {

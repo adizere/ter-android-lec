@@ -21,6 +21,7 @@ public interface SQLRelation {
 	public static final String RELNAME_LEVELS_METHOD = "levels_method";
 
 	public static final String RELNAME_EXERCISES_LEVEL = "exercises_level";
+	public static final String RELNAME_CHOICES_EXERCISE = "choices_exercise";
 
 	public Integer getRelationType();
 

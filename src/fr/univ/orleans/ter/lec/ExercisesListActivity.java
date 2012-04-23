@@ -2,15 +2,13 @@ package fr.univ.orleans.ter.lec;
 
 import java.util.List;
 
-import fr.univ.orleans.ter.lec.controller.ExercisesListController;
-import fr.univ.orleans.ter.lec.controller.LevelsController;
-import fr.univ.orleans.ter.lec.model.Exercise;
-import fr.univ.orleans.ter.lec.model.Level;
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import fr.univ.orleans.ter.lec.controller.ExercisesListController;
+import fr.univ.orleans.ter.lec.model.Exercise;
+import fr.univ.orleans.ter.lec.model.Level;
 
 public class ExercisesListActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {

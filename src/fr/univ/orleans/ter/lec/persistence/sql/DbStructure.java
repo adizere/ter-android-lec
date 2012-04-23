@@ -109,6 +109,20 @@ public class DbStructure {
 						}
 						t.addRelation(r);
 					}
+					
+					if (NodeValue.equalsIgnoreCase("row")) {
+						HashMap<String, Object> row = new HashMap<String, Object>();
+						Integer totalAttrs = myxml.getAttributeCount();
+						
+						int rs = myxml.getLineNumber();
+						
+						Integer i = 0;
+						while( i< totalAttrs ){
+							row.put(myxml.getAttributeName(i), myxml.getAttributeValue(i));
+							i++;
+						}
+						t.addRow(row);
+					}
 
 				} else if (eventType == XmlPullParser.END_TAG) {
 					if (NodeValue.equalsIgnoreCase("table")) {
