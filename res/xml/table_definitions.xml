@@ -1,5 +1,5 @@
 <dbStructure>
-	<version value="8"/>
+	<version value="9"/>
 	<!-- Please keep updated everytime a modification is done -->
 	<table name="languages">
 		<columns>
@@ -9,6 +9,7 @@
 		<rows>
 			<row name="french"/>
 			<row name="english"/>
+			<row name="arab"/>
 		</rows>
 	</table>
 	<table name="tags">

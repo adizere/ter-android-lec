@@ -21,9 +21,9 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 		
 		DbStructure dbStructure = new DbStructure(getApplicationContext());
-		SQLiteHelper helper = new SQLiteHelper(getApplicationContext(), dbStructure);
+		SQLiteHelper helper = new SQLiteHelper(getApplicationContext(), dbStructure); 
 		
-		String dcreate = helper.getDbCreateStatement();
+		String db = helper.getDbCreateStatement();
 		
 		RepositoryMediator repoMediator = new RepositoryMediator(helper);
 		MainController mController = new MainController(repoMediator);
@@ -33,11 +33,15 @@ public class MainActivity extends Activity {
 		 */
 		List<Language> languages = mController.getLanguages();
 		
+		// Bind the languages to specific buttons
 		ImageButton imgB1 = (ImageButton) findViewById(R.id.imageLanguage01);
 		imgB1.setTag(languages.get(0).getId());
 		
-		ImageButton imgB2 = (ImageButton) findViewById(R.id.ImageLanguage02);
+		ImageButton imgB2 = (ImageButton) findViewById(R.id.imageLanguage02);
 		imgB2.setTag(languages.get(1).getId());
+		
+		ImageButton imgB3 = (ImageButton) findViewById(R.id.imageLanguage03);
+		imgB3.setTag(languages.get(2).getId());
 	}
 	
 	public void handleClick(View v) {

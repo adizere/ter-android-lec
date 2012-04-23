@@ -63,7 +63,7 @@ public class LevelsListActivity extends Activity {
 
 	public void handleClick(View v) {
 		Intent intent = new Intent();
-		intent.setClass(this, ExercisesListActivity.class);
+		intent.setClass(this, ExercisesActivity.class);
 		intent.putExtra("level_id", (Long) v.getTag());
 		startActivity(intent);
 	}

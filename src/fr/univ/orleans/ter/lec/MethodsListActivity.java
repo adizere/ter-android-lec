@@ -16,13 +16,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MethodsListActivity extends ListActivity  {
+public class MethodsListActivity extends Activity  {
 	
 	private Long languageId;
-
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -42,27 +42,23 @@ public class MethodsListActivity extends ListActivity  {
 
 	private void setUpView(Language language) {
 		List<Method> methods = language.getMethods();
-
-		String[] values = new String[methods.size()];
-		int i = 0;
-		for (Method m : methods) {
-			values[i++] = m.toString();
-		}
-
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, android.R.id.text1, values);
-
-		// Assign adapter to ListView
-		setListAdapter(adapter);
+		
+		ImageButton imgB1 = (ImageButton) findViewById(R.id.imgButtonCompter);
+		imgB1.setTag(methods.get(0).getId());
+		
+		ImageButton imgB2 = (ImageButton) findViewById(R.id.imgButtonLire);
+		imgB2.setTag(methods.get(1).getId());
+		
+		ImageButton imgB3 = (ImageButton) findViewById(R.id.imgButtonEcrire);
+		imgB3.setTag(methods.get(2).getId());
 	}
 	
-	protected void onListItemClick (ListView l, View v, int position, long id){
+	public void handleClick(View v) {
 		Intent intent = new Intent();
 		intent.setClass(this,LevelsListActivity.class);
-		intent.putExtra("language_id", this.languageId);
 		
-		Long methodId = (long) (position + 1);
-		intent.putExtra("method_id", methodId);
+		intent.putExtra("language_id", this.languageId);
+		intent.putExtra("method_id", (Long)v.getTag());
 		
 		startActivity(intent);
 	}
