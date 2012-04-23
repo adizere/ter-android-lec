@@ -20,25 +20,20 @@ public class ExercisesRepository extends BasicLECRepository {
 		e.setId(cursor.getLong(0));
 		e.setLevelId(cursor.getLong(1));
 		e.setCompleted(cursor.getString(2));
-		e.setStatement(cursor.getString(3));
-		e.setEquation(cursor.getString(4));
-		e.setResult(cursor.getString(5));
+		e.setQuestion(cursor.getString(3));
 		
 		return e;
 	}
 	
-	public Exercise createExercise(Long levelId, Boolean compl, String stmt, String equation, String result){
+	public Exercise createExercise(Long levelId, Boolean compl, String stmt, String question){
 		ContentValues values = new ContentValues();
 
 		values.put(this.columnNames[1], levelId);
 		values.put(this.columnNames[2], compl);
-		values.put(this.columnNames[3], stmt);
-		values.put(this.columnNames[4], equation);
-		values.put(this.columnNames[5], result);
+		values.put(this.columnNames[3], question);
 		
 		long id = this.insertValue(values);
 		
 		return (Exercise)this.getMemberById(id);
 	}
-
 }

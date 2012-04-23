@@ -148,8 +148,8 @@ public class DbInteractionExample {
 			Integer second = (int) (Math.random() * (higher - lower)) + lower;
 			Integer result = first+second;
 			
-			Exercise u = exRepo.createExercise(levelId, false, "Counting exercise:", first + "+" + second, result.toString());
-			ret[i] = u.getId();
+//			Exercise u = exRepo.createExercise(levelId, false, "Counting exercise:", first + "+" + second, result.toString());
+//			ret[i] = u.getId();
 		}
 		return ret;
 	}

@@ -1,22 +1,25 @@
 package fr.univ.orleans.ter.lec.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.util.Log;
 import fr.univ.orleans.ter.lec.persistence.sql.relation.SQLRelation;
 import fr.univ.orleans.ter.lec.persistence.sql.relation.roles.ChildRole;
 import fr.univ.orleans.ter.lec.persistence.sql.relation.roles.ParentRole;
 
-public class Exercise extends BasicLECModel implements ChildRole {
-	
+public class Exercise extends BasicLECModel implements ChildRole, ParentRole {
+
 	private Long levelId;
 	private Boolean completed;
-	private String statement;
-	private String equation;
-	private String result;
-	
+	private String question;
+
 	private ParentRole levelParent;
-	
-	public Exercise(){
+	private List<ChildRole> choiceChilds;
+
+	public Exercise() {
 		super();
+		this.choiceChilds = new ArrayList<ChildRole>();
 	}
 
 	public Long getLevelId() {
@@ -35,25 +38,17 @@ public class Exercise extends BasicLECModel implements ChildRole {
 		this.completed = completed;
 	}
 
-	public String getStatement() {
-		return statement;
-	}
-
-	public void setStatement(String statement) {
-		this.statement = statement;
-	}
-
 	@Override
 	public String toString() {
 		return "Exercise [levelId=" + levelId + ", completed=" + completed
-				+ ", statement=" + statement + "]";
+				+ ", question=" + question + "]";
 	}
-	
+
 	/*
 	 * Strinfigied to be shown in a list of multiple Exercise objects.
 	 */
 	public String toStringForListEntry() {
-		return "[" + this.getId() + "]" + this.getStatement() + ": " + this.getEquation();
+		return "[" + this.getId() + "]" + this.getQuestion();
 	}
 
 	public void setParent(String relName, ParentRole pr) {
@@ -77,13 +72,15 @@ public class Exercise extends BasicLECModel implements ChildRole {
 			return null;
 		}
 	}
-	
+
 	private Boolean validRelationName(String relName, String operation) {
-		if (relName.equalsIgnoreCase(SQLRelation.RELNAME_EXERCISES_LEVEL)) {
+		if (relName.equalsIgnoreCase(SQLRelation.RELNAME_EXERCISES_LEVEL)
+				|| relName
+						.equalsIgnoreCase(SQLRelation.RELNAME_CHOICES_EXERCISE)) {
 			return true;
 		} else {
-			Log.e(this.getClass().toString(),
-					"Invalid relationName " + operation + " requested: " + relName);
+			Log.e(this.getClass().toString(), "Invalid relationName "
+					+ operation + " requested: " + relName);
 			return false;
 		}
 	}
@@ -96,19 +93,39 @@ public class Exercise extends BasicLECModel implements ChildRole {
 		}
 	}
 
-	public String getEquation() {
-		return equation;
+	public String getQuestion() {
+		return question;
 	}
 
-	public void setEquation(String equation) {
-		this.equation = equation;
+	public void setQuestion(String question) {
+		this.question = question;
 	}
 
-	public String getResult() {
-		return result;
+	public void addChild(String relationName, ChildRole child) {
+		if (this.validRelationName(relationName, "addChild")) {
+			this.choiceChilds.add(child);
+		}
 	}
 
-	public void setResult(String result) {
-		this.result = result;
+	public List<ChildRole> getChilds(String relationName) {
+		if (this.validRelationName(relationName, "addChild")) {
+			return this.choiceChilds;
+		} else {
+			return null;
+		}
+	}
+
+	/*
+	 * Convenience methods
+	 */
+	public List<Choice> getChoices() {
+		List<ChildRole> childs = this
+				.getChilds(SQLRelation.RELNAME_CHOICES_EXERCISE);
+
+		List<Choice> choices = new ArrayList<Choice>();
+		for (ChildRole c : childs) {
+			choices.add((Choice) c);
+		}
+		return choices;
 	}
 }
