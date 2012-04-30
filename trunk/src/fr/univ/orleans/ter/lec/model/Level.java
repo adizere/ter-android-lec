@@ -19,7 +19,7 @@ public class Level extends BasicLECModel implements ChildRole, ParentRole {
 	
 	
 	// A Level is parent for multiple Exercises
-	private ParentRole levelParent;
+	private ParentRole languageParent;
 	private ParentRole methodParent;
 	private List<ChildRole> exerciseChilds;
 
@@ -89,7 +89,7 @@ public class Level extends BasicLECModel implements ChildRole, ParentRole {
 	public void setParent(String relName, ParentRole pr) {
 		if (this.validRelationNameForChild(relName, "setParent")){
 			if (relName.equalsIgnoreCase(SQLRelation.RELNAME_LEVELS_LANGUAGE)){
-				this.levelParent = pr;
+				this.languageParent = pr;
 			} else {
 				this.methodParent = pr;
 			}
@@ -99,7 +99,7 @@ public class Level extends BasicLECModel implements ChildRole, ParentRole {
 	public ParentRole getParent(String relName) {
 		if (this.validRelationNameForChild(relName, "setParent")){
 			if (relName.equalsIgnoreCase(SQLRelation.RELNAME_LEVELS_LANGUAGE)){
-				return this.levelParent;
+				return this.languageParent;
 			} else {
 				return this.methodParent;
 			}
@@ -165,7 +165,7 @@ public class Level extends BasicLECModel implements ChildRole, ParentRole {
 		List<ChildRole> childs = this.getChilds(SQLRelation.RELNAME_EXERCISES_LEVEL);
 		
 		if( childs.size() == 0){
-			Log.w("model.Level", "Level is emoty, returning null Exercise.");
+			Log.w("model.Level", "Level is empty, returning null Exercise.");
 			return null;
 		}
 		
@@ -186,5 +186,9 @@ public class Level extends BasicLECModel implements ChildRole, ParentRole {
 		}
 		
 		return ret;
+	}
+	
+	public Language getLanguage() {
+		return (Language)this.languageParent;
 	}
 }

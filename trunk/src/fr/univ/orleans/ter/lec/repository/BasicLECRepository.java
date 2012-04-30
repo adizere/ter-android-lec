@@ -12,6 +12,7 @@ import fr.univ.orleans.ter.lec.persistence.SQLiteHelper;
 import fr.univ.orleans.ter.lec.persistence.sql.Column;
 import fr.univ.orleans.ter.lec.persistence.sql.DbStructure;
 import fr.univ.orleans.ter.lec.persistence.sql.Table;
+import fr.univ.orleans.ter.lec.repository.mediation.RepositoryMediator;
 
 /**
  * 
@@ -41,6 +42,11 @@ public abstract class BasicLECRepository {
 	protected String tableName;
 	protected List<Object> members;
 	protected String[] columnNames;
+	
+	/*
+	 * Static mediator shared across all repositories
+	 */
+	protected static RepositoryMediator repoMediator;
 
 	public BasicLECRepository() {
 		this.members = new ArrayList<Object>();
@@ -128,5 +134,16 @@ public abstract class BasicLECRepository {
 	public void deleteMemberById(Long memberId){
 		Log.i(this.getClass().toString(), "Deleting Member id: " + memberId);
 		this.database.delete(this.tableName, "_id = " + memberId, null );
+	}
+	
+	protected void updateValueById(ContentValues values, Long id){
+		String whereClause = "_id=?";
+		String[] whereArgs = {id.toString()};
+		
+		this.database.update(this.tableName, values, whereClause, whereArgs);
+	}
+	
+	public static void setRepositoryMediator(RepositoryMediator mediator){
+		BasicLECRepository.repoMediator = mediator;
 	}
 }

@@ -7,14 +7,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.Toast;
 import fr.univ.orleans.ter.lec.controller.ExercisesController;
-import fr.univ.orleans.ter.lec.model.Choice;
-import fr.univ.orleans.ter.lec.model.Exercise;
-import fr.univ.orleans.ter.lec.model.Level;
+import fr.univ.orleans.ter.lec.model.Tag;
 
 public class ExercisesActivity extends Activity {
 
@@ -23,11 +21,16 @@ public class ExercisesActivity extends Activity {
 	private Button butChoice2;
 	private Button butChoice3;
 	private Button butChoice4;
-	
+
 	private final String choiceTag = "CHOICE";
-	private final String questionTag = "CHOICE";
-	
+	private final String questionTag = "QUESTION";
+
+	private final int defaultBackground = Color.DKGRAY;
+
 	private ExercisesController mController;
+
+	private String EXERCISE_OK;
+	private String EXERCISE_NOK;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,16 +44,33 @@ public class ExercisesActivity extends Activity {
 
 		mController.setLevelId(levelId);
 
-		Level l = mController.getLevel();
-
 		this.initButtons();
+		this.initMessages();
 		this.setUpExercise();
 	}
 
+	private void initMessages() {
+		List<Tag> tags = mController.getTags();
+		for (Tag tag : tags) {
+			if( tag.getTarget().equals("EXERCISE_OK")) {
+				this.EXERCISE_OK = tag.getContent();
+			} else if ( tag.getTarget().equals("EXERCISE_NOK")) {
+				this.EXERCISE_NOK = tag.getContent();
+			}
+		}
+	}
+
 	private void setUpExercise() {
+		this.resetButtons();
 		String question = mController.getQuestion();
-		List<String> choices = mController.getChoices();
 		
+		if (question == null || question == ""){
+			Log.d("ExercisesActivity", "Passing to the next level.");
+			this.toNextLevel();
+		}
+		
+		List<String> choices = mController.getChoices();
+
 		this.butQuestion.setText(question);
 		this.butChoice1.setText(choices.get(0));
 		this.butChoice2.setText(choices.get(1));
@@ -58,23 +78,87 @@ public class ExercisesActivity extends Activity {
 		this.butChoice4.setText(choices.get(3));
 	}
 
+	/*
+	 * Finished all the exercises.
+	 * Navigate to the previous Activity.
+	 */
+	private void toNextLevel() {
+		Intent resultIntent = new Intent();
+		resultIntent.putExtra(LevelsListActivity.finishedLevelExtraName, mController.getLevelId());
+		setResult(Activity.RESULT_OK, resultIntent);
+		finish();
+	}
+
 	public void handleClick(View v) {
-		if(v.getTag().equals(this.choiceTag)){
-			Boolean result = mController.getResultForChoice(((Button)v).getText());
+		CharSequence butText = ((Button) v).getText();
+
+		// Verify if this was a Choice button
+		if (v.getTag().equals(this.choiceTag)) {
+			Boolean result = mController.getResultForChoice(butText);
+			if (result == true) {
+				mController.setCompleted(butText);
+				mController.nextExercise();
+				this.exerciseTransition();
+				this.setUpExercise();
+			} else {
+				// Wrong choice
+				this.wrongChoiceTransition();
+				v.setAlpha(0.3F);
+				v.setBackgroundColor(Color.RED);
+			}
 		}
 	}
-	
+
+	private void exerciseTransition() {
+		Toast toast = Toast.makeText(this, this.EXERCISE_OK, 2000);
+		toast.setGravity(Gravity.TOP, -30, 50);
+		toast.show();
+	}
+
+	private void wrongChoiceTransition() {
+		Toast toast = Toast.makeText(this, this.EXERCISE_NOK, 2000);
+		toast.setGravity(Gravity.TOP, -30, 50);
+		toast.show();
+	}
+
 	private void initButtons() {
 		butQuestion = (Button) findViewById(R.id.buttonQuestion);
 		butChoice1 = (Button) findViewById(R.id.buttonChoice1);
 		butChoice2 = (Button) findViewById(R.id.buttonChoice2);
 		butChoice3 = (Button) findViewById(R.id.buttonChoice3);
 		butChoice4 = (Button) findViewById(R.id.buttonChoice4);
-		
+
 		butQuestion.setTag(this.questionTag);
 		butChoice1.setTag(this.choiceTag);
 		butChoice2.setTag(this.choiceTag);
 		butChoice3.setTag(this.choiceTag);
 		butChoice4.setTag(this.choiceTag);
+
+		butChoice1.setBackgroundColor(defaultBackground);
+		butChoice2.setBackgroundColor(defaultBackground);
+		butChoice3.setBackgroundColor(defaultBackground);
+		butChoice4.setBackgroundColor(defaultBackground);
+	}
+
+	private void resetButtons() {
+		if (butChoice1.getAlpha() != 1F) {
+			butChoice1.setAlpha(1F);
+			butChoice1.setBackgroundColor(defaultBackground);
+		}
+
+		if (butChoice2.getAlpha() != 1F) {
+			butChoice2.setAlpha(1F);
+			butChoice2.setBackgroundColor(defaultBackground);
+		}
+
+		if (butChoice3.getAlpha() != 1F) {
+			butChoice3.setAlpha(1F);
+			butChoice3.setBackgroundColor(defaultBackground);
+		}
+
+		if (butChoice4.getAlpha() != 1F) {
+			butChoice4.setAlpha(1F);
+			butChoice4.setBackgroundColor(defaultBackground);
+		}
 	}
 }

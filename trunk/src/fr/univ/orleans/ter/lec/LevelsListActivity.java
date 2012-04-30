@@ -11,11 +11,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LevelsListActivity extends Activity {
+	
+	static Integer lastFinishedLevelId = 1337;
+	public static String finishedLevelExtraName = "LEVEL_FINISHED";
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,7 +70,7 @@ public class LevelsListActivity extends Activity {
 		Intent intent = new Intent();
 		intent.setClass(this, ExercisesActivity.class);
 		intent.putExtra("level_id", (Long) v.getTag());
-		startActivity(intent);
+		startActivityForResult(intent, lastFinishedLevelId);
 	}
 
 	public List<Button> getLevelButtons() {
@@ -75,5 +80,22 @@ public class LevelsListActivity extends Activity {
 		buttons.add((Button) findViewById(R.id.buttonLevel2));
 
 		return buttons;
+	}
+	
+	/*
+	 * Navigation from ExercisesListActivity back into this Activity.
+	 */
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == lastFinishedLevelId && resultCode == Activity.RESULT_OK){
+			Long previousLevelId = data.getLongExtra(finishedLevelExtraName, 0L);
+			Log.d("LevelsListActivity", "Finished the level with id:" + previousLevelId);
+			
+			if (previousLevelId != 0L){
+				Toast toast = Toast.makeText(this, "Level " + previousLevelId + " is done.", 2000);
+				toast.setGravity(Gravity.TOP, -30, 50);
+				toast.show();
+			}
+		}
 	}
 }

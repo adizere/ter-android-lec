@@ -85,6 +85,8 @@ public class RepositoryMediator {
 		repositories.put("languages_lcomponents",
 				new LanguagesLComponentsRepository(this.databaseHelper));
 		repositories.put("choices", new ChoicesRepository(this.databaseHelper));
+		
+		BasicLECRepository.setRepositoryMediator(this);
 	}
 
 	/*
