@@ -67,7 +67,7 @@ public class Table {
 		}
 		
 		if( type == null ){
-			Log.w("persistance.sql.Table", "Requested type for unknown column name: " + colName );
+			Log.w("persistance.sql.Table", "Requested type for unknown column name: " + colName + " in table: " + this.name);
 			type = "";
 		}
 		

@@ -114,8 +114,6 @@ public class DbStructure {
 						HashMap<String, Object> row = new HashMap<String, Object>();
 						Integer totalAttrs = myxml.getAttributeCount();
 						
-						int rs = myxml.getLineNumber();
-						
 						Integer i = 0;
 						while( i< totalAttrs ){
 							row.put(myxml.getAttributeName(i), myxml.getAttributeValue(i));

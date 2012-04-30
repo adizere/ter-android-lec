@@ -1,7 +1,6 @@
 package fr.univ.orleans.ter.lec.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -163,5 +162,18 @@ public class Language extends BasicLECModel implements ParentRole, PartnerRole {
 		}
 		
 		return levels;
+	}
+
+	public List<Tag> getTags() {
+		List<PartnerRole> tags = this.getPartners(SQLRelation.RELNAME_LANGUAGES_TAGS);
+		
+		/*
+		 * TODO: Remove casting - there has to be an easier way of doing this..
+		 */
+		List<Tag> ret = new ArrayList<Tag>();
+		for (PartnerRole partnerRole : tags) {
+			ret.add((Tag)partnerRole);
+		}
+		return ret;
 	}
 }

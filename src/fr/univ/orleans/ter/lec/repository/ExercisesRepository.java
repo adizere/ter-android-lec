@@ -36,4 +36,13 @@ public class ExercisesRepository extends BasicLECRepository {
 		
 		return (Exercise)this.getMemberById(id);
 	}
+
+	public void setCompleted(long id) {
+		ContentValues values = new ContentValues();
+		
+		values.put("completed", 1);
+		
+		this.updateValueById(values, id);
+		((Exercise)this.getMemberById(id)).setCompleted(true);
+	}
 }
