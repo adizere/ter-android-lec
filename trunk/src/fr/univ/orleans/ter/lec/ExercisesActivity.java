@@ -2,6 +2,7 @@ package fr.univ.orleans.ter.lec;
 
 import java.util.List;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,7 +11,9 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+import fr.univ.orleans.ter.lec.component.VerticalProgressBar;
 import fr.univ.orleans.ter.lec.controller.ExercisesController;
 import fr.univ.orleans.ter.lec.model.Tag;
 
@@ -31,6 +34,8 @@ public class ExercisesActivity extends Activity {
 
 	private String EXERCISE_OK;
 	private String EXERCISE_NOK;
+	
+	private VerticalProgressBar mProgress;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,6 +44,8 @@ public class ExercisesActivity extends Activity {
 		setContentView(R.layout.exercises);
 
 		mController = new ExercisesController();
+		mProgress = (VerticalProgressBar) findViewById(R.id.verticalRatingBar1);
+		mProgress.setMinimumWidth(100);
 
 		Long levelId = getIntent().getLongExtra("level_id", 0L);
 
@@ -84,7 +91,7 @@ public class ExercisesActivity extends Activity {
 	 */
 	private void toNextLevel() {
 		Intent resultIntent = new Intent();
-		resultIntent.putExtra(LevelsListActivity.finishedLevelExtraName, mController.getLevelId());
+		resultIntent.putExtra(LevelsListActivity.finishedLevelExtraName, mController.getLevelName());
 		setResult(Activity.RESULT_OK, resultIntent);
 		finish();
 	}

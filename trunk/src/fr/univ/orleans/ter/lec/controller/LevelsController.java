@@ -1,8 +1,12 @@
 package fr.univ.orleans.ter.lec.controller;
 
+import java.util.List;
+import java.util.Locale;
+
 import android.util.Log;
 import fr.univ.orleans.ter.lec.model.Language;
-import fr.univ.orleans.ter.lec.model.Method;
+import fr.univ.orleans.ter.lec.model.Tag;
+import fr.univ.orleans.ter.lec.utility.LocaleDefs;
 
 public class LevelsController extends BasicLECController {
 
@@ -15,7 +19,7 @@ public class LevelsController extends BasicLECController {
 	}
 
 	public void setLanguageId(Long langId) {
-		if ( ! this.validId(langId)){
+		if (!this.validId(langId)) {
 			Log.e("LevelsController", "Invalid Level id passed.");
 		} else {
 			this.languageId = langId;
@@ -30,22 +34,31 @@ public class LevelsController extends BasicLECController {
 	public void setLanguage(Language language) {
 		this.language = language;
 	}
-	
-	private void loadLanguage(){
-		this.language = (Language)this.repoMediator.getRepositoryByTableName("languages").getMemberById(this.languageId);
+
+	private void loadLanguage() {
+		this.language = (Language) this.repoMediator.getRepositoryByTableName(
+				"languages").getMemberById(this.languageId);
 	}
 
 	private boolean validId(Long langId) {
-		if ( langId != null && langId >= 0L)
+		if (langId != null && langId >= 0L)
 			return true;
 		return false;
 	}
 
 	public void setMethodId(Long methodId) {
-		if ( ! this.validId(methodId)){
+		if (!this.validId(methodId)) {
 			Log.e("LevelsController", "Invalid Method id passed.");
 		} else {
 			this.methodId = methodId;
 		}
+	}
+
+	public Locale getLanguageAsLocale() {
+		return LocaleDefs.getLocaleForLanguageName(this.language.getName());
+	}
+
+	public List<Tag> getTags() {
+		return this.language.getTags();
 	}
 }
