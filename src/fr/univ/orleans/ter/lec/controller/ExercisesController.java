@@ -125,4 +125,8 @@ public class ExercisesController extends BasicLECController {
 	public List<Tag> getTags() {
 		return this.level.getLanguage().getTags();
 	}
+
+	public String getLevelName() {
+		return this.level.getName();
+	}
 }

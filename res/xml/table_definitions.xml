@@ -1,5 +1,5 @@
 <dbStructure>
-	<version value="10"/>
+	<version value="12"/>
 	<!-- 
 	Important: This describes the database content.
 	
@@ -24,11 +24,17 @@
 			<column name="content" type="text"/>
 		</columns>
 		<rows>
-			<row target="EXERCISE_OK" content="C'est correct!"/>
-			<row target="EXERCISE_NOK" content="Desole."/>
-			
+			<row target="EXERCISE_OK" content="C'est correct!"/>		<!-- id 1 -->
 			<row target="EXERCISE_OK" content="That is correct!"/>
+			
+			<row target="EXERCISE_NOK" content="Desole."/>				<!-- id 3 -->
 			<row target="EXERCISE_NOK" content="Sorry, try again."/>
+			
+			<row target="LEVEL_FINISHED" content="Tu as fini le:"/>	<!-- id 5 -->
+			<row target="LEVEL_FINISHED" content="You finished:"/>
+			
+			<row target="CONGRATZ" content="Félicitations!"/>			<!-- id 7 -->
+			<row target="CONGRATZ" content="Congratulations!"/>
 		</rows>
 	</table>
 	<table name="languages_tags">
@@ -41,10 +47,15 @@
 			<relation type="2" name="languages_tags" intermediateTable="languages_tags" rightPartnerTable="languages" leftPartnerTable="tags"/>
 		</relations>
 		<rows>
-			<row language_id="1" tag_id="1"/>
-			<row language_id="1" tag_id="2"/>
-			<row language_id="2" tag_id="3"/>
+			<row language_id="1" tag_id="1"/>	<!-- For French -->
+			<row language_id="1" tag_id="3"/>
+			<row language_id="1" tag_id="5"/>
+			<row language_id="1" tag_id="7"/>
+			
+			<row language_id="2" tag_id="2"/>	<!-- For English -->
 			<row language_id="2" tag_id="4"/>
+			<row language_id="2" tag_id="6"/>
+			<row language_id="2" tag_id="8"/>
 		</rows>
 	</table>
 	<table name="lcomponents">
@@ -89,9 +100,14 @@
 			<row language_id="1" method_id="1"/>
 			<row language_id="1" method_id="2"/>
 			<row language_id="1" method_id="3"/>
+			
 			<row language_id="2" method_id="1"/>
 			<row language_id="2" method_id="2"/>
 			<row language_id="2" method_id="3"/>
+			
+			<row language_id="3" method_id="1"/>
+			<row language_id="3" method_id="2"/>
+			<row language_id="3" method_id="3"/>
 		</rows>
 	</table>
 	<table name="levels">
@@ -115,6 +131,9 @@
 			<row language_id="1" method_id="2" completed="0" name="Niveau 2"/>
 			<row language_id="1" method_id="3" completed="0" name="Niveau 1"/>
 			<row language_id="1" method_id="3" completed="0" name="Niveau 2"/>
+			
+			<row language_id="2" method_id="1" completed="0" name="Level 1"/>
+			<row language_id="2" method_id="1" completed="0" name="Level 2"/>
 		</rows>
 	</table>
 	<table name="exercises">

@@ -2,14 +2,18 @@ package fr.univ.orleans.ter.lec;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import fr.univ.orleans.ter.lec.controller.LevelsController;
 import fr.univ.orleans.ter.lec.controller.MainController;
 import fr.univ.orleans.ter.lec.model.Language;
 import fr.univ.orleans.ter.lec.model.Level;
+import fr.univ.orleans.ter.lec.model.Tag;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnInitListener;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -17,26 +21,44 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LevelsListActivity extends Activity {
+public class LevelsListActivity extends Activity implements OnInitListener {
 	
 	static Integer lastFinishedLevelId = 1337;
 	public static String finishedLevelExtraName = "LEVEL_FINISHED";
+	
+	private LevelsController mController;
+	private TextToSpeech mTts;
+	
+	private String FINISHED_TEXT;
+	private String CONGRATZ_TEXT;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// Set the layout for this activity
 		setContentView(R.layout.levels_list);
 
-		LevelsController controller = new LevelsController();
+		mController = new LevelsController();
+		mTts = new TextToSpeech(this, this);
 
 		Long langId = getIntent().getLongExtra("language_id", 0L);
 		Long methodId = getIntent().getLongExtra("method_id", 0L);
 
-		controller.setLanguageId(langId);
-		controller.setMethodId(methodId);
+		mController.setLanguageId(langId);
+		mController.setMethodId(methodId);
 
-		this.setUpView(controller.getLanguage(), methodId);
+		this.initMessages();
+		this.setUpView(mController.getLanguage(), methodId);
+	}
+
+	private void initMessages() {
+		List<Tag> tags = mController.getTags();
+		for (Tag tag : tags) {
+			if( tag.getTarget().equals("LEVEL_FINISHED")) {
+				this.FINISHED_TEXT = tag.getContent();
+			} else if ( tag.getTarget().equals("CONGRATZ")) {
+				this.CONGRATZ_TEXT = tag.getContent();
+			}
+		}
 	}
 
 	private void setUpView(Language l, Long methodId) {
@@ -88,14 +110,46 @@ public class LevelsListActivity extends Activity {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == lastFinishedLevelId && resultCode == Activity.RESULT_OK){
-			Long previousLevelId = data.getLongExtra(finishedLevelExtraName, 0L);
-			Log.d("LevelsListActivity", "Finished the level with id:" + previousLevelId);
+			String previousLevelName = data.getStringExtra(finishedLevelExtraName);
+			Log.d("LevelsListActivity", "Finished the level with id:" + previousLevelName);
 			
-			if (previousLevelId != 0L){
-				Toast toast = Toast.makeText(this, "Level " + previousLevelId + " is done.", 2000);
+			if (previousLevelName.length() > 0){
+				
+				String text = this.FINISHED_TEXT + " " + previousLevelName + ". " + this.CONGRATZ_TEXT;
+				
+				Toast toast = Toast.makeText(this, text, 1000);
 				toast.setGravity(Gravity.TOP, -30, 50);
 				toast.show();
+				
+				mTts.speak(text,
+						TextToSpeech.QUEUE_FLUSH, null);
 			}
 		}
 	}
+
+	public void onInit(int status) {
+		if (status != TextToSpeech.SUCCESS) {
+			Log.e("LevelsListActivity", "Could not initialize TextToSpeech!");
+		} else {
+			this.setLanguage(mController.getLanguageAsLocale());
+		}
+	}
+	
+	private void setLanguage(Locale x) {
+		int result = mTts.setLanguage(x);
+		
+		if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+			Log.e("LevelsListActivity", "Language is not available for TTS.");
+		}
+	}
+	
+	@Override
+    protected void onDestroy()
+    {
+        if (mTts != null)
+        {
+            mTts.shutdown();
+        }
+        super.onDestroy();
+    }
 }
