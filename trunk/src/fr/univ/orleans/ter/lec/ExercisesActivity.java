@@ -35,6 +35,11 @@ public class ExercisesActivity extends Activity {
 	private String EXERCISE_OK;
 	private String EXERCISE_NOK;
 	
+	/*
+	 * By how much the progress increases for 1 exercise.
+	 */
+	private Integer PROGRESS_INCREASE;
+	
 	private VerticalProgressBar mProgress;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,17 +48,17 @@ public class ExercisesActivity extends Activity {
 		// Set the layout for this activity
 		setContentView(R.layout.exercises);
 
-		mController = new ExercisesController();
-		mProgress = (VerticalProgressBar) findViewById(R.id.verticalRatingBar1);
-		mProgress.setMinimumWidth(100);
-
 		Long levelId = getIntent().getLongExtra("level_id", 0L);
-
+		
+		mController = new ExercisesController();
 		mController.setLevelId(levelId);
+		
+		mProgress = (VerticalProgressBar) findViewById(R.id.verticalRatingBar1);
+		mProgress.setProgress(mController.getProgress());
 
 		this.initButtons();
 		this.initMessages();
-		this.setUpExercise();
+		this.setUpExercise(true);
 	}
 
 	private void initMessages() {
@@ -65,9 +70,10 @@ public class ExercisesActivity extends Activity {
 				this.EXERCISE_NOK = tag.getContent();
 			}
 		}
+		this.PROGRESS_INCREASE = mController.getProgressByExercise();
 	}
 
-	private void setUpExercise() {
+	private void setUpExercise(Boolean force) {
 		this.resetButtons();
 		String question = mController.getQuestion();
 		
@@ -83,6 +89,10 @@ public class ExercisesActivity extends Activity {
 		this.butChoice2.setText(choices.get(1));
 		this.butChoice3.setText(choices.get(2));
 		this.butChoice4.setText(choices.get(3));
+		
+		if ( ! force ){
+			mProgress.setProgress(mProgress.getProgress() + this.PROGRESS_INCREASE);
+		}
 	}
 
 	/*
@@ -106,7 +116,7 @@ public class ExercisesActivity extends Activity {
 				mController.setCompleted(butText);
 				mController.nextExercise();
 				this.exerciseTransition();
-				this.setUpExercise();
+				this.setUpExercise(false);
 			} else {
 				// Wrong choice
 				this.wrongChoiceTransition();
