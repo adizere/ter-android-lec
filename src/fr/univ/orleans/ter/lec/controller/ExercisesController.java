@@ -129,4 +129,36 @@ public class ExercisesController extends BasicLECController {
 	public String getLevelName() {
 		return this.level.getName();
 	}
+
+	public int getProgress() {
+		if (this.level == null) {
+			return 0;
+		}
+		int progressByExercise = this.getProgressByExercise();
+		int progressSoFar = 0;
+		Iterator<Exercise> itExercises =this.level.getExercises().iterator();
+		while(itExercises.hasNext()){
+			if (itExercises.next().getId() != this.exercise.getId()){
+				progressSoFar += progressByExercise;
+			} else {
+				break;
+			}
+		}
+		
+		Log.d("ExercisesController","Progress calculation: " + progressSoFar + " out of: " + this.level.getExercises().size());
+		
+		return progressSoFar;
+	}
+
+	public int getProgressByExercise() {
+		if (this.level == null) {
+			return 0;
+		}
+		int total = this.level.getExercises().size();
+		if (total == 0)
+			return 100;
+		int res = 100/total;
+		
+		return res;
+	}
 }
