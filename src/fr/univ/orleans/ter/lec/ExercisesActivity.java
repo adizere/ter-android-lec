@@ -28,7 +28,7 @@ public class ExercisesActivity extends Activity {
 	private final String choiceTag = "CHOICE";
 	private final String questionTag = "QUESTION";
 
-	private final int defaultBackground = Color.DKGRAY;
+	private final int defaultBackground = Color.BLACK;
 
 	private ExercisesController mController;
 

@@ -1,5 +1,5 @@
 <dbStructure>
-	<version value="12"/>
+	<version value="13"/>
 	<!-- 
 	Important: This describes the database content.
 	
@@ -12,9 +12,9 @@
 			<column name="name" type="text"/>
 		</columns>
 		<rows>
-			<row name="french"/>
-			<row name="english"/>
-			<row name="arab"/>
+			<row name="Français"/>
+			<row name="English"/>
+			<row name="Arabe"/>
 		</rows>
 	</table>
 	<table name="tags">
@@ -126,14 +126,32 @@
 			<row language_id="1" method_id="1" completed="0" name="Niveau 1"/>
 			<row language_id="1" method_id="1" completed="0" name="Niveau 2"/>
 			<row language_id="1" method_id="1" completed="0" name="Niveau 3"/>
-			<row language_id="1" method_id="1" completed="0" name="Niveau 4"/>
 			<row language_id="1" method_id="2" completed="0" name="Niveau 1"/>
 			<row language_id="1" method_id="2" completed="0" name="Niveau 2"/>
+			<row language_id="1" method_id="2" completed="0" name="Niveau 3"/>
 			<row language_id="1" method_id="3" completed="0" name="Niveau 1"/>
 			<row language_id="1" method_id="3" completed="0" name="Niveau 2"/>
+			<row language_id="1" method_id="3" completed="0" name="Niveau 3"/>
 			
-			<row language_id="2" method_id="1" completed="0" name="Level 1"/>
+			<row language_id="2" method_id="1" completed="0" name="Level 1"/> 
 			<row language_id="2" method_id="1" completed="0" name="Level 2"/>
+			<row language_id="2" method_id="1" completed="0" name="Level 3"/>
+			<row language_id="2" method_id="2" completed="0" name="Level 1"/>
+			<row language_id="2" method_id="2" completed="0" name="Level 2"/>
+			<row language_id="2" method_id="2" completed="0" name="Level 3"/>
+			<row language_id="2" method_id="3" completed="0" name="Level 1"/>
+			<row language_id="2" method_id="3" completed="0" name="Level 2"/>
+			<row language_id="2" method_id="3" completed="0" name="Level 3"/>
+			
+			<row language_id="3" method_id="1" completed="0" name="Niveau 1"/>
+			<row language_id="3" method_id="1" completed="0" name="Niveau 2"/>
+			<row language_id="3" method_id="1" completed="0" name="Niveau 3"/>
+			<row language_id="3" method_id="2" completed="0" name="Niveau 1"/>
+			<row language_id="3" method_id="2" completed="0" name="Niveau 2"/>
+			<row language_id="3" method_id="2" completed="0" name="Niveau 3"/>
+			<row language_id="3" method_id="3" completed="0" name="Niveau 1"/>
+			<row language_id="3" method_id="3" completed="0" name="Niveau 2"/>
+			<row language_id="3" method_id="3" completed="0" name="Niveau 3"/>
 		</rows>
 	</table>
 	<table name="exercises">
@@ -177,6 +195,38 @@
 			<row level_id="3" completed="0" question="8-4" />
 			<row level_id="3" completed="0" question="9-5" />
 			<row level_id="3" completed="0" question="10-7" /><!-- id 30 -->
+			<row level_id="4" completed="0" question="a" />
+			<row level_id="4" completed="0" question="b" />
+			<row level_id="4" completed="0" question="c" />
+			<row level_id="4" completed="0" question="d" />
+			<row level_id="4" completed="0" question="e" /> <!-- id 35 --> 
+			<row level_id="4" completed="0" question="f" />
+			<row level_id="4" completed="0" question="g" />
+			<row level_id="4" completed="0" question="h" />
+			<row level_id="4" completed="0" question="i" />
+			<row level_id="4" completed="0" question="j" />
+			
+			<row level_id="5" completed="0" question="ba" />
+			<row level_id="5" completed="0" question="ma" />
+			<row level_id="5" completed="0" question="pa" />
+			<row level_id="5" completed="0" question="sa" />
+			<row level_id="5" completed="0" question="la" /><!-- id 45 --> 
+			<row level_id="5" completed="0" question="ka" />
+			<row level_id="5" completed="0" question="ja" />
+			<row level_id="5" completed="0" question="fa" />
+			<row level_id="5" completed="0" question="va" />
+			<row level_id="5" completed="0" question="ta" />	
+			
+			<row level_id="6" completed="0" question="papa" />
+			<row level_id="6" completed="0" question="maman" />					
+			<row level_id="6" completed="0" question="tonton" />	
+			<row level_id="6" completed="0" question="papi" />	
+			<row level_id="6" completed="0" question="mami" /><!-- id 55 --> 	
+			<row level_id="6" completed="0" question="maison" />	
+			<row level_id="6" completed="0" question="chat" />	
+			<row level_id="6" completed="0" question="chien" />	
+			<row level_id="6" completed="0" question="bonjour" />	
+			<row level_id="6" completed="0" question="bonsoir" />	
 		</rows>
 	</table>
 	<table name="choices">
@@ -201,6 +251,7 @@
 			<row exercise_id="7" result="11" choice1="3" choice2="5" choice3="1" />
 			<row exercise_id="8" result="13" choice1="11" choice2="5" choice3="1" />
 			<row exercise_id="9" result="16" choice1="11" choice2="5" choice3="1" />
+			
 			<row exercise_id="10" result="11" choice1="14" choice2="5" choice3="1" />
 			<row exercise_id="11" result="22" choice1="32" choice2="42" choice3="12" />
 			<row exercise_id="12" result="54" choice1="65" choice2="45" choice3="55" />
@@ -222,6 +273,39 @@
 			<row exercise_id="28" result="4" choice1="2" choice2="5" choice3="7" />
 			<row exercise_id="29" result="7" choice1="6" choice2="8" choice3="2" />
 			<row exercise_id="30" result="3" choice1="2" choice2="1" choice3="0" />	
+			
+			<row exercise_id="31" result="a" choice1="b" choice2="c" choice3="d" />	
+			<row exercise_id="32" result="b" choice1="a" choice2="e" choice3="c" />	
+			<row exercise_id="33" result="c" choice1="d" choice2="l" choice3="h" />	
+			<row exercise_id="34" result="d" choice1="a" choice2="f" choice3="m" />	
+			<row exercise_id="35" result="e" choice1="s" choice2="d" choice3="n" />	
+			<row exercise_id="36" result="f" choice1="q" choice2="v" choice3="h" />	
+			<row exercise_id="37" result="g" choice1="l" choice2="o" choice3="z" />	
+			<row exercise_id="38" result="h" choice1="b" choice2="e" choice3="p" />	
+			<row exercise_id="39" result="i" choice1="t" choice2="k" choice3="r" />	
+			<row exercise_id="40" result="j" choice1="w" choice2="v" choice3="i" />	
+			
+			<row exercise_id="41" result="ba" choice1="bo" choice2="bi" choice3="be" />	
+			<row exercise_id="42" result="ma" choice1="mu" choice2="mi" choice3="mo" />	
+			<row exercise_id="43" result="pa" choice1="pi" choice2="po" choice3="pe" />	
+			<row exercise_id="44" result="sa" choice1="so" choice2="su" choice3="si" />	
+			<row exercise_id="45" result="la" choice1="lu" choice2="li" choice3="lo" />	
+			<row exercise_id="46" result="ka" choice1="ky" choice2="ki" choice3="ko" />	
+			<row exercise_id="47" result="ja" choice1="ji" choice2="ju" choice3="jy" />	
+			<row exercise_id="48" result="fa" choice1="fu" choice2="fe" choice3="fo" />	
+			<row exercise_id="49" result="va" choice1="vo" choice2="vi" choice3="ve" />				
+			<row exercise_id="50" result="ta" choice1="tu" choice2="to" choice3="ti" />	
+			
+			<row exercise_id="51" result="papa" choice1="pepa" choice2="pape" choice3="papi" />
+			<row exercise_id="52" result="maman" choice1="miman" choice2="moman" choice3="mamon" />	
+			<row exercise_id="53" result="tonton" choice1="tanton" choice2="tontan" choice3="tenton" />	
+			<row exercise_id="54" result="papi" choice1="papa" choice2="pipi" choice3="pipa" />	
+			<row exercise_id="55" result="mami" choice1="2" choice2="1" choice3="0" />	
+			<row exercise_id="56" result="maison" choice1="miason" choice2="maisan" choice3="maisun" />	
+			<row exercise_id="57" result="chat" choice1="chot" choice2="chit" choice3="chiat" />	
+			<row exercise_id="58" result="chien" choice1="chen" choice2="chein" choice3="chian" />	
+			<row exercise_id="59" result="bonjour" choice1="bunjour" choice2="banjour" choice3="bonjur" />	
+			<row exercise_id="60" result="bonsoir" choice1="bonsior" choice2="bunsoir" choice3="bonsior" />		
 		</rows>
 	</table>
 </dbStructure>
