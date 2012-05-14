@@ -17,6 +17,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,23 +69,23 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 
 		// Now add the levels
 		List<Level> levels = l.getLevelsForMethod(methodId);
-		List<Button> buttons = this.getLevelButtons();
+		List<ImageButton> imagebuttons = this.getLevelButtons();
 
 		Integer butCount = 0;
 		for (Level level : levels) {
-			if (butCount >= buttons.size()) {
+			if (butCount >= imagebuttons.size()) {
 				Log.e("LevelsActivity",
 						"Not enough buttons to display all the levels.");
 				break;
 			}
-			Button currentButton = buttons.get(butCount);
-			currentButton.setText(level.getName());
+			ImageButton currentButton = imagebuttons.get(butCount);
+			//currentButton.setLeft(level.getName());
 			currentButton.setTag(level.getId());
 
 			butCount++;
 		}
-		for (Integer i = butCount; i < buttons.size(); i++) {
-			buttons.get(i).setVisibility(View.INVISIBLE);
+		for (Integer i = butCount; i < imagebuttons.size(); i++) {
+			imagebuttons.get(i).setVisibility(View.INVISIBLE);
 		}
 	}
 
@@ -95,13 +96,14 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 		startActivityForResult(intent, lastFinishedLevelId);
 	}
 
-	public List<Button> getLevelButtons() {
-		List<Button> buttons = new ArrayList<Button>();
+	public List<ImageButton> getLevelButtons() {
+		List<ImageButton> imagebuttons = new ArrayList<ImageButton>();
 
-		buttons.add((Button) findViewById(R.id.buttonLevel1));
-		buttons.add((Button) findViewById(R.id.buttonLevel2));
+		imagebuttons.add((ImageButton) findViewById(R.id.buttonlevel1));
+		imagebuttons.add((ImageButton) findViewById(R.id.buttonLevel2));
+		imagebuttons.add((ImageButton) findViewById(R.id.buttonLevel3));
 
-		return buttons;
+		return imagebuttons;
 	}
 	
 	/*

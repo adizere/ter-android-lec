@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
     android:orientation="vertical" >
 
     <TextView
@@ -11,18 +12,41 @@
         android:text="Language"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/buttonLevel1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:onClick="handleClick" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_weight="0.12"
+        android:orientation="horizontal"
+        android:padding="150dp" >
+
+        <ImageButton
+            android:id="@+id/buttonlevel1"
+            android:layout_width="60dp"
+            android:layout_height="129dp"
+            android:layout_weight="0.01"
+            android:onClick="handleClick"
+            android:padding="10dp"
+            android:src="@drawable/etoile1" />
 
-    <Button
-        android:id="@+id/buttonLevel2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:onClick="handleClick" />
+        <ImageButton
+            android:id="@+id/buttonLevel2"
+            android:layout_width="60dp"
+            android:layout_height="120dp"
+            android:layout_weight="0.02"
+            android:onClick="handleClick"
+            android:padding="10dp"
+            android:src="@drawable/etoile2"
+            android:text="Button" />
+
+        <ImageButton
+            android:id="@+id/buttonLevel3"
+            android:layout_width="60dp"
+            android:layout_height="106dp"
+            android:layout_weight="0.01"
+            android:onClick="handleClick"
+            android:padding="10dp"
+            android:src="@drawable/etoile3"
+            android:text="Button" />
+    </LinearLayout>
 
 </LinearLayout>

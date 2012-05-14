@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical"
+    android:background="@android:color/darker_gray"  >
+
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/RelativeLayout01"
@@ -11,26 +12,33 @@
         android:layout_height="354dp"
         android:padding="10dp" >
 
-        <Button
-            android:id="@+id/buttonQuestion"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:onClick="handleClick" 
-            android:layout_alignParentLeft="true" />
         <fr.univ.orleans.ter.lec.component.VerticalProgressBar
             android:id="@+id/verticalRatingBar1"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="300dp"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="499dp"
             android:progress="50" />
 
+        <Button
+            android:id="@+id/buttonQuestion"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="224dp"
+            android:layout_toLeftOf="@+id/verticalRatingBar1"
+            android:onClick="handleClick" />
     </RelativeLayout>
-
+
     <LinearLayout
-        android:layout_width="fill_parent"
+        
+        android:layout_width="772dp"
         android:layout_height="fill_parent"
-        android:orientation="horizontal" >
+        android:gravity="center"
+        android:orientation="horizontal"
+      >
 
         <Button
             android:id="@+id/buttonChoice1"
@@ -59,6 +67,7 @@
             android:layout_height="80dp"
             android:layout_marginTop="30dp"
             android:onClick="handleClick" />
+
     </LinearLayout>
 
 </LinearLayout>
