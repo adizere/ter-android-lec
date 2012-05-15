@@ -27,10 +27,9 @@ public final class R {
         public static final int lire=0x7f02000d;
         public static final int lockred=0x7f02000e;
         public static final int mickey=0x7f02000f;
-        public static final int notificationdone=0x7f020010;
-        public static final int ok=0x7f020011;
-        public static final int player_play=0x7f020012;
-        public static final int spongebob=0x7f020013;
+        public static final int ok=0x7f020010;
+        public static final int player_play=0x7f020011;
+        public static final int spongebob=0x7f020012;
     }
     public static final class id {
         public static final int RelativeLayout01=0x7f060000;

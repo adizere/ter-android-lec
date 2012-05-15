@@ -3,6 +3,7 @@ package fr.univ.orleans.ter.lec.component;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ProgressBar;
 
@@ -10,17 +11,15 @@ public class VerticalProgressBar extends ProgressBar {
 	
 	public VerticalProgressBar(Context context) {
 		super(context);
-		this.setEnabled(false); // Non Clickable
 	}
 
 	private int x, y, z, w;
 
     @Override
     protected void drawableStateChanged() {
-        // TODO Auto-generated method stub
         super.drawableStateChanged();
+        Log.d("VerticalProgressBar", "drawableStateChanged.");
     }
-
 
     public VerticalProgressBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -36,6 +35,8 @@ public class VerticalProgressBar extends ProgressBar {
         this.y = h;
         this.z = oldw;
         this.w = oldh;
+        
+        Log.d("VerticalProgressBar", "onSizeChanged.");
     }
 
     @Override
@@ -43,6 +44,8 @@ public class VerticalProgressBar extends ProgressBar {
             int heightMeasureSpec) {
         super.onMeasure(heightMeasureSpec, widthMeasureSpec);
         setMeasuredDimension(getMeasuredHeight(), getMeasuredWidth());
+        
+        Log.d("VerticalProgressBar", "onMeasure.");
     }
 
     protected void onDraw(Canvas c) {
@@ -52,32 +55,8 @@ public class VerticalProgressBar extends ProgressBar {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (!isEnabled()) {
-            return false;
-        }
-
-        switch (event.getAction()) {
-        case MotionEvent.ACTION_DOWN:
-
-            setSelected(true);
-            setPressed(true);
-            break;
-        case MotionEvent.ACTION_MOVE:
-            setProgress(getMax()
-                    - (int) (getMax() * event.getY() / getHeight()));
-            onSizeChanged(getWidth(), getHeight(), 0, 0);
-
-            break;
-        case MotionEvent.ACTION_UP:
-            setSelected(false);
-            setPressed(false);
-            break;
-
-        case MotionEvent.ACTION_CANCEL:
-            break;
-        }
-        return true;
+    public boolean onTouchEvent(MotionEvent event) {        
+        return false;
     }
 
     @Override

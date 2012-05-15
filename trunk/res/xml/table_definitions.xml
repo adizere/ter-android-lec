@@ -1,5 +1,5 @@
 <dbStructure>
-	<version value="11"/>
+	<version value="12"/>
 	<!-- 
 	Important: This describes the database content.
 	
@@ -39,6 +39,12 @@
 			<row target="HELP_GENERIC" content="Bienvenue dans l'application LEC, pour cet exercice vous avez question avec 4 réponses possible, vous devez séléctionner la bonne réponse  pour que votre score augmente et vous passez au niveau suivant."/>
 																		<!-- id 9 -->
 			<row target="HELP_GENERIC" content="Welcome to the LEC pursuant to this exercise you have questions with four possible answers, You must select the correct answer for your score and you advance to the next level."/>
+			
+			<row target="LEVEL_LOCKED" content="Desole, vous devriez finir les niveaux precedents."/><!-- id 11 -->
+			<row target="LEVEL_LOCKED" content="Sorry, first you have to finish the previous levels."/>
+			
+			<row target="LEVEL_ALREADY_FINISHED" content="Vous avez deja fini cette niveau."/><!-- id 13 -->
+			<row target="LEVEL_ALREADY_FINISHED" content="You already finished this level."/>
 		</rows>
 	</table>
 	<table name="languages_tags">
@@ -56,12 +62,16 @@
 			<row language_id="1" tag_id="5"/>
 			<row language_id="1" tag_id="7"/>
 			<row language_id="1" tag_id="9"/>
+			<row language_id="1" tag_id="11"/>
+			<row language_id="1" tag_id="13"/>
 			
 			<row language_id="2" tag_id="2"/>	<!-- For English -->
 			<row language_id="2" tag_id="4"/>
 			<row language_id="2" tag_id="6"/>
 			<row language_id="2" tag_id="8"/>
 			<row language_id="2" tag_id="10"/>
+			<row language_id="2" tag_id="12"/>
+			<row language_id="2" tag_id="14"/>
 		</rows>
 	</table>
 	<table name="methods">

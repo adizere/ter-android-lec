@@ -239,6 +239,15 @@ public class ExercisesActivity extends Activity implements OnInitListener {
 	}
 	
 	private void speakQuestion() {
+		// No other way to do this.. wait() in UI thread
+		try {
+			synchronized (this) {
+				wait(1000);
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		mTts.speak((String) this.butQuestion.getText(),
 				TextToSpeech.QUEUE_FLUSH, null);
 	}
