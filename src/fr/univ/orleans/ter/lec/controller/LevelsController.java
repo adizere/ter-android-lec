@@ -61,4 +61,8 @@ public class LevelsController extends BasicLECController {
 	public List<Tag> getTags() {
 		return this.language.getTags();
 	}
+
+	public Long getMethodId() {
+		return this.methodId;
+	}
 }

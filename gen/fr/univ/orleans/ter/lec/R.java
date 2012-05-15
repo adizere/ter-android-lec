@@ -18,13 +18,15 @@ public final class R {
         public static final int etoile3=0x7f020004;
         public static final int fond=0x7f020005;
         public static final int france=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int img1=0x7f020008;
-        public static final int img2=0x7f020009;
-        public static final int img3=0x7f02000a;
-        public static final int lire=0x7f02000b;
-        public static final int mickey=0x7f02000c;
-        public static final int spongebob=0x7f02000d;
+        public static final int help=0x7f020007;
+        public static final int home=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int img1=0x7f02000a;
+        public static final int img2=0x7f02000b;
+        public static final int img3=0x7f02000c;
+        public static final int lire=0x7f02000d;
+        public static final int mickey=0x7f02000e;
+        public static final int spongebob=0x7f02000f;
     }
     public static final class id {
         public static final int RelativeLayout01=0x7f060000;
@@ -32,24 +34,26 @@ public final class R {
         public static final int buttonChoice2=0x7f060004;
         public static final int buttonChoice3=0x7f060005;
         public static final int buttonChoice4=0x7f060006;
-        public static final int buttonLevel2=0x7f06000a;
-        public static final int buttonLevel3=0x7f06000b;
-        public static final int buttonQuestion=0x7f060002;
-        public static final int buttonlevel1=0x7f060009;
-        public static final int exercisesList=0x7f060007;
-        public static final int imageLanguage01=0x7f06000d;
-        public static final int imageLanguage02=0x7f06000e;
-        public static final int imageLanguage03=0x7f06000f;
-        public static final int imageView=0x7f06000c;
-        public static final int imgButtonCompter=0x7f060011;
-        public static final int imgButtonEcrire=0x7f060012;
-        public static final int imgButtonLire=0x7f060010;
-        public static final int textViewLanguageName=0x7f060008;
-        public static final int verticalRatingBar1=0x7f060001;
+        public static final int buttonLevel2=0x7f06000c;
+        public static final int buttonLevel3=0x7f06000d;
+        public static final int buttonQuestion=0x7f060001;
+        public static final int buttonlevel1=0x7f06000b;
+        public static final int help=0x7f060007;
+        public static final int help_text=0x7f060009;
+        public static final int home=0x7f060008;
+        public static final int imageLanguage01=0x7f06000f;
+        public static final int imageLanguage02=0x7f060010;
+        public static final int imageLanguage03=0x7f060011;
+        public static final int imageView=0x7f06000e;
+        public static final int imgButtonCompter=0x7f060013;
+        public static final int imgButtonEcrire=0x7f060014;
+        public static final int imgButtonLire=0x7f060012;
+        public static final int textViewLanguageName=0x7f06000a;
+        public static final int verticalRatingBar1=0x7f060002;
     }
     public static final class layout {
         public static final int exercises=0x7f030000;
-        public static final int exercises_list=0x7f030001;
+        public static final int help=0x7f030001;
         public static final int levels_list=0x7f030002;
         public static final int main=0x7f030003;
         public static final int methods_list=0x7f030004;

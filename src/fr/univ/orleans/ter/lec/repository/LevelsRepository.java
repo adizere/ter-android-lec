@@ -43,4 +43,13 @@ public class LevelsRepository extends BasicLECRepository {
 
 		return (Level) this.getMemberById(id);
 	}
+
+	public void setCompleted(Long levelId) {
+		ContentValues values = new ContentValues();
+		
+		values.put("completed", 1);
+		
+		this.updateValueById(values, levelId);
+		((Level)this.getMemberById(levelId)).setCompleted(true);
+	}
 }
