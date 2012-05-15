@@ -25,8 +25,12 @@ public final class R {
         public static final int img2=0x7f02000b;
         public static final int img3=0x7f02000c;
         public static final int lire=0x7f02000d;
-        public static final int mickey=0x7f02000e;
-        public static final int spongebob=0x7f02000f;
+        public static final int lockred=0x7f02000e;
+        public static final int mickey=0x7f02000f;
+        public static final int notificationdone=0x7f020010;
+        public static final int ok=0x7f020011;
+        public static final int player_play=0x7f020012;
+        public static final int spongebob=0x7f020013;
     }
     public static final class id {
         public static final int RelativeLayout01=0x7f060000;
@@ -41,13 +45,16 @@ public final class R {
         public static final int help=0x7f060007;
         public static final int help_text=0x7f060009;
         public static final int home=0x7f060008;
-        public static final int imageLanguage01=0x7f06000f;
-        public static final int imageLanguage02=0x7f060010;
-        public static final int imageLanguage03=0x7f060011;
-        public static final int imageView=0x7f06000e;
-        public static final int imgButtonCompter=0x7f060013;
-        public static final int imgButtonEcrire=0x7f060014;
-        public static final int imgButtonLire=0x7f060012;
+        public static final int imageLanguage01=0x7f060012;
+        public static final int imageLanguage02=0x7f060013;
+        public static final int imageLanguage03=0x7f060014;
+        public static final int imageView=0x7f060011;
+        public static final int imgButtonCompter=0x7f060016;
+        public static final int imgButtonEcrire=0x7f060017;
+        public static final int imgButtonLire=0x7f060015;
+        public static final int imgViewLevelStatus1=0x7f06000e;
+        public static final int imgViewLevelStatus2=0x7f06000f;
+        public static final int imgViewLevelStatus3=0x7f060010;
         public static final int textViewLanguageName=0x7f06000a;
         public static final int verticalRatingBar1=0x7f060002;
     }
