@@ -1,6 +1,7 @@
 package fr.univ.orleans.ter.lec;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -20,19 +21,25 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class LevelsListActivity extends Activity implements OnInitListener {
 	
 	static Integer lastFinishedLevelId = 1337;
-	public static String finishedLevelExtraName = "LEVEL_FINISHED";
+	public static final String finishedLevelExtraName = "LEVEL_FINISHED";
+	public static final String doneResourceName = "DONE";
+	public static final String inProgressResourceName = "IN_PROGRESS";
+	public static final String lockedResourceName = "LOCKED";
 	
 	private LevelsController mController;
 	private TextToSpeech mTts;
 	
 	private String FINISHED_TEXT;
 	private String CONGRATZ_TEXT;
+	
+	private final HashMap<String, Integer> LEVELS_STATUS = getLevelsSrcMap();
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,6 +59,7 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 		this.setUpView(mController.getLanguage(), methodId);
 	}
 
+
 	private void initMessages() {
 		List<Tag> tags = mController.getTags();
 		for (Tag tag : tags) {
@@ -70,43 +78,44 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 
 		// Now add the levels
 		List<Level> levels = l.getLevelsForMethod(methodId);
-		List<ImageButton> imagebuttons = this.getLevelButtons();
+		List<ImageButton> levelButtons = this.getLevelButtons();
+		List<ImageView> levelStatusImage = this.getLevelStatusImages();
 
 		Integer butCount = 0;
 		Boolean locked = false;
 		for (Level level : levels) {
-			if (butCount >= imagebuttons.size()) {
+			if (butCount >= levelButtons.size()) {
 				Log.e("LevelsActivity",
 						"Not enough buttons to display all the levels.");
 				break;
 			}
-			ImageButton currentButton = imagebuttons.get(butCount);
+			ImageButton currentButton = levelButtons.get(butCount);
 			currentButton.setTag(level.getId());
+			ImageView currentView = levelStatusImage.get(butCount);
 			
 			if (locked.equals(false) && level.getCompleted().equals(false)){
 				// Everything from here on is locked
 				locked = true;
+				currentView.setImageResource(LEVELS_STATUS.get(this.inProgressResourceName));
 				
 			} else if (level.getCompleted().equals(true)){
 				// this Level is already completed, so disable it 
 				currentButton.setEnabled(false);
+				currentView.setImageResource(LEVELS_STATUS.get(this.doneResourceName));
 				
 			} else if (locked == true) {
 				// locked Level
-				currentButton.setBackgroundColor(Color.GREEN);
-				
-			} else {
-				currentButton.setImageResource(R.drawable.etoile1);
+				currentView.setImageResource(LEVELS_STATUS.get(this.lockedResourceName));
 			}
-			
 			
 			
 			butCount++;
 		}
-		for (Integer i = butCount; i < imagebuttons.size(); i++) {
-			imagebuttons.get(i).setVisibility(View.INVISIBLE);
+		for (Integer i = butCount; i < levelButtons.size(); i++) {
+			levelButtons.get(i).setVisibility(View.INVISIBLE);
 		}
 	}
+
 
 	public void handleClick(View v) {
 		Intent intent = new Intent();
@@ -121,6 +130,16 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 		imagebuttons.add((ImageButton) findViewById(R.id.buttonlevel1));
 		imagebuttons.add((ImageButton) findViewById(R.id.buttonLevel2));
 		imagebuttons.add((ImageButton) findViewById(R.id.buttonLevel3));
+
+		return imagebuttons;
+	}
+	
+	private List<ImageView> getLevelStatusImages() {
+		List<ImageView> imagebuttons = new ArrayList<ImageView>();
+
+		imagebuttons.add((ImageView) findViewById(R.id.imgViewLevelStatus1));
+		imagebuttons.add((ImageView) findViewById(R.id.imgViewLevelStatus2));
+		imagebuttons.add((ImageView) findViewById(R.id.imgViewLevelStatus3));
 
 		return imagebuttons;
 	}
@@ -164,6 +183,15 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 		if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
 			Log.e("LevelsListActivity", "Language is not available for TTS.");
 		}
+	}
+	
+	private HashMap<String, Integer> getLevelsSrcMap() {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put(this.doneResourceName, R.drawable.ok);
+		map.put(this.lockedResourceName, R.drawable.lockred);
+		map.put(this.inProgressResourceName, R.drawable.player_play);
+		
+		return map;
 	}
 	
 	@Override
