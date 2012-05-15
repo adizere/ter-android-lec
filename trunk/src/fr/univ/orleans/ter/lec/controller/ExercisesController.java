@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import android.util.Log;
 import fr.univ.orleans.ter.lec.model.Exercise;
 import fr.univ.orleans.ter.lec.model.Level;
 import fr.univ.orleans.ter.lec.model.Tag;
 import fr.univ.orleans.ter.lec.repository.ExercisesRepository;
+import fr.univ.orleans.ter.lec.repository.LevelsRepository;
+import fr.univ.orleans.ter.lec.utility.LocaleDefs;
 
 public class ExercisesController extends BasicLECController {
 
@@ -44,6 +47,8 @@ public class ExercisesController extends BasicLECController {
 	private void loadLevel() {
 		this.level = (Level) ExercisesController.repoMediator
 				.getRepositoryByTableName("levels").getMemberById(this.levelId);
+		
+		Log.d("ExercisesController", "Level loaded with completed=" + this.level.getCompleted());
 	}
 
 	private Boolean validLevelId(Long id) {
@@ -91,12 +96,12 @@ public class ExercisesController extends BasicLECController {
 
 		Boolean added = false;
 		while (choicesIt.hasNext()) {
-			if ((!added) && (Math.random() > 0.5)) {
+			if ((!added) && (Math.random() > 0.7)) {
 				ret.add(this.exercise.getChoice().getResult());
 				added = true;
 			}
 			ret.add(choicesIt.next());
-			if ((!added) && (Math.random() > 0.5)) {
+			if ((!added) && (Math.random() > 0.65)) {
 				ret.add(this.exercise.getChoice().getResult());
 				added = true;
 			}
@@ -160,5 +165,18 @@ public class ExercisesController extends BasicLECController {
 		int res = 100/total;
 		
 		return res;
+	}
+
+	public Long getLanguageId() {
+		return this.level.getLanguageId();
+	}
+
+	public Locale getLanguageAsLocale() {
+		return LocaleDefs.getLocaleForLanguageName(this.level.getLanguage().getName());
+	}
+
+	public void setCompletedLevel() {
+		LevelsRepository lRepo = (LevelsRepository) ExercisesController.repoMediator.getRepositoryByTableName("levels");
+		lRepo.setCompleted(this.levelId);
 	}
 }

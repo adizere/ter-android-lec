@@ -12,8 +12,8 @@ public class LocaleDefs {
 	private static HashMap<String, Locale> getLocaleMap(){
 		HashMap<String, Locale> retMap = new HashMap<String, Locale>();
 		
-		retMap.put("french", Locale.FRANCE);
-		retMap.put("english", Locale.ENGLISH);
+		retMap.put("Français", Locale.FRANCE);
+		retMap.put("English", Locale.ENGLISH);
 		
 		return retMap;
 	}

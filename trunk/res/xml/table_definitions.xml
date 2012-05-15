@@ -1,5 +1,5 @@
 <dbStructure>
-	<version value="13"/>
+	<version value="12"/>
 	<!-- 
 	Important: This describes the database content.
 	
@@ -14,7 +14,7 @@
 		<rows>
 			<row name="Français"/>
 			<row name="English"/>
-			<row name="Arabe"/>
+			<row name="Italian"/>
 		</rows>
 	</table>
 	<table name="tags">
@@ -35,6 +35,10 @@
 			
 			<row target="CONGRATZ" content="Félicitations!"/>			<!-- id 7 -->
 			<row target="CONGRATZ" content="Congratulations!"/>
+			
+			<row target="HELP_GENERIC" content="Bienvenue dans l'application LEC, pour cet exercice vous avez question avec 4 réponses possible, vous devez séléctionner la bonne réponse  pour que votre score augmente et vous passez au niveau suivant."/>
+																		<!-- id 9 -->
+			<row target="HELP_GENERIC" content="Welcome to the LEC pursuant to this exercise you have questions with four possible answers, You must select the correct answer for your score and you advance to the next level."/>
 		</rows>
 	</table>
 	<table name="languages_tags">
@@ -51,29 +55,14 @@
 			<row language_id="1" tag_id="3"/>
 			<row language_id="1" tag_id="5"/>
 			<row language_id="1" tag_id="7"/>
+			<row language_id="1" tag_id="9"/>
 			
 			<row language_id="2" tag_id="2"/>	<!-- For English -->
 			<row language_id="2" tag_id="4"/>
 			<row language_id="2" tag_id="6"/>
 			<row language_id="2" tag_id="8"/>
+			<row language_id="2" tag_id="10"/>
 		</rows>
-	</table>
-	<table name="lcomponents">
-		<columns>
-			<column name="_id" type="integer" options="primary key autoincrement"/>
-			<column name="content" type="text"/>
-			<column name="type" type="text"/>
-		</columns>
-	</table>
-	<table name="languages_lcomponents">
-		<columns>
-			<column name="_id" type="integer" options="primary key autoincrement"/>
-			<column name="language_id" type="integer"/>
-			<column name="lcomponent_id" type="integer"/>
-		</columns>
-		<relations>
-			<relation type="2" name="languages_lcomponents" intermediateTable="languages_lcomponents" rightPartnerTable="languages" leftPartnerTable="lcomponents"/>
-		</relations>
 	</table>
 	<table name="methods">
 		<columns>
@@ -123,25 +112,25 @@
 			<relation type="1" name="levels_method" parentTable="methods" childTable="levels"/>
 		</relations>
 		<rows>
-			<row language_id="1" method_id="1" completed="0" name="Niveau 1"/>
-			<row language_id="1" method_id="1" completed="0" name="Niveau 2"/>
-			<row language_id="1" method_id="1" completed="0" name="Niveau 3"/>
-			<row language_id="1" method_id="2" completed="0" name="Niveau 1"/>
-			<row language_id="1" method_id="2" completed="0" name="Niveau 2"/>
-			<row language_id="1" method_id="2" completed="0" name="Niveau 3"/>
-			<row language_id="1" method_id="3" completed="0" name="Niveau 1"/>
-			<row language_id="1" method_id="3" completed="0" name="Niveau 2"/>
-			<row language_id="1" method_id="3" completed="0" name="Niveau 3"/>
+			<row language_id="1" method_id="1" completed="0" name="Niveau 1"/>  <!-- id 1 -->
+			<row language_id="1" method_id="1" completed="0" name="Niveau 2"/>  <!-- id 2 -->
+			<row language_id="1" method_id="1" completed="0" name="Niveau 3"/>  <!-- id 3 -->
+			<row language_id="1" method_id="2" completed="0" name="Niveau 1"/>  <!-- id 4 -->
+			<row language_id="1" method_id="2" completed="0" name="Niveau 2"/>  <!-- id 5 -->
+			<row language_id="1" method_id="2" completed="0" name="Niveau 3"/>  <!-- id 6 -->
+			<row language_id="1" method_id="3" completed="0" name="Niveau 1"/>  <!-- id 7 -->
+			<row language_id="1" method_id="3" completed="0" name="Niveau 2"/>  <!-- id 8 -->
+			<row language_id="1" method_id="3" completed="0" name="Niveau 3"/>  <!-- id 9 -->
 			
-			<row language_id="2" method_id="1" completed="0" name="Level 1"/> 
-			<row language_id="2" method_id="1" completed="0" name="Level 2"/>
-			<row language_id="2" method_id="1" completed="0" name="Level 3"/>
-			<row language_id="2" method_id="2" completed="0" name="Level 1"/>
-			<row language_id="2" method_id="2" completed="0" name="Level 2"/>
-			<row language_id="2" method_id="2" completed="0" name="Level 3"/>
-			<row language_id="2" method_id="3" completed="0" name="Level 1"/>
-			<row language_id="2" method_id="3" completed="0" name="Level 2"/>
-			<row language_id="2" method_id="3" completed="0" name="Level 3"/>
+			<row language_id="2" method_id="1" completed="0" name="Level 1"/>  <!-- id 10 -->
+			<row language_id="2" method_id="1" completed="0" name="Level 2"/>  <!-- id 11 -->
+			<row language_id="2" method_id="1" completed="0" name="Level 3"/>  <!-- id 12 -->
+			<row language_id="2" method_id="2" completed="0" name="Level 1"/>  <!-- id 13 -->
+			<row language_id="2" method_id="2" completed="0" name="Level 2"/>  <!-- id 14 -->
+			<row language_id="2" method_id="2" completed="0" name="Level 3"/>  <!-- id 15 -->
+			<row language_id="2" method_id="3" completed="0" name="Level 1"/>  <!-- id 16 -->
+			<row language_id="2" method_id="3" completed="0" name="Level 2"/>  <!-- id 17 -->
+			<row language_id="2" method_id="3" completed="0" name="Level 3"/>  <!-- id 18 -->
 			
 			<row language_id="3" method_id="1" completed="0" name="Niveau 1"/>
 			<row language_id="3" method_id="1" completed="0" name="Niveau 2"/>
@@ -175,6 +164,7 @@
 			<row level_id="1" completed="0" question="5+8" />
 			<row level_id="1" completed="0" question="9+7" />
 			<row level_id="1" completed="0" question="7+4" /><!-- id 10 -->
+			
 			<row level_id="2" completed="0" question="10+12" />
 			<row level_id="2" completed="0" question="21+33" />
 			<row level_id="2" completed="0" question="35+29" />
@@ -185,6 +175,7 @@
 			<row level_id="2" completed="0" question="29+11" />
 			<row level_id="2" completed="0" question="14+28" />
 			<row level_id="2" completed="0" question="73+7" /><!-- id 20 -->
+			
 			<row level_id="3" completed="0" question="1-0" />
 			<row level_id="3" completed="0" question="2-1" />
 			<row level_id="3" completed="0" question="3-3" />
@@ -195,6 +186,7 @@
 			<row level_id="3" completed="0" question="8-4" />
 			<row level_id="3" completed="0" question="9-5" />
 			<row level_id="3" completed="0" question="10-7" /><!-- id 30 -->
+			
 			<row level_id="4" completed="0" question="a" />
 			<row level_id="4" completed="0" question="b" />
 			<row level_id="4" completed="0" question="c" />
@@ -226,7 +218,76 @@
 			<row level_id="6" completed="0" question="chat" />	
 			<row level_id="6" completed="0" question="chien" />	
 			<row level_id="6" completed="0" question="bonjour" />	
-			<row level_id="6" completed="0" question="bonsoir" />	
+			<row level_id="6" completed="0" question="bonsoir" />			
+		
+			<row level_id="10" completed="0" question="1+1" /><!-- id 61 -->
+			<row level_id="10" completed="0" question="1+3" />
+			<row level_id="10" completed="0" question="2+2" />
+			<row level_id="10" completed="0" question="2+4" />
+			<row level_id="10" completed="0" question="3+1" /><!-- id 65 -->
+			<row level_id="10" completed="0" question="5+3" />
+			<row level_id="10" completed="0" question="6+5" />
+			<row level_id="10" completed="0" question="5+8" />
+			<row level_id="10" completed="0" question="9+7" />
+			<row level_id="10" completed="0" question="7+4" /><!-- id 70 -->
+			
+			<row level_id="11" completed="0" question="10+12" />
+			<row level_id="11" completed="0" question="21+33" />
+			<row level_id="11" completed="0" question="35+29" />
+			<row level_id="11" completed="0" question="25+10" />
+			<row level_id="11" completed="0" question="17+12" /><!-- id 75 -->
+			<row level_id="11" completed="0" question="66+4" />
+			<row level_id="11" completed="0" question="17+12" />
+			<row level_id="11" completed="0" question="29+11" />
+			<row level_id="11" completed="0" question="14+28" />
+			<row level_id="11" completed="0" question="73+7" /><!-- id 80 -->
+			
+			<row level_id="12" completed="0" question="1−0" />
+			<row level_id="12" completed="0" question="2-1" />
+			<row level_id="12" completed="0" question="3–3" />
+			<row level_id="12" completed="0" question="4—2" />
+			<row level_id="12" completed="0" question="5-1" /><!-- id 85 -->
+			<row level_id="12" completed="0" question="6-3" />
+			<row level_id="12" completed="0" question="7-6" />
+			<row level_id="12" completed="0" question="8-4" />
+			<row level_id="12" completed="0" question="9-5" />
+			<row level_id="12" completed="0" question="10-7" /><!-- id 90 -->
+			
+			<row level_id="13" completed="0" question="a" />
+			<row level_id="13" completed="0" question="b" />
+			<row level_id="13" completed="0" question="c" />
+			<row level_id="13" completed="0" question="d" />
+			<row level_id="13" completed="0" question="e" /> <!-- id 95 --> 
+			<row level_id="13" completed="0" question="f" />
+			<row level_id="13" completed="0" question="g" />
+			<row level_id="13" completed="0" question="h" />
+			<row level_id="13" completed="0" question="i" />
+			<row level_id="13" completed="0" question="j" />
+			
+			<row level_id="14" completed="0" question="ba" />
+			<row level_id="14" completed="0" question="ma" />
+			<row level_id="14" completed="0" question="pa" />
+			<row level_id="14" completed="0" question="sa" />
+			<row level_id="14" completed="0" question="la" /><!-- id 105 --> 
+			<row level_id="14" completed="0" question="ka" />
+			<row level_id="14" completed="0" question="ja" />
+			<row level_id="14" completed="0" question="fa" />
+			<row level_id="14" completed="0" question="va" />
+			<row level_id="14" completed="0" question="ta" />
+			
+			<row level_id="15" completed="0" question="father" />
+			<row level_id="15" completed="0" question="mother" />					
+			<row level_id="15" completed="0" question="uncle" />	
+			<row level_id="15" completed="0" question="grandfather" />	
+			<row level_id="15" completed="0" question="grandmother" /><!-- id 55 --> 	
+			<row level_id="15" completed="0" question="house" />	
+			<row level_id="15" completed="0" question="cat" />	
+			<row level_id="15" completed="0" question="dog" />	
+			<row level_id="15" completed="0" question="good morning" />	
+			<row level_id="15" completed="0" question="good afternoon" />		
+			
+			<row level_id="19" completed="0" question="1−0" />
+			
 		</rows>
 	</table>
 	<table name="choices">
@@ -250,9 +311,9 @@
 			<row exercise_id="6" result="8" choice1="7" choice2="5" choice3="1" />
 			<row exercise_id="7" result="11" choice1="3" choice2="5" choice3="1" />
 			<row exercise_id="8" result="13" choice1="11" choice2="5" choice3="1" />
-			<row exercise_id="9" result="16" choice1="11" choice2="5" choice3="1" />
-			
+			<row exercise_id="9" result="16" choice1="11" choice2="5" choice3="1" />			
 			<row exercise_id="10" result="11" choice1="14" choice2="5" choice3="1" />
+			
 			<row exercise_id="11" result="22" choice1="32" choice2="42" choice3="12" />
 			<row exercise_id="12" result="54" choice1="65" choice2="45" choice3="55" />
 			<row exercise_id="13" result="64" choice1="74" choice2="54" choice3="44" />
@@ -263,6 +324,7 @@
 			<row exercise_id="18" result="40" choice1="46" choice2="30" choice3="50" />
 			<row exercise_id="19" result="42" choice1="32" choice2="22" choice3="12" />
 			<row exercise_id="20" result="80" choice1="70" choice2="90" choice3="100" />
+			
 			<row exercise_id="21" result="1" choice1="2" choice2="3" choice3="4" />
 			<row exercise_id="22" result="1" choice1="2" choice2="3" choice3="0" />
 			<row exercise_id="23" result="0" choice1="1" choice2="2" choice3="4" />
@@ -300,12 +362,80 @@
 			<row exercise_id="52" result="maman" choice1="miman" choice2="moman" choice3="mamon" />	
 			<row exercise_id="53" result="tonton" choice1="tanton" choice2="tontan" choice3="tenton" />	
 			<row exercise_id="54" result="papi" choice1="papa" choice2="pipi" choice3="pipa" />	
-			<row exercise_id="55" result="mami" choice1="2" choice2="1" choice3="0" />	
+			<row exercise_id="55" result="mami" choice1="mama" choice2="mima" choice3="mame" />	
 			<row exercise_id="56" result="maison" choice1="miason" choice2="maisan" choice3="maisun" />	
 			<row exercise_id="57" result="chat" choice1="chot" choice2="chit" choice3="chiat" />	
 			<row exercise_id="58" result="chien" choice1="chen" choice2="chein" choice3="chian" />	
 			<row exercise_id="59" result="bonjour" choice1="bunjour" choice2="banjour" choice3="bonjur" />	
-			<row exercise_id="60" result="bonsoir" choice1="bonsior" choice2="bunsoir" choice3="bonsior" />		
+			<row exercise_id="60" result="bonsoir" choice1="bonsior" choice2="bunsoir" choice3="bonsior" />
+			
+			<row exercise_id="61" result="2" choice1="3" choice2="5" choice3="1" />
+			<row exercise_id="62" result="4" choice1="3" choice2="5" choice3="1" />
+			<row exercise_id="63" result="4" choice1="2" choice2="5" choice3="1" />
+			<row exercise_id="64" result="6" choice1="1" choice2="5" choice3="1" />
+			<row exercise_id="65" result="4" choice1="6" choice2="5" choice3="1" />
+			<row exercise_id="66" result="8" choice1="7" choice2="5" choice3="1" />
+			<row exercise_id="67" result="11" choice1="3" choice2="5" choice3="1" />
+			<row exercise_id="68" result="13" choice1="11" choice2="5" choice3="1" />
+			<row exercise_id="69" result="16" choice1="11" choice2="5" choice3="1" />
+			<row exercise_id="70" result="11" choice1="14" choice2="5" choice3="1" />	
+			
+			<row exercise_id="71" result="22" choice1="32" choice2="42" choice3="12" />
+			<row exercise_id="72" result="54" choice1="65" choice2="45" choice3="55" />
+			<row exercise_id="73" result="64" choice1="74" choice2="54" choice3="44" />
+			<row exercise_id="74" result="35" choice1="25" choice2="55" choice3="15" />
+			<row exercise_id="75" result="25" choice1="35" choice2="30" choice3="26" />
+			<row exercise_id="76" result="70" choice1="80" choice2="60" choice3="50" />
+			<row exercise_id="77" result="29" choice1="39" choice2="19" choice3="20" />
+			<row exercise_id="78" result="40" choice1="46" choice2="30" choice3="50" />
+			<row exercise_id="79" result="42" choice1="32" choice2="22" choice3="12" />
+			<row exercise_id="80" result="80" choice1="70" choice2="90" choice3="100" />
+			
+			<row exercise_id="81" result="1" choice1="2" choice2="3" choice3="4" />
+			<row exercise_id="82" result="1" choice1="2" choice2="3" choice3="0" />
+			<row exercise_id="83" result="0" choice1="1" choice2="2" choice3="4" />
+			<row exercise_id="84" result="2" choice1="0" choice2="5" choice3="3" />
+			<row exercise_id="85" result="4" choice1="3" choice2="5" choice3="6" />
+			<row exercise_id="86" result="3" choice1="3" choice2="7" choice3="8" />
+			<row exercise_id="87" result="5" choice1="2" choice2="1" choice3="6" />
+			<row exercise_id="88" result="4" choice1="2" choice2="5" choice3="7" />
+			<row exercise_id="89" result="7" choice1="6" choice2="8" choice3="2" />
+			<row exercise_id="90" result="3" choice1="2" choice2="1" choice3="0" />	
+			
+			<row exercise_id="91" result="a" choice1="b" choice2="c" choice3="d" />	
+			<row exercise_id="92" result="b" choice1="a" choice2="e" choice3="c" />	
+			<row exercise_id="93" result="c" choice1="d" choice2="l" choice3="h" />	
+			<row exercise_id="94" result="d" choice1="a" choice2="f" choice3="m" />	
+			<row exercise_id="95" result="e" choice1="s" choice2="d" choice3="n" />	
+			<row exercise_id="96" result="f" choice1="q" choice2="v" choice3="h" />	
+			<row exercise_id="97" result="g" choice1="l" choice2="o" choice3="z" />	
+			<row exercise_id="98" result="h" choice1="b" choice2="e" choice3="p" />	
+			<row exercise_id="99" result="i" choice1="t" choice2="k" choice3="r" />	
+			<row exercise_id="100" result="j" choice1="w" choice2="v" choice3="i" />	
+			
+			<row exercise_id="101" result="ba" choice1="bo" choice2="bi" choice3="be" />	
+			<row exercise_id="102" result="ma" choice1="mu" choice2="mi" choice3="mo" />	
+			<row exercise_id="103" result="pa" choice1="pi" choice2="po" choice3="pe" />	
+			<row exercise_id="104" result="sa" choice1="so" choice2="su" choice3="si" />	
+			<row exercise_id="105" result="la" choice1="lu" choice2="li" choice3="lo" />	
+			<row exercise_id="106" result="ka" choice1="ky" choice2="ki" choice3="ko" />	
+			<row exercise_id="107" result="ja" choice1="ji" choice2="ju" choice3="jy" />	
+			<row exercise_id="108" result="fa" choice1="fu" choice2="fe" choice3="fo" />	
+			<row exercise_id="109" result="va" choice1="vo" choice2="vi" choice3="ve" />				
+			<row exercise_id="110" result="ta" choice1="tu" choice2="to" choice3="ti" />	
+			
+			<row exercise_id="111" result="father" choice1="fother" choice2="fither" choice3="fether" />
+			<row exercise_id="112" result="mother" choice1="mather" choice2="mither" choice3="mether" />	
+			<row exercise_id="113" result="uncle" choice1="ancle" choice2="oncle" choice3="encle" />	
+			<row exercise_id="114" result="grand father" choice1="grond fathet" choice2="grand fother" choice3="grande father" />	
+			<row exercise_id="115" result="grand mother" choice1="grond mother" choice2="grande mother" choice3="grand mather" />	
+			<row exercise_id="116" result="house" choice1="hose" choice2="huose" choice3="hous" />	
+			<row exercise_id="117" result="cat" choice1="cot" choice2="cit" choice3="ciat" />	
+			<row exercise_id="118" result="dog" choice1="dag" choice2="doge" choice3="diog" />	
+			<row exercise_id="119" result="good morning" choice1="god morning" choice2="good moning" choice3="good mornig" />	
+			<row exercise_id="120" result="good afternoon" choice1="god afternoon" choice2="good afternon" choice3="good aftenoon"/>
+		
+			<row exercise_id="121" result="4" choice1="3" choice2="2" choice3="1" />
 		</rows>
 	</table>
 </dbStructure>

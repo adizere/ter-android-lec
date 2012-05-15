@@ -10,7 +10,7 @@ public class VerticalProgressBar extends ProgressBar {
 	
 	public VerticalProgressBar(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
+		this.setEnabled(false); // Non Clickable
 	}
 
 	private int x, y, z, w;

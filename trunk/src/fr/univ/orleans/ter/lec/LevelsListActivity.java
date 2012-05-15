@@ -11,6 +11,7 @@ import fr.univ.orleans.ter.lec.model.Level;
 import fr.univ.orleans.ter.lec.model.Tag;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
@@ -72,6 +73,7 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 		List<ImageButton> imagebuttons = this.getLevelButtons();
 
 		Integer butCount = 0;
+		Boolean locked = false;
 		for (Level level : levels) {
 			if (butCount >= imagebuttons.size()) {
 				Log.e("LevelsActivity",
@@ -79,9 +81,26 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 				break;
 			}
 			ImageButton currentButton = imagebuttons.get(butCount);
-			//currentButton.setLeft(level.getName());
 			currentButton.setTag(level.getId());
-
+			
+			if (locked.equals(false) && level.getCompleted().equals(false)){
+				// Everything from here on is locked
+				locked = true;
+				
+			} else if (level.getCompleted().equals(true)){
+				// this Level is already completed, so disable it 
+				currentButton.setEnabled(false);
+				
+			} else if (locked == true) {
+				// locked Level
+				currentButton.setBackgroundColor(Color.GREEN);
+				
+			} else {
+				currentButton.setImageResource(R.drawable.etoile1);
+			}
+			
+			
+			
 			butCount++;
 		}
 		for (Integer i = butCount; i < imagebuttons.size(); i++) {
@@ -125,6 +144,8 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 				
 				mTts.speak(text,
 						TextToSpeech.QUEUE_FLUSH, null);
+				
+				this.setUpView(mController.getLanguage(), mController.getMethodId());
 			}
 		}
 	}

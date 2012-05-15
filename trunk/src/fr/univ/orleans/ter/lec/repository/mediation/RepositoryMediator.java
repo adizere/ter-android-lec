@@ -16,8 +16,7 @@ import fr.univ.orleans.ter.lec.persistence.sql.relation.roles.PartnerRole;
 import fr.univ.orleans.ter.lec.repository.BasicLECRepository;
 import fr.univ.orleans.ter.lec.repository.ChoicesRepository;
 import fr.univ.orleans.ter.lec.repository.ExercisesRepository;
-import fr.univ.orleans.ter.lec.repository.LComponentsRepository;
-import fr.univ.orleans.ter.lec.repository.LanguagesLComponentsRepository;
+
 import fr.univ.orleans.ter.lec.repository.LanguagesMethodsRepository;
 import fr.univ.orleans.ter.lec.repository.LanguagesRepository;
 import fr.univ.orleans.ter.lec.repository.LanguagesTagsRepository;
@@ -79,11 +78,7 @@ public class RepositoryMediator {
 		repositories.put("methods", new MethodsRepository(this.databaseHelper));
 		repositories.put("levels", new LevelsRepository(this.databaseHelper));
 		repositories.put("exercises", new ExercisesRepository(
-				this.databaseHelper));
-		repositories.put("lcomponents", new LComponentsRepository(
-				this.databaseHelper));
-		repositories.put("languages_lcomponents",
-				new LanguagesLComponentsRepository(this.databaseHelper));
+				this.databaseHelper));		
 		repositories.put("choices", new ChoicesRepository(this.databaseHelper));
 		
 		BasicLECRepository.setRepositoryMediator(this);
