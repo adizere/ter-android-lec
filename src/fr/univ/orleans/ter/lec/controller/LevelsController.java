@@ -13,6 +13,11 @@ public class LevelsController extends BasicLECController {
 	private Long languageId;
 	private Language language;
 	private Long methodId;
+	
+	public String FINISHED_TEXT;
+	public String CONGRATZ_TEXT;
+	public String LOCKED_TEXT;
+	public String ALREADY_FINISHED_TEXT;
 
 	public Long getLanguageId() {
 		return languageId;
@@ -24,6 +29,22 @@ public class LevelsController extends BasicLECController {
 		} else {
 			this.languageId = langId;
 			this.loadLanguage();
+			this.initMessages();
+		}
+	}
+	
+	private void initMessages() {
+		List<Tag> tags = this.getTags();
+		for (Tag tag : tags) {
+			if( tag.getTarget().equals("LEVEL_FINISHED")) {
+				this.FINISHED_TEXT = tag.getContent();
+			} else if ( tag.getTarget().equals("CONGRATZ")) {
+				this.CONGRATZ_TEXT = tag.getContent();
+			} else if ( tag.getTarget().equals("LEVEL_LOCKED")) {
+				this.LOCKED_TEXT = tag.getContent();
+			}  else if ( tag.getTarget().equals("LEVEL_ALREADY_FINISHED")) {
+				this.ALREADY_FINISHED_TEXT = tag.getContent();
+			}
 		}
 	}
 

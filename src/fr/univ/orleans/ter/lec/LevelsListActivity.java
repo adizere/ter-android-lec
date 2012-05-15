@@ -27,17 +27,17 @@ import android.widget.Toast;
 
 public class LevelsListActivity extends Activity implements OnInitListener {
 	
-	static Integer lastFinishedLevelId = 1337;
 	public static final String finishedLevelExtraName = "LEVEL_FINISHED";
-	public static final String doneResourceName = "DONE";
-	public static final String inProgressResourceName = "IN_PROGRESS";
-	public static final String lockedResourceName = "LOCKED";
+	
+	private static Integer lastFinishedLevelId = 1337;
+	private final String finishedResourceName = "FINISHED";
+	private final String inProgressResourceName = "IN_PROGRESS";
+	private final String lockedResourceName = "LOCKED";
+	private final Long finishedLvlCode = -10L;
+	private final Long lockedLvlCode = -20L;
 	
 	private LevelsController mController;
 	private TextToSpeech mTts;
-	
-	private String FINISHED_TEXT;
-	private String CONGRATZ_TEXT;
 	
 	private final HashMap<String, Integer> LEVELS_STATUS = getLevelsSrcMap();
 
@@ -55,21 +55,10 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 		mController.setLanguageId(langId);
 		mController.setMethodId(methodId);
 
-		this.initMessages();
 		this.setUpView(mController.getLanguage(), methodId);
 	}
 
 
-	private void initMessages() {
-		List<Tag> tags = mController.getTags();
-		for (Tag tag : tags) {
-			if( tag.getTarget().equals("LEVEL_FINISHED")) {
-				this.FINISHED_TEXT = tag.getContent();
-			} else if ( tag.getTarget().equals("CONGRATZ")) {
-				this.CONGRATZ_TEXT = tag.getContent();
-			}
-		}
-	}
 
 	private void setUpView(Language l, Long methodId) {
 		// Set the name of the language on top of the view
@@ -90,24 +79,24 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 				break;
 			}
 			ImageButton currentButton = levelButtons.get(butCount);
-			currentButton.setTag(level.getId());
 			ImageView currentView = levelStatusImage.get(butCount);
 			
 			if (locked.equals(false) && level.getCompleted().equals(false)){
 				// Everything from here on is locked
 				locked = true;
 				currentView.setImageResource(LEVELS_STATUS.get(this.inProgressResourceName));
+				currentButton.setTag(level.getId());
 				
 			} else if (level.getCompleted().equals(true)){
 				// this Level is already completed, so disable it 
-				currentButton.setEnabled(false);
-				currentView.setImageResource(LEVELS_STATUS.get(this.doneResourceName));
+				currentView.setImageResource(LEVELS_STATUS.get(this.finishedResourceName));
+				currentButton.setTag(this.finishedLvlCode);
 				
 			} else if (locked == true) {
 				// locked Level
 				currentView.setImageResource(LEVELS_STATUS.get(this.lockedResourceName));
+				currentButton.setTag(this.lockedLvlCode);
 			}
-			
 			
 			butCount++;
 		}
@@ -118,10 +107,30 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 
 
 	public void handleClick(View v) {
-		Intent intent = new Intent();
-		intent.setClass(this, ExercisesActivity.class);
-		intent.putExtra("level_id", (Long) v.getTag());
-		startActivityForResult(intent, lastFinishedLevelId);
+		Long tagNr = (Long)v.getTag();
+		
+		if( tagNr > 0 ){
+			Intent intent = new Intent();
+			intent.setClass(this, ExercisesActivity.class);
+			intent.putExtra("level_id", (Long) v.getTag());
+			startActivityForResult(intent, lastFinishedLevelId);
+		} else {
+			String infoText;
+			// clicked on an already finished exercise
+			if ( tagNr.equals(this.finishedLvlCode)){
+				infoText = this.mController.ALREADY_FINISHED_TEXT;
+			} else {
+				// clicked on an locked exercise
+				infoText = this.mController.LOCKED_TEXT;
+			}
+			Toast toast = Toast.makeText(this, infoText, 1000);
+			toast.setGravity(Gravity.TOP, -30, 50);
+			toast.show();
+			
+			mTts.speak(infoText,
+					TextToSpeech.QUEUE_FLUSH, null);
+		}
+
 	}
 
 	public List<ImageButton> getLevelButtons() {
@@ -155,7 +164,7 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 			
 			if (previousLevelName.length() > 0){
 				
-				String text = this.FINISHED_TEXT + " " + previousLevelName + ". " + this.CONGRATZ_TEXT;
+				String text = this.mController.FINISHED_TEXT + " " + previousLevelName + ". " + this.mController.CONGRATZ_TEXT;
 				
 				Toast toast = Toast.makeText(this, text, 1000);
 				toast.setGravity(Gravity.TOP, -30, 50);
@@ -187,7 +196,7 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 	
 	private HashMap<String, Integer> getLevelsSrcMap() {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put(this.doneResourceName, R.drawable.ok);
+		map.put(this.finishedResourceName, R.drawable.ok);
 		map.put(this.lockedResourceName, R.drawable.lockred);
 		map.put(this.inProgressResourceName, R.drawable.player_play);
 		

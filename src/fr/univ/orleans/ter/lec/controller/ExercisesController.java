@@ -61,7 +61,7 @@ public class ExercisesController extends BasicLECController {
 
 	public void nextExercise() {
 		this.exercise = this.level.getSessionExercises();
-
+		
 		if (this.exercise == null) {
 			Log.w("ExercisesController", "Could not find any exercise.");
 			return;
