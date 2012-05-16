@@ -159,9 +159,10 @@ public class Level extends BasicLECModel implements ChildRole, ParentRole {
 	 * Returns an Exercise for the current Level.
 	 * The Exercise will be either one of the two:
 	 *  - the first exercise having completed = false
-	 *  - the first exercise if all have completed = true
+	 *  - the first exercise minId >  if all have completed = true
+	 *  - the first exercise if none satisfiable was found
 	 */
-	public Exercise getSessionExercises() {
+	public Exercise getSessionExercises(long minId) {
 		List<ChildRole> childs = this.getChilds(SQLRelation.RELNAME_EXERCISES_LEVEL);
 		
 		if( childs.size() == 0){
@@ -170,19 +171,24 @@ public class Level extends BasicLECModel implements ChildRole, ParentRole {
 		}
 		
 		Exercise ret = null;
+		Exercise first = null;
 		
 		Iterator<ChildRole> it = childs.iterator();
 		while(it.hasNext()){
-			Exercise e = (Exercise)it.next();
-			if (e.getCompleted() == false){
-				ret = e;
+			Exercise current = (Exercise)it.next();
+			if (first == null && current.getId() > minId)
+				first = current;
+			if (current.getCompleted() == false){
+				ret = current;
 				break;
 			}
 		}
 		
 		// No un-completed exercise was found, returning the first one
-		if ( ret == null ){
+		if ( ret == null && first == null ){
 			ret = (Exercise)childs.get(0);
+		} else {
+			ret = first;
 		}
 		
 		return ret;

@@ -60,7 +60,14 @@ public class ExercisesController extends BasicLECController {
 	}
 
 	public void nextExercise() {
-		this.exercise = this.level.getSessionExercises();
+		Long currentId = null;
+		if (this.exercise == null ){
+			currentId = 0L;
+		} else {
+			currentId = this.exercise.getId();
+		}
+
+		this.exercise = this.level.getSessionExercises(currentId);
 		
 		if (this.exercise == null) {
 			Log.w("ExercisesController", "Could not find any exercise.");
@@ -74,10 +81,6 @@ public class ExercisesController extends BasicLECController {
 
 	public String getQuestion() {
 		if (this.exercise == null) {
-			return "";
-		}
-		
-		if (this.exercise.getCompleted() == true) {
 			return "";
 		}
 
