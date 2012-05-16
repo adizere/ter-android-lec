@@ -14,7 +14,8 @@ public class LocaleDefs {
 		
 		retMap.put("Français", Locale.FRANCE);
 		retMap.put("English", Locale.ENGLISH);
-		retMap.put("Italian", Locale.ITALIAN);
+		retMap.put("German", Locale.GERMAN);
+		
 		
 		return retMap;
 	}

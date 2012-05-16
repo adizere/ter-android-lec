@@ -16,6 +16,7 @@ import fr.univ.orleans.ter.lec.utility.LocaleDefs;
 
 public class ExercisesController extends BasicLECController {
 
+	public boolean JUST_FINISHED = false;
 	private Long levelId;
 	private Level level;
 
@@ -71,8 +72,12 @@ public class ExercisesController extends BasicLECController {
 		
 		if (this.exercise == null) {
 			Log.w("ExercisesController", "Could not find any exercise.");
+			this.JUST_FINISHED = true;
 			return;
 		}
+		
+		if (currentId >= this.exercise.getId())
+			this.JUST_FINISHED = true;
 
 		if (this.exercise.getCompleted() == true) {
 			Log.d("ExercisesController", "All exercises were completed.");
