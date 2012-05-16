@@ -89,7 +89,7 @@ public class ExercisesActivity extends Activity implements OnInitListener {
 		this.resetButtons();
 		String question = mController.getQuestion();
 
-		if (question == null || question == "") {
+		if (mController.JUST_FINISHED) {
 			Log.d("ExercisesActivity", "Passing to the next level.");
 			this.toNextLevel();
 		}
@@ -225,6 +225,13 @@ public class ExercisesActivity extends Activity implements OnInitListener {
 			Log.e("ExercisesActivity", "Could not initialize TextToSpeech!");
 		} else {
 			this.setLanguage(mController.getLanguageAsLocale());
+		}
+		
+		Locale[] all = Locale.getAvailableLocales();
+		for (Locale locale : all) {
+			int t = mTts.isLanguageAvailable(locale);
+			if ( t > 0 )
+				Log.d("LOCAL PRESENCE", "For " + locale.getLanguage() +" country: " + locale.getDisplayCountry() + " status: " + t);
 		}
 	}
 

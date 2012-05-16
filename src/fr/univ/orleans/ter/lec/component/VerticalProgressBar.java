@@ -18,7 +18,6 @@ public class VerticalProgressBar extends ProgressBar {
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        Log.d("VerticalProgressBar", "drawableStateChanged.");
     }
 
     public VerticalProgressBar(Context context, AttributeSet attrs, int defStyle) {
@@ -35,8 +34,6 @@ public class VerticalProgressBar extends ProgressBar {
         this.y = h;
         this.z = oldw;
         this.w = oldh;
-        
-        Log.d("VerticalProgressBar", "onSizeChanged.");
     }
 
     @Override
@@ -45,7 +42,6 @@ public class VerticalProgressBar extends ProgressBar {
         super.onMeasure(heightMeasureSpec, widthMeasureSpec);
         setMeasuredDimension(getMeasuredHeight(), getMeasuredWidth());
         
-        Log.d("VerticalProgressBar", "onMeasure.");
     }
 
     protected void onDraw(Canvas c) {

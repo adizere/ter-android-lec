@@ -1,5 +1,5 @@
 <dbStructure>
-	<version value="12"/>
+	<version value="15"/>
 	<!-- 
 	Important: This describes the database content.
 	
@@ -14,9 +14,10 @@
 		<rows>
 			<row name="Français"/>
 			<row name="English"/>
-			<row name="Italian"/>
+			<row name="German"/>
 		</rows>
 	</table>
+	
 	<table name="tags">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
@@ -25,28 +26,37 @@
 		</columns>
 		<rows>
 			<row target="EXERCISE_OK" content="C'est correct!"/>		<!-- id 1 -->
-			<row target="EXERCISE_OK" content="That is correct!"/>
+			<row target="EXERCISE_OK" content="That is correct!"/>      <!-- id 2 -->
+			<row target="EXERCISE_OK" content="Das ist richtig!"/>              <!-- id 3 -->
 			
-			<row target="EXERCISE_NOK" content="Desole."/>				<!-- id 3 -->
-			<row target="EXERCISE_NOK" content="Sorry, try again."/>
+			<row target="EXERCISE_NOK" content="Desole,essayez ŕ nouveau"/>				<!-- id 4 -->
+			<row target="EXERCISE_NOK" content="Sorry, try again."/>                    <!-- id 5 -->
+			<row target="EXERCISE_NOK" content="Bitte es erneut zu versuchen."/>                           <!-- id 6 -->
 			
-			<row target="LEVEL_FINISHED" content="Tu as fini le:"/>	<!-- id 5 -->
-			<row target="LEVEL_FINISHED" content="You finished:"/>
+			<row target="LEVEL_FINISHED" content="Tu as fini le:"/>	                    <!-- id 7 -->
+			<row target="LEVEL_FINISHED" content="You finished:"/>                      <!-- id 8 -->
+			<row target="LEVEL_FINISHED" content="Sie fertigen:"/>                   <!-- id 9 -->
 			
-			<row target="CONGRATZ" content="Félicitations!"/>			<!-- id 7 -->
-			<row target="CONGRATZ" content="Congratulations!"/>
+			<row target="CONGRATZ" content="Félicitations!"/>			<!-- id 10 -->
+			<row target="CONGRATZ" content="Congratulations!"/>         <!-- id 11 -->
+			<row target="CONGRATZ" content="Herzlichen Glückwunsch!"/>         <!-- id 12 -->
 			
-			<row target="HELP_GENERIC" content="Bienvenue dans l'application LEC, pour cet exercice vous avez question avec 4 réponses possible, vous devez séléctionner la bonne réponse  pour que votre score augmente et vous passez au niveau suivant."/>
-																		<!-- id 9 -->
-			<row target="HELP_GENERIC" content="Welcome to the LEC pursuant to this exercise you have questions with four possible answers, You must select the correct answer for your score and you advance to the next level."/>
+			<row target="HELP_GENERIC" content="Bienvenue dans l'application LEC, pour cet exercice vous avez une question avec 4 réponses possibles, vous devez séléctionner la bonne réponse  pour que votre score augmente et vous passez au niveau suivant."/>
+																		<!-- id 13 -->
+			<row target="HELP_GENERIC" content="Welcome to the LEC, for to this exercise you have questions with four possible answers, You must select the correct answer for your score and you advance to the next level."/>
+																		<!-- id 14 -->
+			<row target="HELP_GENERIC" content="Willkommen in der LEC, für diese Übung zu Fragen mit vier Antwortmöglichkeiten haben, müssen Sie die richtige Antwort für Ihre Gäste und Sie zum nächsten Level zu gelangen."/>
+																		<!-- id 15 -->
+			<row target="LEVEL_LOCKED" content="Désolé, vous devez finir les niveaux precedents."/>        <!-- id 16 -->
+			<row target="LEVEL_LOCKED" content="Sorry, first you have to finish the previous levels."/>    <!-- id 17 -->
+			<row target="LEVEL_LOCKED" content="Bitte sie müssen die vorherige Level zu beenden."/> <!-- id 18 -->
 			
-			<row target="LEVEL_LOCKED" content="Desole, vous devriez finir les niveaux precedents."/><!-- id 11 -->
-			<row target="LEVEL_LOCKED" content="Sorry, first you have to finish the previous levels."/>
-			
-			<row target="LEVEL_ALREADY_FINISHED" content="Vous avez deja fini cette niveau."/><!-- id 13 -->
-			<row target="LEVEL_ALREADY_FINISHED" content="You already finished this level."/>
+			<row target="LEVEL_ALREADY_FINISHED" content="Vous avez deja fini ce niveau."/>   <!-- id 19 -->
+			<row target="LEVEL_ALREADY_FINISHED" content="You already finished this level."/> <!-- id 20 -->
+			<row target="LEVEL_ALREADY_FINISHED" content="Sie bereits beendet dieses Niveau."/>    <!-- id 21 -->
 		</rows>
 	</table>
+	
 	<table name="languages_tags">
 		<columns>
 			<column name="_id" type="integer" options="primary key autoincrement"/>
@@ -58,20 +68,28 @@
 		</relations>
 		<rows>
 			<row language_id="1" tag_id="1"/>	<!-- For French -->
-			<row language_id="1" tag_id="3"/>
-			<row language_id="1" tag_id="5"/>
+			<row language_id="1" tag_id="4"/>
 			<row language_id="1" tag_id="7"/>
-			<row language_id="1" tag_id="9"/>
-			<row language_id="1" tag_id="11"/>
+			<row language_id="1" tag_id="10"/>
 			<row language_id="1" tag_id="13"/>
+			<row language_id="1" tag_id="16"/>
+			<row language_id="1" tag_id="19"/>
 			
 			<row language_id="2" tag_id="2"/>	<!-- For English -->
-			<row language_id="2" tag_id="4"/>
-			<row language_id="2" tag_id="6"/>
+			<row language_id="2" tag_id="5"/>
 			<row language_id="2" tag_id="8"/>
-			<row language_id="2" tag_id="10"/>
-			<row language_id="2" tag_id="12"/>
+			<row language_id="2" tag_id="11"/>
 			<row language_id="2" tag_id="14"/>
+			<row language_id="2" tag_id="17"/>
+			<row language_id="2" tag_id="20"/>
+			
+			<row language_id="3" tag_id="3"/>	<!-- For Italian -->
+			<row language_id="3" tag_id="6"/>
+			<row language_id="3" tag_id="9"/>
+			<row language_id="3" tag_id="12"/>
+			<row language_id="3" tag_id="15"/>
+			<row language_id="3" tag_id="18"/>
+			<row language_id="3" tag_id="21"/>
 		</rows>
 	</table>
 	<table name="methods">
@@ -142,15 +160,15 @@
 			<row language_id="2" method_id="3" completed="0" name="Level 2"/>  <!-- id 17 -->
 			<row language_id="2" method_id="3" completed="0" name="Level 3"/>  <!-- id 18 -->
 			
-			<row language_id="3" method_id="1" completed="0" name="Niveau 1"/>
-			<row language_id="3" method_id="1" completed="0" name="Niveau 2"/>
-			<row language_id="3" method_id="1" completed="0" name="Niveau 3"/>
-			<row language_id="3" method_id="2" completed="0" name="Niveau 1"/>
-			<row language_id="3" method_id="2" completed="0" name="Niveau 2"/>
-			<row language_id="3" method_id="2" completed="0" name="Niveau 3"/>
-			<row language_id="3" method_id="3" completed="0" name="Niveau 1"/>
-			<row language_id="3" method_id="3" completed="0" name="Niveau 2"/>
-			<row language_id="3" method_id="3" completed="0" name="Niveau 3"/>
+			<row language_id="3" method_id="1" completed="0" name="livello 1"/> <!-- id 19 -->
+			<row language_id="3" method_id="1" completed="0" name="livello 2"/> <!-- id 20 -->
+			<row language_id="3" method_id="1" completed="0" name="livello 3"/> <!-- id 21 -->
+			<row language_id="3" method_id="2" completed="0" name="livello 1"/> <!-- id 22 -->
+			<row language_id="3" method_id="2" completed="0" name="livello 2"/> <!-- id 23 -->
+			<row language_id="3" method_id="2" completed="0" name="livello 3"/> <!-- id 24 -->
+			<row language_id="3" method_id="3" completed="0" name="livello 1"/> <!-- id 25 -->
+			<row language_id="3" method_id="3" completed="0" name="livello 2"/> <!-- id 26 -->
+			<row language_id="3" method_id="3" completed="0" name="livello 3"/> <!-- id 27 -->
 		</rows>
 	</table>
 	<table name="exercises">
@@ -252,7 +270,7 @@
 			<row level_id="11" completed="0" question="14+28" />
 			<row level_id="11" completed="0" question="73+7" /><!-- id 80 -->
 			
-			<row level_id="12" completed="0" question="1−0" />
+			<row level_id="12" completed="0" question="1-0" />
 			<row level_id="12" completed="0" question="2-1" />
 			<row level_id="12" completed="0" question="3–3" />
 			<row level_id="12" completed="0" question="4—2" />
@@ -289,14 +307,23 @@
 			<row level_id="15" completed="0" question="mother" />					
 			<row level_id="15" completed="0" question="uncle" />	
 			<row level_id="15" completed="0" question="grandfather" />	
-			<row level_id="15" completed="0" question="grandmother" /><!-- id 55 --> 	
+			<row level_id="15" completed="0" question="grandmother" /><!-- id 115 --> 	
 			<row level_id="15" completed="0" question="house" />	
 			<row level_id="15" completed="0" question="cat" />	
 			<row level_id="15" completed="0" question="dog" />	
 			<row level_id="15" completed="0" question="good morning" />	
-			<row level_id="15" completed="0" question="good afternoon" />		
-			
-			<row level_id="19" completed="0" question="1−0" />
+			<row level_id="15" completed="0" question="good afternoon" />				
+		
+			<row level_id="19" completed="0" question="1+1" /><!-- id 120 -->
+			<row level_id="19" completed="0" question="1+3" />
+			<row level_id="19" completed="0" question="2+2" />
+			<row level_id="19" completed="0" question="2+4" />
+			<row level_id="19" completed="0" question="3+1" /><!-- id 125 -->
+			<row level_id="19" completed="0" question="5+3" />
+			<row level_id="19" completed="0" question="6+5" />
+			<row level_id="19" completed="0" question="5+8" />
+			<row level_id="19" completed="0" question="9+7" />
+			<row level_id="19" completed="0" question="7+4" /><!-- id 130 -->
 			
 		</rows>
 	</table>
@@ -443,9 +470,18 @@
 			<row exercise_id="117" result="cat" choice1="cot" choice2="cit" choice3="ciat" />	
 			<row exercise_id="118" result="dog" choice1="dag" choice2="doge" choice3="diog" />	
 			<row exercise_id="119" result="good morning" choice1="god morning" choice2="good moning" choice3="good mornig" />	
-			<row exercise_id="120" result="good afternoon" choice1="god afternoon" choice2="good afternon" choice3="good aftenoon"/>
-		
-			<row exercise_id="121" result="4" choice1="3" choice2="2" choice3="1" />
+			<row exercise_id="120" result="good afternoon" choice1="god afternoon" choice2="good afternon" choice3="good aftenoon"/>	
+					
+			<row exercise_id="121" result="2" choice1="3" choice2="5" choice3="1" />
+			<row exercise_id="122" result="4" choice1="3" choice2="5" choice3="1" />
+			<row exercise_id="123" result="4" choice1="2" choice2="5" choice3="1" />
+			<row exercise_id="124" result="6" choice1="1" choice2="5" choice3="1" />
+			<row exercise_id="125" result="4" choice1="6" choice2="5" choice3="1" />
+			<row exercise_id="126" result="8" choice1="7" choice2="5" choice3="1" />
+			<row exercise_id="127" result="11" choice1="3" choice2="5" choice3="1" />
+			<row exercise_id="128" result="13" choice1="11" choice2="5" choice3="1" />
+			<row exercise_id="129" result="16" choice1="11" choice2="5" choice3="1" />			
+			<row exercise_id="130" result="11" choice1="14" choice2="5" choice3="1" />
 		</rows>
 	</table>
 </dbStructure>
