@@ -33,7 +33,6 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 	private final String finishedResourceName = "FINISHED";
 	private final String inProgressResourceName = "IN_PROGRESS";
 	private final String lockedResourceName = "LOCKED";
-	private final Long finishedLvlCode = -10L;
 	private final Long lockedLvlCode = -20L;
 	
 	private LevelsController mController;
@@ -90,7 +89,7 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 			} else if (level.getCompleted().equals(true)){
 				// this Level is already completed, so disable it 
 				currentView.setImageResource(LEVELS_STATUS.get(this.finishedResourceName));
-				currentButton.setTag(this.finishedLvlCode);
+				currentButton.setTag(level.getId());
 				
 			} else if (locked == true) {
 				// locked Level
@@ -115,11 +114,9 @@ public class LevelsListActivity extends Activity implements OnInitListener {
 			intent.putExtra("level_id", (Long) v.getTag());
 			startActivityForResult(intent, lastFinishedLevelId);
 		} else {
-			String infoText;
+			String infoText = "";
 			// clicked on an already finished exercise
-			if ( tagNr.equals(this.finishedLvlCode)){
-				infoText = this.mController.ALREADY_FINISHED_TEXT;
-			} else {
+			if ( tagNr.equals(this.lockedLvlCode)){
 				// clicked on an locked exercise
 				infoText = this.mController.LOCKED_TEXT;
 			}

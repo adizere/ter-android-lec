@@ -17,7 +17,6 @@ public class LevelsController extends BasicLECController {
 	public String FINISHED_TEXT;
 	public String CONGRATZ_TEXT;
 	public String LOCKED_TEXT;
-	public String ALREADY_FINISHED_TEXT;
 
 	public Long getLanguageId() {
 		return languageId;
@@ -42,8 +41,6 @@ public class LevelsController extends BasicLECController {
 				this.CONGRATZ_TEXT = tag.getContent();
 			} else if ( tag.getTarget().equals("LEVEL_LOCKED")) {
 				this.LOCKED_TEXT = tag.getContent();
-			}  else if ( tag.getTarget().equals("LEVEL_ALREADY_FINISHED")) {
-				this.ALREADY_FINISHED_TEXT = tag.getContent();
 			}
 		}
 	}
