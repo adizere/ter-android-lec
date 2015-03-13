@@ -1,0 +1,30 @@
+1. Présentation du sujet 
+	Le projet permet de mettre en place une application mobile d'apprentissage pour les enfants de moins de 5 ans ou de niveau première année primaire et cela pour les aider à apprendre la lecture, l'écriture et le calcul mental à travers des leçons et des exercices de différents niveaux et cela avec plusieurs langues.
+
+2. Introduction au domaine
+	Nous allons commencer tout d'abord par définir ce que c'est une  application mobile.
+
+2.1. Application mobile
+	Une application mobile est un programme téléchargeable de façon gratuite ou payante et exécutable à partir du système d’exploitation du téléphone.
+	Les applications mobiles sont adaptées aux différents environnements techniques des smartphones et à leurs contraintes et possibilités ergonomiques (écran tactile notamment). Elles permettent généralement un accès plus confortable et plus efficace à des sites accessibles par ailleurs en versions mobile ou web.
+
+3. Étude de l’existant 
+	Dans le domaine d'apprentissage mobile plusieurs applications ont été déjà développées, nous allons présenter une application d'apprentissage de calcul et une application d'apprentissage de la lecture.
+
+4. Besoins non fonctionnels de l'application 
+           Le but de notre projet est de mettre en place une application permettant d'apprendre aux enfants la lecture, l'écriture et le calcul au moyen d'un terminal mobile.
+4.1. Environnement de développement
+Android SDK
+Description:	L’Android SDK est le kit de développement proposé par Google aux développeurs souhaitant programmer des applications pour terminaux mobiles tournant sous Android (smartphones, tablettes,..)
+Justification: développement sous android est gratuit.
+Priorité: Haute.
+Problèmes techniques: maîtrise de Java sous android.
+
+5. Besoins fonctionnel de l'application 
+•	Description: l 'application permet d'apprendre à  lire, écrire et compter pour cela nous avons partagé l'application en 3 activités :
+-Activité « Apprendre à lire »:l'application propose une méthode pour apprendre à lire l'alphabet d'une langue puis apprendre les syllabes, les mots et enfin les phrases et cela à travers des leçons et des exercices en exploitant les technologies des terminaux mobiles à savoir faire parler la tablette .
+-Activité « Apprendre à écrire ».
+-Activité « Apprendre à compter ».
+•	Justification: Exigé par le client
+•	priorité: Haute
+•	problèmes techniques: 

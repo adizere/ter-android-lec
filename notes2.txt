@@ -1,0 +1,29 @@
+17.02.2012 - Dabrowski, Notes
+
+	Interface de l'application:
+1. La langue est sélectionnée a travers un drapeau.
+2. Sélectionner le méthode: Lire / Écrire / Compter a partir d'une Images associée a tous les bouton.
+3. Sélectionner le niveaux pour une activité pour commencer.
+
+
+	-- LIRE --
+Niveaux 1 : apprendre a lire l'alphabet avec des images représentant les  lettres.
+•	Sou-niveau a (a.. h)
+•	Sou-niveau b  (i..m)
+•	Sou-niveau c  (n..z)
+
+Niveaux 2 : apprendre a lire les syllabe en utilisant des image représentant les syllabes .
+•	Sou-niveau (pa)
+•	Sou-niveau (po)
+•	Sou-niveau (pi)
+
+Niveaux 3 : apprendre a lire des  mots.
+
+Niveaux 4 : apprendre a lire des le phrase.
+
+Fonctionnement de l’application
+  - l'application récupere une lettre de la base de données et  la prononce ensuite elle génere 3 autres lettres aléatoirement .
+  - la machine prononce une lettre ('b'),en  utilisant l' API Android Text-To-Speech.
+  - Une liste de lettre va s'affiche (b, c, a, d).
+  - L'enfant clique sur  la bonne réponse.
+  -On associe une échelle représentant  le progres de l'enfant pour le niveaux courant, a chaque fois que l'enfant répond juste, l’échelle monte.

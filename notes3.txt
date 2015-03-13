@@ -1,0 +1,13 @@
+Notes de  21/02/2012 (Couvreur)
+
+	Architecture logicielle
+	
+Design Pattern: Modele Vue Contrôleur
+	* Modele: liste de question
+	* Vue: le son, les dessins( la tete, l'échelle  et les images bottons  et le help qui prononce l'aide de l'activité).
+
+Vue de la voix qui prononce les lettres :  tete d'une  personne qui parle et régit selon la réponse; 
+	sourire quand c'est une bonne réponse, pour réentendre le caractere on clique sur la tete
+On peut cliquer sur les trois lettres pour que la tete les prononce.
+Pour répondre on glisse la bonne réponse vers la tete (elle la mange) et l'échelle monte (on fait monter une coccinelle).
+Interface graphique : Java 'Swing' sous android ou XML????
